@@ -8,7 +8,7 @@ namespace ApostaEmCorrida.Domain
 {
     public class Cavalo
     {
-        public int Id_Cavalo { get; set; }
+        private int Id_Cavalo { get; set; }
         public string Nome { get; set; }
         public double Altura { get; set; }
         public double Peso { get; set; }
@@ -16,29 +16,41 @@ namespace ApostaEmCorrida.Domain
         public int Numero_de_Vitorias { get; private set; }
         public double Desempenho { get; private set; }
 
+        public Cavalo(int id_Cavalo, string nome, double altura, double peso, int numero_de_Corridas, int numero_de_Vitorias, double desempenho)
+        {
+            Id_Cavalo = id_Cavalo;
+            Nome = nome;
+            Altura = altura;
+            Peso = peso;
+            Numero_de_Corridas = numero_de_Corridas;
+            Numero_de_Vitorias = numero_de_Vitorias;
+            Desempenho = desempenho;
+        }
+
+
+
         //Função que cadastra os participantes
         public static Cavalo CadastrarCavalo(List<Cavalo> ListaCavalos)
         {
-            Cavalo cavalo = new Cavalo();
+            int idCavalo;
             if (ListaCavalos.Count() == 0)
             {
-                cavalo.Id_Cavalo = 1;
+               idCavalo = 1;
             }
             else
             {
-                cavalo.Id_Cavalo = (ListaCavalos.Max().Id_Cavalo + 1);
+                idCavalo = (ListaCavalos.Max(c => c.Id_Cavalo) + 1);
             }
             {
                 Console.WriteLine("Digite o nome do cavalo");
-                cavalo.Nome = Convert.ToString(Console.ReadLine());
+                string nome = Convert.ToString(Console.ReadLine());
                 Console.WriteLine("Digite a altura do cavalo");
-                cavalo.Altura = Convert.ToDouble(Console.ReadLine());
+                double altura = Convert.ToDouble(Console.ReadLine());
                 Console.WriteLine("Digite o Peso do cavalo");
-                cavalo.Peso = Convert.ToDouble(Console.ReadLine());
+                double peso = Convert.ToDouble(Console.ReadLine());
                 Console.WriteLine("Cavalo cadastrado com sucesso");
-                cavalo.Numero_de_Corridas = 0;
-                cavalo.Numero_de_Vitorias = 0;
-                cavalo.Desempenho = 100;
+
+                Cavalo cavalo = new Cavalo(idCavalo, nome, altura, peso, 0, 0, 100);
                 return cavalo;
             }
         }

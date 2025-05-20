@@ -15,12 +15,8 @@ namespace ApostaEmCorrida.Menu
 
             Console.WriteLine("Digite o numero de cavalos participantes");
             numeroCavalos = Convert.ToInt32(Console.ReadLine());
-            Cavalo[] cavalos = new Cavalo[numeroCavalos];
-            for (int i = 0; i < numeroCavalos; i++)
-            {
-                cavalos[i] = CadastrarCavalo();
-                Console.WriteLine(cavalos[i].Nome);
-            }
+            List<Cavalo> cavalos;
+            
 
             do
             {
