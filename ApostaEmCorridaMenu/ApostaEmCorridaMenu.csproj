@@ -8,10 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ApostaEmCorrida.API\ApostaEmCorrida.API.csproj" />
-    <ProjectReference Include="..\ApostaEmCorrida.Dapper\ApostaEmCorrida.Dapper.csproj" />
     <ProjectReference Include="..\ApostaEmCorrida.Domain\ApostaEmCorrida.Domain.csproj" />
-    <ProjectReference Include="..\ApostaEmCorrida.Services\ApostaEmCorrida.Services.csproj" />
   </ItemGroup>
 
 </Project>

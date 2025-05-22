@@ -11,8 +11,9 @@ namespace ApostaEmCorrida.Domain
     {
         public List<Cavalo> Cavalos { get; private set; }
         public List<Apostador> Apostadores { get; private set; }
+        public double ValorEmAposta { get; private set; }
         private double Saldo { get; set; }
-        private double ValorEmAposta { get; set; }
+        
 
         public Casa(List<Cavalo> cavalos, List<Apostador> apostadores, double saldo, double valorEmAposta)
         {
@@ -29,10 +30,10 @@ namespace ApostaEmCorrida.Domain
             Casa casa = new Casa(cavalos,apostadores,0,0);
             return casa;
         }
-        public static List<Cavalo> NovoCavalo(List<Cavalo>cavalos)
+        public static Casa DepositoDeSaldo(Casa casa,double valor)
         {
-            cavalos.Add(Cavalo.CadastrarCavalo(cavalos));
-            return cavalos;
+            casa.Saldo += valor;
+            return casa;
         }
         //Função que gera o resultado da Corrida
         public static Cavalo Corrida(Cavalo[] cavalos)
@@ -57,5 +58,6 @@ namespace ApostaEmCorrida.Domain
                 return dinheiro -= valor;
             }
         }
+        public static void Main() { }
     }
 }

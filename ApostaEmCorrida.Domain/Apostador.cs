@@ -8,37 +8,42 @@ namespace ApostaEmCorrida.Domain
 {
     public class Apostador
     {
-        private int Id_Apostador { get; set; }
-        public string Nome { get; set; }
-        public string Email { get; set; }
-        public string Senha { get; private set; }
+        public int Senha { get; private set; }//Codigo publico para a identificação do mesmo. um numero gerado para que o mesmo seja identificado caso ganhe a aposta
         public double Saldo { get; private set; }
-        
+        public double ValorApostado { get; private set; }
+        public string Nome { get; set; }
 
-        public Apostador(int id_Apostador,string nome, string email, string senha, double saldo) 
+
+        public Apostador(int senha, double saldo, double valor, string nome) 
         {
-            Id_Apostador = id_Apostador;
-            Nome = nome;
-            Email = email;
             Senha = senha;
             Saldo = saldo;
+            ValorApostado = valor;
+            Nome = nome;
         }
         public static Apostador CadastrarApostador(List<Apostador> listaApostadores)
         {
-            int idApostador;
-            if (listaApostadores.Count() == 0)
-            {
-                idApostador = 1;
-            }
-            else
-            {
-                idApostador = (listaApostadores.Max().Id_Apostador + 1);
-            }
+            Console.WriteLine("Digite o nome do Apostador");
             string nome= Convert.ToString(Console.ReadLine());
-            string email = Convert.ToString(Console.ReadLine());
-            string senha = Convert.ToString(Console.ReadLine());
-            Apostador apostador = new Apostador(idApostador,nome,email,senha,0);
+            int senha = CriarSenha(listaApostadores);
+            Console.WriteLine("Apostador cadastrado com sucesso");
+            Console.WriteLine($"A Senha do Apostador cadastrado é {senha}");
+            Apostador apostador = new Apostador(senha,0,0,nome);
             return apostador;
+        }
+
+        //Função que cria uma senha de 5 digitos para o usuário e impede que haja 2 senhas iguais
+        public static int CriarSenha(List<Apostador> apostadoresCadastrados)
+        {
+            List<int> senhasCadastradas= apostadoresCadastrados.Select(a=>a.Senha).ToList();
+            Random rnd = new Random();
+            int novaSenha;
+            do
+            {
+                novaSenha = rnd.Next(10000, 99999);
+            }while(senhasCadastradas.Contains(novaSenha));
+
+            return novaSenha;
         }
         //Fuñção que Registra a escolha do Apostador
         public static Cavalo Escolha(Cavalo[] cavalos)

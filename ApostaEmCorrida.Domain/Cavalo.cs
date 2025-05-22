@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ApostaEmCorrida.Domain
 {
     public class Cavalo
     {
-        private int Id_Cavalo { get; set; }
+        public int Numero_Cavalo { get;private set; }
         public string Nome { get; set; }
         public double Altura { get; set; }
         public double Peso { get; set; }
@@ -16,9 +17,9 @@ namespace ApostaEmCorrida.Domain
         public int Numero_de_Vitorias { get; private set; }
         public double Desempenho { get; private set; }
 
-        public Cavalo(int id_Cavalo, string nome, double altura, double peso, int numero_de_Corridas, int numero_de_Vitorias, double desempenho)
+        public Cavalo(int numero, string nome, double altura, double peso, int numero_de_Corridas, int numero_de_Vitorias, double desempenho)
         {
-            Id_Cavalo = id_Cavalo;
+            Numero_Cavalo = numero;
             Nome = nome;
             Altura = altura;
             Peso = peso;
@@ -32,28 +33,37 @@ namespace ApostaEmCorrida.Domain
         //Função que cadastra os participantes
         public static Cavalo CadastrarCavalo(List<Cavalo> ListaCavalos)
         {
-            int idCavalo;
-            if (ListaCavalos.Count() == 0)
-            {
-               idCavalo = 1;
-            }
-            else
-            {
-                idCavalo = (ListaCavalos.Max(c => c.Id_Cavalo) + 1);
-            }
-            {
+            int numero=CadastrarNumero(ListaCavalos);
                 Console.WriteLine("Digite o nome do cavalo");
                 string nome = Convert.ToString(Console.ReadLine());
-                Console.WriteLine("Digite a altura do cavalo");
-                double altura = Convert.ToDouble(Console.ReadLine());
-                Console.WriteLine("Digite o Peso do cavalo");
-                double peso = Convert.ToDouble(Console.ReadLine());
-                Console.WriteLine("Cavalo cadastrado com sucesso");
 
-                Cavalo cavalo = new Cavalo(idCavalo, nome, altura, peso, 0, 0, 100);
+                Console.WriteLine("Digite a altura do cavalo");
+                double altura = double.Parse(Console.ReadLine());
+
+                Console.WriteLine("Digite o Peso do cavalo");
+                double peso = double.Parse(Console.ReadLine());
+
+                Console.WriteLine("Cavalo cadastrado com sucesso");
+                Console.WriteLine($"[{numero}] - {nome}");
+                Cavalo cavalo = new Cavalo(numero, nome, altura, peso, 0, 0, 100);
                 return cavalo;
-            }
+            
         }
+
+        //Função que cria o numero do cavalo e impede que haja 2 cavalos com o mesmo numero
+        public static int CadastrarNumero(List<Cavalo> cavalosCadastrados)
+        {
+            List<int> numerosExistentes = cavalosCadastrados.Select(c => c.Numero_Cavalo).ToList();
+            Random rnd = new Random();
+            int novoNumero;
+            do
+            {
+                novoNumero = rnd.Next(10, 99);
+            } while (numerosExistentes.Contains(novoNumero));
+
+            return novoNumero;
+        }
+
         //Função que atualiza os dados dos Cavalos
         public static Cavalo[] AtualizarDesempenho(Cavalo[] cavalos, Cavalo resultado)
         {

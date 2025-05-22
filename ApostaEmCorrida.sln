@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApostaEmCorrida.Dapper", "A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApostaEmCorrida.API", "ApostaEmCorrida.API\ApostaEmCorrida.API.csproj", "{B583A99A-1B3C-4C14-9D2A-E0352695099F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApostaEmCorrida.Services", "ApostaEmCorrida.Services\ApostaEmCorrida.Services.csproj", "{F40792FD-8D7F-46DC-BA85-21D4692607C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApostaEmCorrida.Services", "ApostaEmCorrida.Services\ApostaEmCorrida.Services.csproj", "{F40792FD-8D7F-46DC-BA85-21D4692607C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
