@@ -10,26 +10,22 @@ namespace ApostaEmCorrida.Domain
     {
         public int Senha { get; private set; }//Codigo publico para a identificação do mesmo. um numero gerado para que o mesmo seja identificado caso ganhe a aposta
         public double Saldo { get; private set; }
-        public double ValorApostado { get; private set; }
         public string Nome { get; set; }
 
-
-        public Apostador(int senha, double saldo, double valor, string nome) 
+        public Apostador(int senha, double saldo, string nome) 
         {
             Senha = senha;
             Saldo = saldo;
-            ValorApostado = valor;
             Nome = nome;
         }
-        public static Apostador CadastrarApostador(List<Apostador> listaApostadores)
+        public static void CadastrarApostador(List<Apostador> listaApostadores)
         {
             Console.WriteLine("Digite o nome do Apostador");
             string nome= Convert.ToString(Console.ReadLine());
             int senha = CriarSenha(listaApostadores);
             Console.WriteLine("Apostador cadastrado com sucesso");
             Console.WriteLine($"A Senha do Apostador cadastrado é {senha}");
-            Apostador apostador = new Apostador(senha,0,0,nome);
-            return apostador;
+            listaApostadores.Add(new Apostador(senha, 0, nome));
         }
 
         //Função que cria uma senha de 5 digitos para o usuário e impede que haja 2 senhas iguais
@@ -45,19 +41,17 @@ namespace ApostaEmCorrida.Domain
 
             return novaSenha;
         }
-        //Fuñção que Registra a escolha do Apostador
-        public static Cavalo Escolha(Cavalo[] cavalos)
-        {
-            int escolha;
-            Console.WriteLine("Corrida de cavalos:\n\n Participantes:");
-            for (int i = 0; i < cavalos.Length; i++)
-            {
-                Console.WriteLine($"{i + 1} - {cavalos[i].Nome}\nAltura: {cavalos[i].Altura}m\nPeso: {cavalos[i].Peso}kg\nCorridas: {cavalos[i].Numero_de_Corridas}\nVitórias:{cavalos[i].Numero_de_Vitorias}\nDesempenho: {cavalos[i].Desempenho}%\n");
-            }
-            Console.WriteLine("Selecione o número do cavalo de sua aposta");
-            escolha = Convert.ToInt32(Console.ReadLine());
 
-            return cavalos[escolha - 1];
+        //Fuñção que Registra a escolha do Apostador
+        public static Cavalo Escolha(List<Cavalo> cavalos)
+        {
+            Console.WriteLine("Competidores:");
+            foreach (var cavalo in cavalos) 
+            { Console.WriteLine($"[{cavalo.Numero_Cavalo}] - {cavalo.Nome}"); }
+            Console.WriteLine("Selecione o numero do cavalo em que a aposta foi feita");
+            int numeroEscolhido = Convert.ToInt32(Console.ReadLine());
+            Cavalo escolha = cavalos.Find(c => c.Numero_Cavalo == numeroEscolhido);
+            return escolha;
         }
     }
 }
