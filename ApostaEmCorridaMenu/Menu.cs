@@ -45,7 +45,6 @@ namespace ApostaEmCorrida.Menu
                     {
                         case 'A' or 'a':
                             //NÃO ESTÁ VALIDANDO O CATCH
-                            //ATUALIZAÇÃO DE APOSTA TOTAL COM ERRO LÓGICO
                             Casa.CadastrarAposta(casa)
                                 ; break;
                         case 'C' or 'c':

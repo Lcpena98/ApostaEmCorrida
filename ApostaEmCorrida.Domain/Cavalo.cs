@@ -65,7 +65,7 @@ namespace ApostaEmCorrida.Domain
         }
 
         //Função que atualiza os dados dos Cavalos
-        public static List<Cavalo> AtualizarDesempenho(List<Cavalo> cavalos, Cavalo resultado)
+        public static void AtualizarDesempenho(List<Cavalo> cavalos, Cavalo resultado)
         {
             {
                 foreach (Cavalo cavalo in cavalos)
@@ -78,7 +78,6 @@ namespace ApostaEmCorrida.Domain
                     }
                     cavalo.Desempenho = (cavalo.Numero_de_Vitorias * 100) / cavalo.Numero_de_Corridas;
                 }
-                return cavalos;
             }
         }
     }

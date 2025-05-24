@@ -21,7 +21,7 @@ namespace ApostaEmCorrida.Domain
         }
 
         //metodo para cadastrar a aposta feita
-        public static Aposta NovaAposta(Casa casa, double valorApostado)
+        public static void NovaAposta(Casa casa, double valorApostado)
         {
             Cavalo cavalo = null;
             Apostador apostador = null;
@@ -64,25 +64,16 @@ namespace ApostaEmCorrida.Domain
                     apostador = null;
                 }
             } while (apostador == null);
-
-                foreach (Aposta aposta in casa.Apostas) 
-            { 
-                aposta.ValorApostado = AumentoDeValorApostado(casa.Apostas, valorApostado);
-            }
-
-            return new Aposta(cavalo,apostador,valorApostado,AumentoDeValorApostado(casa.Apostas,valorApostado));
-        }
-
-        //Metodo para atualizar o valor do total apostado
-        public static double AumentoDeValorApostado(List<Aposta> apostasFeitas,double valorApostado)
-        {
-            double soma=0;
-            foreach(Aposta aposta in apostasFeitas)
+            double totalApostado = valorApostado;
+            if (casa.Apostas.Any()) 
             {
-                soma += aposta.ValorApostado;
+                totalApostado = casa.Apostas[0].ValorEmAposta+valorApostado;
             }
-            soma += valorApostado;
-            return soma;
+            foreach(var aposta in casa.Apostas)
+            {
+                aposta.ValorEmAposta = totalApostado;
+            }
+            casa.Apostas.Add(new Aposta(cavalo,apostador,valorApostado, totalApostado));
         }
     }
 }

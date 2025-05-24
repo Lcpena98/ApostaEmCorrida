@@ -45,7 +45,7 @@ namespace ApostaEmCorrida.Domain
             double taxaAposta = (valorApostado* 10)/100;
             casa.Saldo += taxaAposta;
             valorApostado -= taxaAposta;
-            casa.Apostas.Add(Aposta.NovaAposta(casa,valorApostado));
+            Aposta.NovaAposta(casa,valorApostado);
         }
         //Função que valida o resultado da aposta e cadastra a aposta
         public static double ValidarAposta(Cavalo resultado, Cavalo escolha, double dinheiro, double valor)
