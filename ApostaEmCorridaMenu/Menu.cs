@@ -44,7 +44,6 @@ namespace ApostaEmCorrida.Menu
                     switch (MenuAposta)
                     {
                         case 'A' or 'a':
-                            //NÃO ESTÁ VALIDANDO O CATCH
                             Casa.CadastrarAposta(casa)
                                 ; break;
                         case 'C' or 'c':

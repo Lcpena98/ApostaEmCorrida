@@ -32,16 +32,23 @@ namespace ApostaEmCorrida.Domain
                     Console.WriteLine("Digite o numero do Cavalo em que a aposta foi feita");
                     int cavaloEscolhido = Convert.ToInt32(Console.ReadLine());
                     cavalo = casa.Cavalos.Find(c => c.Numero_Cavalo == cavaloEscolhido);
+                    if (cavalo !=null)
+                    {
+                        Console.WriteLine("Cavalo selecionado");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Codigo invalido");
+                        foreach (Cavalo c in casa.Cavalos)
+                        {
+                            Console.WriteLine($"[{c.Numero_Cavalo}] - {c.Nome}");
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Codigo invalido");
+                    
                     Console.WriteLine(ex.Message);
-                    foreach(Cavalo c in casa.Cavalos)
-                    {
-                        Console.WriteLine($"[{c.Numero_Cavalo}] - {c.Nome}");
-                    }
-                    cavalo = null;
                 }
             } while (cavalo == null);
             do 
@@ -51,17 +58,22 @@ namespace ApostaEmCorrida.Domain
                     Console.WriteLine("Digite a senha do apostador");
                     int apostadorSelecionado = Convert.ToInt32(Console.ReadLine());
                     apostador = casa.Apostadores.Find(a => a.Senha == apostadorSelecionado);
+                    if (apostador != null)
+                    {
+                        Console.WriteLine("Apostador selecionado");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Codigo invalido");
+                        foreach (Apostador a in casa.Apostadores)
+                        {
+                            Console.WriteLine($"[{a.Senha}] - {a.Nome}");
+                        }
+                    }
                 }
-                //NÃO ESTÁ VALIDANDO O CATCH
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Codigo invalido");
                     Console.WriteLine(ex.Message);
-                    foreach (Apostador a in casa.Apostadores)
-                    {
-                        Console.WriteLine($"[{a.Senha}] - {a.Nome}");
-                    }
-                    apostador = null;
                 }
             } while (apostador == null);
             double totalApostado = valorApostado;
