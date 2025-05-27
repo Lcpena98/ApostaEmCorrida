@@ -11,13 +11,11 @@ namespace ApostaEmCorrida.Domain
         public Cavalo CavaloApostado { get; set; }
         public Apostador Apostador { get; set; }
         public double ValorApostado { get; set; }
-        public double ValorEmAposta { get; set; }
-        public Aposta(Cavalo cavalo,Apostador apostador, double valorApostado, double valorEmAposta) 
+        public Aposta(Cavalo cavalo,Apostador apostador, double valorApostado) 
         {
             CavaloApostado= cavalo;
             Apostador= apostador;
             ValorApostado= valorApostado;
-            ValorEmAposta= valorEmAposta;
         }
 
         //metodo para cadastrar a aposta feita
@@ -76,16 +74,6 @@ namespace ApostaEmCorrida.Domain
                     Console.WriteLine(ex.Message);
                 }
             } while (apostador == null);
-            double totalApostado = valorApostado;
-            if (casa.Apostas.Any()) 
-            {
-                totalApostado = casa.Apostas[0].ValorEmAposta+valorApostado;
-            }
-            foreach(var aposta in casa.Apostas)
-            {
-                aposta.ValorEmAposta = totalApostado;
-            }
-            casa.Apostas.Add(new Aposta(cavalo,apostador,valorApostado, totalApostado));
         }
     }
 }

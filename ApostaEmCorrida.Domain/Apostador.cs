@@ -42,7 +42,7 @@ namespace ApostaEmCorrida.Domain
             return novaSenha;
         }
 
-        //Fuñção que Registra a escolha do Apostador
+        //Função que Registra a escolha do Apostador
         public static Cavalo Escolha(List<Cavalo> cavalos)
         {
             Console.WriteLine("Competidores:");
@@ -52,6 +52,11 @@ namespace ApostaEmCorrida.Domain
             int numeroEscolhido = Convert.ToInt32(Console.ReadLine());
             Cavalo escolha = cavalos.Find(c => c.Numero_Cavalo == numeroEscolhido);
             return escolha;
+        }
+        //Função que adiciona o saldo ao Apostador em caso de vitória
+        public static void AdicionarSaldo(Apostador apostador,double valor)
+        {
+            apostador.Saldo += valor;
         }
     }
 }
