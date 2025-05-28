@@ -75,6 +75,8 @@ namespace ApostaEmCorrida.Domain
             }
             return vencedores;
         }
+        //Função que faz o calculo do valor apostado, transfere o valor para os vencedores baseado na quantia apostada ou para a conta da casa caso não haja vencedor.
+        //PARA TESTAR
         public static void calculo_de_aposta(Casa casa, List<Aposta> vencedores)
         {
             if (vencedores.Count > 0)

@@ -47,7 +47,12 @@ namespace ApostaEmCorrida.Menu
                             Casa.CadastrarAposta(casa)
                                 ; break;
                         case 'C' or 'c':
-                            Console.WriteLine("Opção em Desenvolvimento")
+                            Cavalo vencedor = Casa.Corrida(casa.Cavalos);
+                            Console.WriteLine($"Vencedor:\n[{vencedor.Numero_Cavalo}] - {vencedor.Nome}\n");
+                            foreach(var cavalo in casa.Cavalos)
+                            {
+                                Console.WriteLine($"[{cavalo.Numero_Cavalo}] - {cavalo.Nome}\n{cavalo.Numero_de_Corridas} Corridas realizadas\n{cavalo.Numero_de_Vitorias} Vitórias\nDesempenho de {cavalo.Desempenho}%");
+                            }
                                 ; break;
                         case 'V' or 'v':
                             Console.WriteLine("Cadastro:")

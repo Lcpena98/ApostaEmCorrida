@@ -63,7 +63,6 @@ namespace ApostaEmCorrida.Domain
 
             return novoNumero;
         }
-
         //Função que atualiza os dados dos Cavalos
         public static void AtualizarDesempenho(List<Cavalo> cavalos, Cavalo resultado)
         {
