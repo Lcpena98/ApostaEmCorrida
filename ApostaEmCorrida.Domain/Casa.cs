@@ -60,7 +60,7 @@ namespace ApostaEmCorrida.Domain
             casa.Saldo += taxaAposta;
             valorApostado -= taxaAposta;
             casa.ValorEmAposta += valorApostado;
-            Aposta.NovaAposta(casa, valorApostado);
+            casa.Apostas.Add(Aposta.NovaAposta(casa, valorApostado));
         }
         //Função que valida o resultado da aposta e separa as pessoas que venceram
         public static List<Aposta> ValidarAposta(Cavalo resultado, List<Aposta> apostas)
@@ -76,8 +76,8 @@ namespace ApostaEmCorrida.Domain
             return vencedores;
         }
         //Função que faz o calculo do valor apostado, transfere o valor para os vencedores baseado na quantia apostada ou para a conta da casa caso não haja vencedor.
-        //PARA TESTAR
-        public static void calculo_de_aposta(Casa casa, List<Aposta> vencedores)
+        //Falha lógica, erro no valor retornado
+        public static void Calculo_de_aposta(Casa casa, List<Aposta> vencedores)
         {
             if (vencedores.Count > 0)
             {

@@ -19,7 +19,7 @@ namespace ApostaEmCorrida.Domain
         }
 
         //metodo para cadastrar a aposta feita
-        public static void NovaAposta(Casa casa, double valorApostado)
+        public static Aposta NovaAposta(Casa casa, double valorApostado)
         {
             Cavalo cavalo = null;
             Apostador apostador = null;
@@ -74,6 +74,7 @@ namespace ApostaEmCorrida.Domain
                     Console.WriteLine(ex.Message);
                 }
             } while (apostador == null);
+            return new Aposta(cavalo,apostador,valorApostado);
         }
     }
 }

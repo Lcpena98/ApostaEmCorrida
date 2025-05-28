@@ -53,6 +53,8 @@ namespace ApostaEmCorrida.Menu
                             {
                                 Console.WriteLine($"[{cavalo.Numero_Cavalo}] - {cavalo.Nome}\n{cavalo.Numero_de_Corridas} Corridas realizadas\n{cavalo.Numero_de_Vitorias} Vitórias\nDesempenho de {cavalo.Desempenho}%");
                             }
+                            List<Aposta> vencedores= Casa.ValidarAposta(vencedor, casa.Apostas);
+                            Casa.Calculo_de_aposta(casa,vencedores);
                                 ; break;
                         case 'V' or 'v':
                             Console.WriteLine("Cadastro:")

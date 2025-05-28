@@ -54,7 +54,6 @@ namespace ApostaEmCorrida.Domain
             return escolha;
         }
         //Função que adiciona o saldo ao Apostador em caso de vitória
-        //PARA TESTAR
         public static void AdicionarSaldo(Apostador apostador,double valor)
         {
             apostador.Saldo += valor;
