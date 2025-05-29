@@ -8,14 +8,14 @@ namespace ApostaEmCorrida.Menu
     {
         public static void Main(string[] args)
         {
-            char MenuCadastro,MenuAposta;
+            char MenuCadastro, MenuAposta;
             double taxaCadastro, taxaAposta;
             Casa casa = Casa.CadastrarCasa();
             ;
 
             Console.WriteLine("Bem-vindo a Casa de Apostas");
-            do 
-            { 
+            do
+            {
                 do
                 {
                     Console.WriteLine("[C] Cadastrar um Cavalo\n[A] Cadastrar um Apostador\n[S]Sair");
@@ -24,11 +24,11 @@ namespace ApostaEmCorrida.Menu
                     {
                         case 'c' or 'C':
                             //A taxa de inscrição está por R$50
-                            Cavalo.CadastrarCavalo(casa.Cavalos,casa.Saldo);
+                            Cavalo.CadastrarCavalo(casa.Cavalos, casa.Saldo);
                             ; break;
                         case 'a' or 'A':
                             Apostador.CadastrarApostador(casa.Apostadores);
-                                ; break;
+                            ; break;
                         case 's' or 'S':
                             break;
                         default:
@@ -49,13 +49,12 @@ namespace ApostaEmCorrida.Menu
                         case 'C' or 'c':
                             Cavalo vencedor = Casa.Corrida(casa.Cavalos);
                             Console.WriteLine($"Vencedor:\n[{vencedor.Numero_Cavalo}] - {vencedor.Nome}\n");
-                            foreach(var cavalo in casa.Cavalos)
+                            foreach (var cavalo in casa.Cavalos)
                             {
                                 Console.WriteLine($"[{cavalo.Numero_Cavalo}] - {cavalo.Nome}\n{cavalo.Numero_de_Corridas} Corridas realizadas\n{cavalo.Numero_de_Vitorias} Vitórias\nDesempenho de {cavalo.Desempenho}%");
                             }
-                            List<Aposta> vencedores= Casa.ValidarAposta(vencedor, casa.Apostas);
-                            Casa.Calculo_de_aposta(casa,vencedores);
-                                ; break;
+                            Casa.Calculo_de_aposta(casa, vencedor);
+                            ; break;
                         case 'V' or 'v':
                             Console.WriteLine("Cadastro:")
                                 ; break;
@@ -67,7 +66,7 @@ namespace ApostaEmCorrida.Menu
                                 ; break;
                     }
                 } while (MenuAposta != 'V' && MenuAposta != 'v' && MenuAposta != 'q' && MenuAposta != 'Q');
-          } while (MenuAposta != 'q' && MenuAposta != 'Q');
+            } while (MenuAposta != 'q' && MenuAposta != 'Q');
         }
     }
 }

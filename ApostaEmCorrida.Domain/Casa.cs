@@ -77,8 +77,9 @@ namespace ApostaEmCorrida.Domain
         }
         //Função que faz o calculo do valor apostado, transfere o valor para os vencedores baseado na quantia apostada ou para a conta da casa caso não haja vencedor.
         //Falha lógica, erro no valor retornado
-        public static void Calculo_de_aposta(Casa casa, List<Aposta> vencedores)
+        public static void Calculo_de_aposta(Casa casa, Cavalo vencedor)
         {
+            List<Aposta> vencedores = Casa.ValidarAposta(vencedor, casa.Apostas);
             if (vencedores.Count > 0)
             {
                 double somaApostaVencedora = 0;
@@ -88,21 +89,24 @@ namespace ApostaEmCorrida.Domain
                     Console.WriteLine($"[{aposta.Apostador.Senha}]{aposta.Apostador.Nome}");
                     somaApostaVencedora += aposta.ValorApostado;
                 }
-                foreach (var apostador in casa.Apostadores)
+                foreach (var apostador in vencedores)
                 {
-                    foreach (var aposta in vencedores)
                     {
-                        if (vencedores.Any(a => a.Apostador.Senha == apostador.Senha))
-                        {
-                            double porcentagemApostada = 100 * aposta.ValorApostado / somaApostaVencedora;
-                            double lucro = casa.ValorEmAposta * porcentagemApostada / 100;
-                            Apostador.AdicionarSaldo(apostador, lucro);
-                            casa.ValorEmAposta -= lucro;
-                        }
+                        double proporcao = Math.Round(apostador.ValorApostado / somaApostaVencedora, 2);
+                        double valorRecebido = Math.Round(casa.ValorEmAposta * proporcao, 2);
+                        Console.WriteLine($"{apostador.Apostador.Nome} recebeu R$ {valorRecebido:F2}");
+                        Apostador.AdicionarSaldo(casa.Apostadores.Find(a => a.Senha == apostador.Apostador.Senha), valorRecebido);
+                        casa.ValorEmAposta -= valorRecebido;
                     }
                 }
+                if (casa.ValorEmAposta > 0)
+                {
+                    casa.Saldo += casa.ValorEmAposta;
+                    casa.ValorEmAposta = 0;
+                }
+                casa.Apostas.Clear();
             }
-            else 
+            else
             {
                 Console.WriteLine("Ninguém venceu");
                 casa.Saldo += casa.ValorEmAposta;

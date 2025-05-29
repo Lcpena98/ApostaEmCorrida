@@ -11,11 +11,11 @@ namespace ApostaEmCorrida.Domain
         public Cavalo CavaloApostado { get; set; }
         public Apostador Apostador { get; set; }
         public double ValorApostado { get; set; }
-        public Aposta(Cavalo cavalo,Apostador apostador, double valorApostado) 
+        public Aposta(Cavalo cavalo, Apostador apostador, double valorApostado)
         {
-            CavaloApostado= cavalo;
-            Apostador= apostador;
-            ValorApostado= valorApostado;
+            CavaloApostado = cavalo;
+            Apostador = apostador;
+            ValorApostado = valorApostado;
         }
 
         //metodo para cadastrar a aposta feita
@@ -30,7 +30,7 @@ namespace ApostaEmCorrida.Domain
                     Console.WriteLine("Digite o numero do Cavalo em que a aposta foi feita");
                     int cavaloEscolhido = Convert.ToInt32(Console.ReadLine());
                     cavalo = casa.Cavalos.Find(c => c.Numero_Cavalo == cavaloEscolhido);
-                    if (cavalo !=null)
+                    if (cavalo != null)
                     {
                         Console.WriteLine("Cavalo selecionado");
                     }
@@ -45,12 +45,12 @@ namespace ApostaEmCorrida.Domain
                 }
                 catch (Exception ex)
                 {
-                    
+
                     Console.WriteLine(ex.Message);
                 }
             } while (cavalo == null);
-            do 
-            { 
+            do
+            {
                 try
                 {
                     Console.WriteLine("Digite a senha do apostador");
@@ -74,7 +74,7 @@ namespace ApostaEmCorrida.Domain
                     Console.WriteLine(ex.Message);
                 }
             } while (apostador == null);
-            return new Aposta(cavalo,apostador,valorApostado);
+            return new Aposta(cavalo, apostador, valorApostado);
         }
     }
 }
