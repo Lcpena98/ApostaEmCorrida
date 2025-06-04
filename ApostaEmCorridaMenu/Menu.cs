@@ -11,7 +11,7 @@ namespace ApostaEmCorrida.Menu
             char MenuCadastro, MenuAposta;
             double taxaCadastro, taxaAposta;
             Casa casa = Casa.CadastrarCasa();
-            ;
+            
 
             Console.WriteLine("Bem-vindo a Casa de Apostas");
             do
