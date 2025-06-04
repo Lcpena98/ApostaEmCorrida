@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ApostaEmCorrida.Domain;
+using ApostaEmCorrida.Domain.Entities;
 
 namespace ApostaEmCorrida.Domain
 {
@@ -70,7 +71,12 @@ namespace ApostaEmCorrida.Domain
             {
                 if (aposta.CavaloApostado == resultado)
                 {
+                    aposta.Status = StatusAposta.Win;
                     vencedores.Add(aposta);
+                }
+                else 
+                {
+                    aposta.Status= StatusAposta.Lose;
                 }
             }
             return vencedores;
