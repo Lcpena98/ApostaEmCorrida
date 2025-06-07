@@ -27,7 +27,7 @@ namespace ApostaEmCorrida.Menu
                             Cavalo.CadastrarCavalo(casa.Cavalos, casa.Saldo);
                             ; break;
                         case 'a' or 'A':
-                            Apostador.CadastrarApostador(casa.Apostadores);
+                            Apostador.Cadastrar(casa.Apostadores);
                             ; break;
                         case 's' or 'S':
                             break;

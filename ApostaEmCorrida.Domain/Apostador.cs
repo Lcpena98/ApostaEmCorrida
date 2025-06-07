@@ -6,26 +6,27 @@ using System.Threading.Tasks;
 
 namespace ApostaEmCorrida.Domain
 {
-    public class Apostador
+    public class Apostador : Pessoa
     {
-        public int Senha { get; private set; }//Codigo publico para a identificação do mesmo. um numero gerado para que o mesmo seja identificado caso ganhe a aposta
+        public int Senha { get; protected set; }//Codigo publico para a identificação do mesmo. um numero gerado para que o mesmo seja identificado caso ganhe a aposta
         public double Saldo { get; private set; }
-        public string Nome { get; set; }
+        
 
-        public Apostador(int senha, double saldo, string nome)
+        public Apostador(string nome, string cpf, int senha, double saldo) : base(nome,cpf)
         {
             Senha = senha;
             Saldo = saldo;
-            Nome = nome;
         }
-        public static void CadastrarApostador(List<Apostador> listaApostadores)
+        public static void Cadastrar(List<Apostador> listaApostadores)
         {
             Console.WriteLine("Digite o nome do Apostador");
             string nome = Convert.ToString(Console.ReadLine());
+            Console.WriteLine("Digite o CPF do Apostador");
+            string cpf = Convert.ToString(Console.ReadLine());
             int senha = CriarSenha(listaApostadores);
-            Console.WriteLine("Apostador cadastrado com sucesso");
+            Console.WriteLine("\nApostador cadastrado com sucesso\n");
             Console.WriteLine($"A Senha do Apostador cadastrado é {senha}");
-            listaApostadores.Add(new Apostador(senha, 0, nome));
+            listaApostadores.Add(new Apostador(nome,cpf,senha, 0));
         }
 
         //Função que cria uma senha de 5 digitos para o usuário e impede que haja 2 senhas iguais
