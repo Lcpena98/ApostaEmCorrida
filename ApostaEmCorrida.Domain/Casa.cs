@@ -30,18 +30,11 @@ namespace ApostaEmCorrida.Domain
         {
             while (true)
             {
-                try
-                {
                     List<Cavalo> cavalos = new List<Cavalo>();
                     List<Apostador> apostadores = new List<Apostador>();
                     List<Aposta> apostas = new List<Aposta>();
                     Casa casa = new Casa(0, cavalos, apostadores, apostas, 0);
                     return casa;
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("Entrada inválida. Tente novamente.");
-                }
             }
         }
         //Função que gera o resultado da Corrida
