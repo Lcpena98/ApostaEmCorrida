@@ -12,12 +12,12 @@ namespace ApostaEmCorrida.Domain
     {
         public double Saldo { get; private set; }
         public List<Cavalo> Cavalos { get; private set; }
-        public List<Apostador> Apostadores { get; private set; }
+        public List<Pessoa> Apostadores { get; private set; }
         public List<Aposta> Apostas { get; private set; }
         public double ValorEmAposta { get; private set; }
 
 
-        public Casa(double saldo, List<Cavalo> cavalos, List<Apostador> apostadores, List<Aposta> apostas, double valorEmAposta)
+        public Casa(double saldo, List<Cavalo> cavalos, List<Pessoa> apostadores, List<Aposta> apostas, double valorEmAposta)
         {
             Saldo = saldo;
             Cavalos = cavalos;
@@ -28,14 +28,11 @@ namespace ApostaEmCorrida.Domain
 
         public static Casa CadastrarCasa()
         {
-            while (true)
-            {
-                    List<Cavalo> cavalos = new List<Cavalo>();
-                    List<Apostador> apostadores = new List<Apostador>();
-                    List<Aposta> apostas = new List<Aposta>();
-                    Casa casa = new Casa(0, cavalos, apostadores, apostas, 0);
-                    return casa;
-            }
+            List<Cavalo> cavalos = new List<Cavalo>();
+            List<Pessoa> apostadores = new List<Pessoa>();
+            List<Aposta> apostas = new List<Aposta>();
+            Casa casa = new Casa(0, cavalos, apostadores, apostas, 0);
+            return casa;
         }
         //Função que gera o resultado da Corrida
         public static Cavalo Corrida(List<Cavalo> cavalos)
@@ -48,13 +45,21 @@ namespace ApostaEmCorrida.Domain
         //Função que atualiza a aposta e o saldo
         public static void CadastrarAposta(Casa casa)
         {
-            Console.WriteLine("Digite o valor Apostado.");
-            double valorApostado = Convert.ToDouble(Console.ReadLine());
-            double taxaAposta = (valorApostado * 10) / 100;
-            casa.Saldo += taxaAposta;
-            valorApostado -= taxaAposta;
-            casa.ValorEmAposta += valorApostado;
-            casa.Apostas.Add(Aposta.NovaAposta(casa, valorApostado));
+            try
+            {
+                Console.WriteLine("Digite o valor Apostado.");
+                double valorApostado = Convert.ToDouble(Console.ReadLine());
+                double taxaAposta = (valorApostado * 10) / 100;
+                casa.Saldo += taxaAposta;
+                valorApostado -= taxaAposta;
+                casa.ValorEmAposta += valorApostado;
+                casa.Apostas.Add(Aposta.NovaAposta(casa, valorApostado));
+            }
+            catch (Exception ex) 
+            {
+                Console.WriteLine("Erro! Não foi possível cadastrar a aposta.");
+                Console.WriteLine(ex.Message.ToString());
+            }
         }
         //Função que valida o resultado da aposta e separa as pessoas que venceram
         public static List<Aposta> ValidarAposta(Cavalo resultado, List<Aposta> apostas)
@@ -67,49 +72,61 @@ namespace ApostaEmCorrida.Domain
                     aposta.Status = StatusAposta.Win;
                     vencedores.Add(aposta);
                 }
-                else 
+                else
                 {
-                    aposta.Status= StatusAposta.Lose;
+                    aposta.Status = StatusAposta.Lose;
                 }
             }
             return vencedores;
         }
         //Função que faz o calculo do valor apostado, transfere o valor para os vencedores baseado na quantia apostada ou para a conta da casa caso não haja vencedor.
         //Falha lógica, erro no valor retornado
+
+
+        //PARA TESTAR
         public static void Calculo_de_aposta(Casa casa, Cavalo vencedor)
         {
-            List<Aposta> vencedores = Casa.ValidarAposta(vencedor, casa.Apostas);
-            if (vencedores.Count > 0)
+            try
             {
-                double somaApostaVencedora = 0;
-                Console.WriteLine("Vencedores:");
-                foreach (var aposta in vencedores)
+                List<Aposta> vencedores = Casa.ValidarAposta(vencedor, casa.Apostas);
+                if (vencedores.Count > 0)
                 {
-                    Console.WriteLine($"[{aposta.Apostador.Senha}]{aposta.Apostador.Nome}");
-                    somaApostaVencedora += aposta.ValorApostado;
-                }
-                foreach (var apostador in vencedores)
-                {
+                    double somaApostaVencedora = 0;
+                    Console.WriteLine("Vencedores:");
+                    foreach (var aposta in vencedores)
                     {
-                        double proporcao = Math.Round(apostador.ValorApostado / somaApostaVencedora, 2);
-                        double valorRecebido = Math.Round(casa.ValorEmAposta * proporcao, 2);
-                        Console.WriteLine($"{apostador.Apostador.Nome} recebeu R$ {valorRecebido:F2}");
-                        Apostador.AdicionarSaldo(casa.Apostadores.Find(a => a.Senha == apostador.Apostador.Senha), valorRecebido);
-                        casa.ValorEmAposta -= valorRecebido;
+                        Console.WriteLine($"[{aposta.Apostador.Senha}]{aposta.Apostador.Nome}");
+                        somaApostaVencedora += aposta.ValorApostado;
                     }
+                    foreach (var apostador in vencedores)
+                    {
+                        {
+                            double proporcao = Math.Round(apostador.ValorApostado / somaApostaVencedora, 2);
+                            double valorRecebido = Math.Round(casa.ValorEmAposta * proporcao, 2);
+                            Console.WriteLine($"{apostador.Apostador.Nome} recebeu R$ {valorRecebido:F2}");
+                            Pessoa pessoaEncontrada = casa.Apostadores.Find(a => a is Apostador ap && ap.Senha == apostador.Apostador.Senha);
+                            Apostador.AdicionarSaldo(pessoaEncontrada as Apostador, valorRecebido);
+                            casa.ValorEmAposta -= valorRecebido;
+                        }
+                    }
+                    if (casa.ValorEmAposta > 0)
+                    {
+                        casa.Saldo += casa.ValorEmAposta;
+                        casa.ValorEmAposta = 0;
+                    }
+                    casa.Apostas.Clear();
                 }
-                if (casa.ValorEmAposta > 0)
+                else
                 {
+                    Console.WriteLine("Ninguém venceu");
                     casa.Saldo += casa.ValorEmAposta;
                     casa.ValorEmAposta = 0;
                 }
-                casa.Apostas.Clear();
             }
-            else
+            catch (Exception ex) 
             {
-                Console.WriteLine("Ninguém venceu");
-                casa.Saldo += casa.ValorEmAposta;
-                casa.ValorEmAposta = 0;
+                Console.WriteLine("Não foi possível cadastrar resultados!");
+                Console.WriteLine(ex.ToString());
             }
         }
     }

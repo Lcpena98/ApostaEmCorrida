@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ApostaEmCorrida.Domain
 {
-    public class Pessoa
+    public abstract class Pessoa
     {
         public string Nome { get; set; }
         public string CPF { get; set; }
@@ -14,15 +14,6 @@ namespace ApostaEmCorrida.Domain
         {
             Nome = nome;
             CPF = cpf;
-        }
-        public static Pessoa Cadasrar()
-        {
-            Console.WriteLine("Digite o nome do Apostador");
-            string nome = Convert.ToString(Console.ReadLine());
-            Console.WriteLine("Digite o CPF do Apostador");
-            string cpf = Convert.ToString(Console.ReadLine());
-
-            return new Pessoa(nome, cpf);
         }
     }
 }

@@ -48,7 +48,7 @@ namespace ApostaEmCorrida.Domain
                 }
                 catch (Exception ex)
                 {
-
+                    Console.WriteLine("Não foi possível cadastrar a aposta");
                     Console.WriteLine(ex.Message);
                 }
             } while (cavalo == null);

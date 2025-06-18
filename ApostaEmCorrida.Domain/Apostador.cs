@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,16 +18,38 @@ namespace ApostaEmCorrida.Domain
             Senha = senha;
             Saldo = saldo;
         }
-        public static void Cadastrar(List<Apostador> listaApostadores)
+        public static void Cadastrar(List<Pessoa> listaApostadores)
         {
-            Console.WriteLine("Digite o nome do Apostador");
-            string nome = Convert.ToString(Console.ReadLine());
-            Console.WriteLine("Digite o CPF do Apostador");
-            string cpf = Convert.ToString(Console.ReadLine());
-            int senha = CriarSenha(listaApostadores);
-            Console.WriteLine("\nApostador cadastrado com sucesso\n");
-            Console.WriteLine($"A Senha do Apostador cadastrado é {senha}");
-            listaApostadores.Add(new Apostador(nome,cpf,senha, 0));
+            List<Apostador> apostadores = new List<Apostador>();
+            foreach (Pessoa pessoa in listaApostadores)
+            {
+                if (pessoa is Apostador)
+                {
+                    apostadores.Add(pessoa as Apostador);
+                }
+                else
+                {
+                    Console.WriteLine($"{pessoa.Nome} não é um apostador");
+                    listaApostadores.Remove(pessoa);
+                }
+                try
+                {
+
+                    Console.WriteLine("Digite o nome do Apostador");
+                    string nome = Convert.ToString(Console.ReadLine());
+                    Console.WriteLine("Digite o CPF do Apostador");
+                    string cpf = Convert.ToString(Console.ReadLine());
+                    int senha = CriarSenha(apostadores);
+                    Console.WriteLine("\nApostador cadastrado com sucesso\n");
+                    Console.WriteLine($"A Senha do Apostador cadastrado é {senha}");
+                    listaApostadores.Add(new Apostador(nome, cpf, senha, 0));
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Não foi possível cadastrar a aposta!");
+                    Console.WriteLine(ex.Message);
+                }
+            }
         }
 
         //Função que cria uma senha de 5 digitos para o usuário e impede que haja 2 senhas iguais
@@ -46,13 +69,21 @@ namespace ApostaEmCorrida.Domain
         //Função que Registra a escolha do Apostador
         public static Cavalo Escolha(List<Cavalo> cavalos)
         {
-            Console.WriteLine("Competidores:");
-            foreach (var cavalo in cavalos)
-            { Console.WriteLine($"[{cavalo.Numero_Cavalo}] - {cavalo.Nome}"); }
-            Console.WriteLine("Selecione o numero do cavalo em que a aposta foi feita");
-            int numeroEscolhido = Convert.ToInt32(Console.ReadLine());
-            Cavalo escolha = cavalos.Find(c => c.Numero_Cavalo == numeroEscolhido);
-            return escolha;
+            try
+            {
+                Console.WriteLine("Competidores:");
+                foreach (var cavalo in cavalos)
+                { Console.WriteLine($"[{cavalo.Numero_Cavalo}] - {cavalo.Nome}"); }
+                Console.WriteLine("Selecione o numero do cavalo em que a aposta foi feita");
+                int numeroEscolhido = Convert.ToInt32(Console.ReadLine());
+                Cavalo escolha = cavalos.Find(c => c.Numero_Cavalo == numeroEscolhido);
+                return escolha;
+            }
+            catch (ApplicationException ex) 
+            {
+                throw new ApplicationException ("Não foi possível cadastrar o cavalo");
+            }
+            
         }
         //Função que adiciona o saldo ao Apostador em caso de vitória
         public static void AdicionarSaldo(Apostador apostador, double valor)
