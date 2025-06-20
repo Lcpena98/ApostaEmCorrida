@@ -58,7 +58,13 @@ namespace ApostaEmCorrida.Domain
                 {
                     Console.WriteLine("Digite a senha do apostador");
                     int apostadorSelecionado = Convert.ToInt32(Console.ReadLine());
-                    apostador = casa.Apostadores.Find(a => a.Senha == apostadorSelecionado);
+                    foreach(Pessoa p in casa.Apostadores)
+                    {
+                        if(p is Apostador && (p as Apostador).Senha == apostadorSelecionado)
+                        {
+                            apostador = p as Apostador;
+                        }
+                    }
                     if (apostador != null)
                     {
                         Console.WriteLine("Apostador selecionado");
