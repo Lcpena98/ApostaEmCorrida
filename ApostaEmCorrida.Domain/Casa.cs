@@ -14,14 +14,16 @@ namespace ApostaEmCorrida.Domain
         public List<Cavalo> Cavalos { get; private set; }
         public List<Pessoa> Apostadores { get; private set; }
         public List<Aposta> Apostas { get; private set; }
+        public List<Corrida> Corridas { get; private set; }
         public double ValorEmAposta { get; private set; }
 
 
-        public Casa(double saldo, List<Cavalo> cavalos, List<Pessoa> apostadores, List<Aposta> apostas, double valorEmAposta)
+        public Casa(double saldo, List<Cavalo> cavalos, List<Pessoa> apostadores, List<Aposta> apostas, List<Corrida> corridas, double valorEmAposta)
         {
             Saldo = saldo;
             Cavalos = cavalos;
             Apostadores = apostadores;
+            Corridas = corridas;
             Apostas = apostas;
             ValorEmAposta = valorEmAposta;
         }
@@ -31,35 +33,9 @@ namespace ApostaEmCorrida.Domain
             List<Cavalo> cavalos = new List<Cavalo>();
             List<Pessoa> apostadores = new List<Pessoa>();
             List<Aposta> apostas = new List<Aposta>();
-            Casa casa = new Casa(0, cavalos, apostadores, apostas, 0);
+            List<Corrida> corridas = new List<Corrida>();
+            Casa casa = new Casa(0, cavalos, apostadores, apostas, corridas, 0);
             return casa;
-        }
-        //Função que gera o resultado da Corrida
-        public static Cavalo Corrida(List<Cavalo> cavalos)
-        {
-            Random corrida = new Random();
-            Cavalo vencedor = cavalos[corrida.Next(cavalos.Count)];
-            Cavalo.AtualizarDesempenho(cavalos, vencedor);
-            return vencedor;
-        }
-        //Função que atualiza a aposta e o saldo
-        public static void CadastrarAposta(Casa casa)
-        {
-            try
-            {
-                Console.WriteLine("Digite o valor Apostado.");
-                double valorApostado = Convert.ToDouble(Console.ReadLine());
-                double taxaAposta = (valorApostado * 10) / 100;
-                casa.Saldo += taxaAposta;
-                valorApostado -= taxaAposta;
-                casa.ValorEmAposta += valorApostado;
-                casa.Apostas.Add(Aposta.NovaAposta(casa, valorApostado));
-            }
-            catch (Exception ex) 
-            {
-                Console.WriteLine("Erro! Não foi possível cadastrar a aposta.");
-                Console.WriteLine(ex.Message.ToString());
-            }
         }
         //Função que valida o resultado da aposta e separa as pessoas que venceram
         public static List<Aposta> ValidarAposta(Cavalo resultado, List<Aposta> apostas)
@@ -123,7 +99,7 @@ namespace ApostaEmCorrida.Domain
                     casa.ValorEmAposta = 0;
                 }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 Console.WriteLine("Não foi possível cadastrar resultados!");
                 Console.WriteLine(ex.ToString());

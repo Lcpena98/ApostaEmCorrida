@@ -1,3 +1,5 @@
+using ApostaEmCorrida.View.Pages;
+
 namespace ApostaEmCorrida.View
 {
     internal static class Program

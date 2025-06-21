@@ -13,6 +13,7 @@ namespace ApostaEmCorrida.Domain
         public Apostador Apostador { get; set; }
         public double ValorApostado { get; set; }
         public StatusAposta Status { get; set; }
+
         public Aposta(Cavalo cavalo, Apostador apostador, double valorApostado)
         {
             CavaloApostado = cavalo;
@@ -22,68 +23,9 @@ namespace ApostaEmCorrida.Domain
         }
 
         //metodo para cadastrar a aposta feita
-        public static Aposta NovaAposta(Casa casa, double valorApostado)
+        public static void NovaAposta(Casa casa,Cavalo cavalo, Apostador apostador, double valorApostado)
         {
-            Cavalo cavalo = null;
-            Apostador apostador = null;
-            do
-            {
-                try
-                {
-                    Console.WriteLine("Digite o numero do Cavalo em que a aposta foi feita");
-                    int cavaloEscolhido = Convert.ToInt32(Console.ReadLine());
-                    cavalo = casa.Cavalos.Find(c => c.Numero_Cavalo == cavaloEscolhido);
-                    if (cavalo != null)
-                    {
-                        Console.WriteLine("Cavalo selecionado");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Codigo invalido");
-                        foreach (Cavalo c in casa.Cavalos)
-                        {
-                            Console.WriteLine($"[{c.Numero_Cavalo}] - {c.Nome}");
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Não foi possível cadastrar a aposta");
-                    Console.WriteLine(ex.Message);
-                }
-            } while (cavalo == null);
-            do
-            {
-                try
-                {
-                    Console.WriteLine("Digite a senha do apostador");
-                    int apostadorSelecionado = Convert.ToInt32(Console.ReadLine());
-                    foreach(Pessoa p in casa.Apostadores)
-                    {
-                        if(p is Apostador && (p as Apostador).Senha == apostadorSelecionado)
-                        {
-                            apostador = p as Apostador;
-                        }
-                    }
-                    if (apostador != null)
-                    {
-                        Console.WriteLine("Apostador selecionado");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Codigo invalido");
-                        foreach (Apostador a in casa.Apostadores)
-                        {
-                            Console.WriteLine($"[{a.Senha}] - {a.Nome}");
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-            } while (apostador == null);
-            return new Aposta(cavalo, apostador, valorApostado);
+            casa.Apostas.Add(new Aposta(cavalo, apostador, valorApostado));
         }
     }
 }

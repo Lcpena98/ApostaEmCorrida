@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ApostaEmCorrida.Domain;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,56 +13,69 @@ namespace ApostaEmCorrida.View.Pages
 {
     public partial class Menu_Inicial : Form
     {
+        Casa casa;
         public Menu_Inicial()
         {
             InitializeComponent();
+            casa = Casa.CadastrarCasa();
         }
 
         private void button_Cadastro_Cavalo_Click(object sender, EventArgs e)
         {
-            Menu_Cadastro_Cavalo menu_Cadastro_Cavalo= new Menu_Cadastro_Cavalo(this);
+            Menu_Cadastro_Cavalo menu_Cadastro_Cavalo = new Menu_Cadastro_Cavalo(this, casa);
             menu_Cadastro_Cavalo.Show();
+            label_Resultado_Corrida.Visible = false;
             this.Hide();
         }
 
         private void button_Cadastro_Apostador_Click(object sender, EventArgs e)
         {
-
+            Menu_Cadastro_Apostador menu_Cadastro_Apostador = new Menu_Cadastro_Apostador(this, casa);
+            menu_Cadastro_Apostador.Show();
+            label_Resultado_Corrida.Visible = false;
+            this.Hide();
         }
 
         private void button_Registro_Aposta_Click(object sender, EventArgs e)
         {
-
+            Menu_Registro_Aposta menu_Registro_Aposta = new Menu_Registro_Aposta(this, casa);
+            menu_Registro_Aposta.Show();
+            label_Resultado_Corrida.Visible = false;
+            this.Hide();
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void button_Dados_Cadastrados_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void panel2_Paint(object sender, PaintEventArgs e)
+        private void button_Corridas_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void button_Documentos_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void button_Nova_Corrida_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                Cavalo vencedor = Corrida.novaCorrida(casa);
+                label_Resultado_Corrida.Text = ($"O Vencedor é: {vencedor.Nome.ToString()} - [{vencedor.Numero_Cavalo}]");
+                label_Resultado_Corrida.Visible = true;
+            }
+            catch (ApplicationException ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
-        private void panel3_Paint(object sender, PaintEventArgs e)
+        private void button_Sair_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void panel4_Paint(object sender, PaintEventArgs e)
-        {
-
+            this.Close();
         }
     }
 }

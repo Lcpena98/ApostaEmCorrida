@@ -9,11 +9,11 @@ namespace ApostaEmCorrida.Domain
 {
     public class Cavalo
     {
-        public int Numero_Cavalo { get;private set; }
+        public int Numero_Cavalo { get; private set; }
         public string Nome { get; set; }
         public double Altura { get; set; }
         public double Peso { get; set; }
-        public int Numero_de_Corridas { get;private set; }
+        public int Numero_de_Corridas { get; private set; }
         public int Numero_de_Vitorias { get; private set; }
         public double Desempenho { get; private set; }
 
@@ -28,32 +28,16 @@ namespace ApostaEmCorrida.Domain
             Desempenho = desempenho;
         }
 
-        //Função que cadastra os participantes
-        public static void CadastrarCavalo(List<Cavalo> ListaCavalos,double saldo)
+        public override string ToString()
         {
-            try 
-            { 
-            int numero=CadastrarNumero(ListaCavalos);
-                Console.WriteLine("Digite o nome do cavalo");
-                string nome = Convert.ToString(Console.ReadLine());
+            return $"{Nome} - {Numero_Cavalo}";
+        }
 
-                Console.WriteLine("Digite a altura do cavalo");
-                double altura = double.Parse(Console.ReadLine());
-
-                Console.WriteLine("Digite o Peso do cavalo");
-                double peso = double.Parse(Console.ReadLine());
-
-                Console.WriteLine("Cavalo cadastrado com sucesso");
-                Console.WriteLine($"[{numero}] - {nome}");
-                ListaCavalos.Add(new Cavalo(numero, nome, altura, peso, 0, 0, 100));
-                saldo += 50;
-            }
-            catch (ApplicationException ex) 
-            {
-                Console.WriteLine("Erro! Não foi possível realizar o cadastro do cavalo!"); 
-            }
-
-
+        //Função que cadastra os participantes
+        public static void CadastrarCavalo(List<Cavalo> ListaCavalos, string nome, double altura, double peso, int numero, double saldo)
+        {
+            ListaCavalos.Add(new Cavalo(numero, nome, altura, peso, 0, 0, 100));
+            saldo += 50;
         }
 
         //Função que cria o numero do cavalo e impede que haja 2 cavalos com o mesmo numero
@@ -79,7 +63,6 @@ namespace ApostaEmCorrida.Domain
                     if (cavalo == resultado)
                     {
                         cavalo.Numero_de_Vitorias += 1;
-                        Console.WriteLine($"O Vencedor da corrida é o {cavalo.Nome}");
                     }
                     cavalo.Desempenho = (cavalo.Numero_de_Vitorias * 100) / cavalo.Numero_de_Corridas;
                 }

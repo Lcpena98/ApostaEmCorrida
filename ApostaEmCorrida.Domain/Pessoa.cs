@@ -9,11 +9,13 @@ namespace ApostaEmCorrida.Domain
     public abstract class Pessoa
     {
         public string Nome { get; set; }
-        public string CPF { get; set; }
-        public Pessoa(string nome, string cpf)
+        public string Email { get; set; }
+        public string Senha { get; set; }
+        public Pessoa(string nome, string email,string senha)
         {
             Nome = nome;
-            CPF = cpf;
+            Email = email;
+            Senha = senha;
         }
     }
 }
