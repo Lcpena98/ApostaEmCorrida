@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ApostaEmCorrida.Domain\ApostaEmCorrida.Domain.csproj" />
+    <ProjectReference Include="..\ApostaEmCorrida.Services\ApostaEmCorrida.Services.csproj" />
   </ItemGroup>
 
 </Project>

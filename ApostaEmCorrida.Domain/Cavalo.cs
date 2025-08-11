@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ApostaEmCorrida.Domain.Enumerator;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,15 +10,17 @@ namespace ApostaEmCorrida.Domain
 {
     public class Cavalo
     {
-        public int Numero_Cavalo { get; private set; }
+        public int Numero_Cavalo { get; protected set; }
         public string Nome { get; set; }
         public double Altura { get; set; }
         public double Peso { get; set; }
-        public int Numero_de_Corridas { get; private set; }
-        public int Numero_de_Vitorias { get; private set; }
-        public double Desempenho { get; private set; }
+        public int Numero_de_Corridas { get; protected set; }
+        public int Numero_de_Vitorias { get; protected set; }
+        public double Desempenho { get; protected set; }
 
-        public Cavalo(int numero, string nome, double altura, double peso, int numero_de_Corridas, int numero_de_Vitorias, double desempenho)
+        public StatusCavalo StatusCavalo { get; set; }
+
+        public Cavalo(int numero, string nome, double altura, double peso, int numero_de_Corridas, int numero_de_Vitorias, double desempenho,StatusCavalo statusCavalo)
         {
             Numero_Cavalo = numero;
             Nome = nome;
@@ -26,6 +29,7 @@ namespace ApostaEmCorrida.Domain
             Numero_de_Corridas = numero_de_Corridas;
             Numero_de_Vitorias = numero_de_Vitorias;
             Desempenho = desempenho;
+            StatusCavalo = statusCavalo;
         }
 
         public override string ToString()
@@ -33,40 +37,36 @@ namespace ApostaEmCorrida.Domain
             return $"{Nome} - {Numero_Cavalo}";
         }
 
-        //Função que cadastra os participantes
-        public static void CadastrarCavalo(List<Cavalo> ListaCavalos, string nome, double altura, double peso, int numero, double saldo)
-        {
-            ListaCavalos.Add(new Cavalo(numero, nome, altura, peso, 0, 0, 100));
-            saldo += 50;
-        }
 
-        //Função que cria o numero do cavalo e impede que haja 2 cavalos com o mesmo numero
-        public static int CadastrarNumero(List<Cavalo> cavalosCadastrados)
-        {
-            List<int> numerosExistentes = cavalosCadastrados.Select(c => c.Numero_Cavalo).ToList();
-            Random rnd = new Random();
-            int novoNumero;
-            do
-            {
-                novoNumero = rnd.Next(10, 99);
-            } while (numerosExistentes.Contains(novoNumero));
 
-            return novoNumero;
-        }
         //Função que atualiza os dados dos Cavalos
-        public static void AtualizarDesempenho(List<Cavalo> cavalos, Cavalo resultado)
+        public void AtualizarDesempenho(List<Cavalo> cavalos, Cavalo primeiroLugar, Cavalo segundoLugar, Cavalo terceiroLugar)
         {
             {
                 foreach (Cavalo cavalo in cavalos)
                 {
                     cavalo.Numero_de_Corridas += 1;
-                    if (cavalo == resultado)
+                    if (cavalo == primeiroLugar)
                     {
                         cavalo.Numero_de_Vitorias += 1;
+                        cavalo.StatusCavalo = StatusCavalo.FirstPlace;
+                    }
+                    else if (cavalo == segundoLugar)
+                    {
+                        cavalo.StatusCavalo = StatusCavalo.SecondPlace;
+                    }
+                    else if(cavalo == terceiroLugar)
+                    {
+                        cavalo.StatusCavalo = StatusCavalo.ThirdPlace;
+                    }
+                    else
+                    {
+                        cavalo.StatusCavalo = StatusCavalo.Lose;
                     }
                     cavalo.Desempenho = (cavalo.Numero_de_Vitorias * 100) / cavalo.Numero_de_Corridas;
                 }
             }
         }
+
     }
 }

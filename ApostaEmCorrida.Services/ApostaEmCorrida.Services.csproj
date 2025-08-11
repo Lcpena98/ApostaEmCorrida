@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
+    <ProjectReference Include="..\ApostaEmCorrida.Domain\ApostaEmCorrida.Domain.csproj" />
   </ItemGroup>
 
 </Project>

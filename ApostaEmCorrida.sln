@@ -10,8 +10,14 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApostaEmCorrida.API", "ApostaEmCorrida.API\ApostaEmCorrida.API.csproj", "{B583A99A-1B3C-4C14-9D2A-E0352695099F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApostaEmCorrida.Services", "ApostaEmCorrida.Services\ApostaEmCorrida.Services.csproj", "{F40792FD-8D7F-46DC-BA85-21D4692607C4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1D8467B6-2996-4871-950B-E9519C160525} = {1D8467B6-2996-4871-950B-E9519C160525}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApostaEmCorrida.View", "ApostaEmCorrida.View\ApostaEmCorrida.View.csproj", "{D5BB4069-ABFA-466F-948A-FB07C22D1896}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F40792FD-8D7F-46DC-BA85-21D4692607C4} = {F40792FD-8D7F-46DC-BA85-21D4692607C4}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

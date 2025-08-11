@@ -1,4 +1,4 @@
-﻿using ApostaEmCorrida.Domain.Entities;
+﻿using ApostaEmCorrida.Domain.Enumerator;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,12 +20,6 @@ namespace ApostaEmCorrida.Domain
             Apostador = apostador;
             ValorApostado = valorApostado;
             Status= StatusAposta.Pending;
-        }
-
-        //metodo para cadastrar a aposta feita
-        public static void NovaAposta(Casa casa,Cavalo cavalo, Apostador apostador, double valorApostado)
-        {
-            casa.Apostas.Add(new Aposta(cavalo, apostador, valorApostado));
         }
     }
 }

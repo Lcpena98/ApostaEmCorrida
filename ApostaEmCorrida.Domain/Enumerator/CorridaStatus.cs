@@ -6,15 +6,10 @@ using System.Threading.Tasks;
 
 namespace ApostaEmCorrida.Domain.Enumerator
 {
-    public enum StatusAposta
+    public enum CorridaStatus
     {
-        Pending,
-        FirstPlace,
-        SecondPlace,
-        ThirdPlace,
-        Lose,
-        Cancel,
-        Error,
+        Waiting,
+        InProgress,
         Finished
     }
 }
