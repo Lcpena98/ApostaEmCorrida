@@ -123,22 +123,23 @@ namespace ApostaEmCorrida.Services
                                 _apostadorService.AdicionarSaldo(apostador, valorApostadorPrimeiro);
                             }
                         }
-                        foreach (Aposta apostouNoSegundoColocado in apostasSegundo) 
+                        foreach (Aposta apostouNoSegundoColocado in apostasSegundo)
                         {
                             _apostadorService.AdicionarSaldo(apostador, valorApostadorSegundo);
                         }
-                        foreach (Aposta apostouNoTerceiroColocado in apostasTerceiro) 
+                        foreach (Aposta apostouNoTerceiroColocado in apostasTerceiro)
                         {
                             _apostadorService.AdicionarSaldo(apostador, valorApostadorTerceiro);
                         }
                     }
                     casa.AdicionarSaldo(valorApostadoTotal);
-                    foreach(Aposta aposta in casa.Apostas)
+                    foreach (Aposta aposta in casa.Apostas)
                     {
-                        aposta.Status=StatusAposta.Finished;
+                        aposta.Status = StatusAposta.Finished;
                     }
                 }
             }
+
             catch (Exception ex)
             {
                 Console.WriteLine("Não foi possível cadastrar resultados!");
