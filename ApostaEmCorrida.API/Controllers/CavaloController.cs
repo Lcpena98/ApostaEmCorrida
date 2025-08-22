@@ -1,10 +1,38 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ApostaEmCorrida.Services;
+using ApostaEmCorrida.Services.Interfaces;
+using ApostaEmCorrida.Domain;
 
 namespace ApostaEmCorrida.API.Controllers
 {
     public class CavaloController : Controller
     {
+        private readonly ICavaloService _cavaloService;
+
+        public CavaloController(ICavaloService cavaloService)
+        {
+            _cavaloService = cavaloService;
+        }
+
+        public CavaloController()
+        {
+        }
+
+        public void CadastrarCavalo(List<Cavalo> ListaCavalos, string nome, double altura, double peso, int numero, double saldo)
+        {
+            _cavaloService.CadastrarCavalo(ListaCavalos, nome, altura, peso, numero, saldo);
+        }
+
+        public int CadastrarNumero(List<Cavalo> cavalosCadastrados)
+        {
+            return _cavaloService.CadastrarNumero(cavalosCadastrados);
+        }
+        public void AtualizarDesempenho(List<Cavalo> cavalos, Cavalo primeiroLugar, Cavalo segundoLugar, Cavalo terceiroLugar)
+        {
+            _cavaloService.AtualizarDesempenho(cavalos, primeiroLugar, segundoLugar, terceiroLugar);
+        }
+
         // GET: CavaloController
         public ActionResult Index()
         {

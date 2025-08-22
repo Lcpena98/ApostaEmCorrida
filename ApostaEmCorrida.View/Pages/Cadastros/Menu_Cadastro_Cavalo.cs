@@ -7,22 +7,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ApostaEmCorrida.Domain;
+using ApostaEmCorrida.API.Controllers;
 
 namespace ApostaEmCorrida.View.Pages
 {
     public partial class Menu_Cadastro_Cavalo : Form
     {
         Menu_Inicial _inicial;
-        string NomeCavalo;
-        double AlturaCavalo, PesoCavalo;
-        int Numero_Cavalo;
-        Casa _casa;
-        public Menu_Cadastro_Cavalo(Menu_Inicial menu, Casa casa)
+        CasaController _casaController;
+        CavaloController _cavaloController;
+        public Menu_Cadastro_Cavalo(Menu_Inicial menu)
         {
             InitializeComponent();
             _inicial = menu;
-            _casa = casa;
+            _casaController = new CasaController();
+            _cavaloController = new CavaloController();
         }
 
         private void Menu_Cadastro_Cavalo_Load(object sender, EventArgs e)
@@ -34,7 +33,7 @@ namespace ApostaEmCorrida.View.Pages
         {
             try
             {
-                NomeCavalo = textBox_NomeCavalo.Text;
+                string NomeCavalo = textBox_NomeCavalo.Text;
             }
             catch (Exception ex)
             {
@@ -62,7 +61,7 @@ namespace ApostaEmCorrida.View.Pages
         {
             try
             {
-                AlturaCavalo = double.Parse(textBox_AlturaCavalo.Text);
+                double AlturaCavalo = double.Parse(textBox_AlturaCavalo.Text);
             }
             catch (Exception ex)
             {
@@ -91,18 +90,18 @@ namespace ApostaEmCorrida.View.Pages
         {
             try
             {
-                PesoCavalo = double.Parse(textBox_PesoCavalo.Text);
+                double PesoCavalo = double.Parse(textBox_PesoCavalo.Text);
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
         }
-        private void button_Numero_Click(object sender, EventArgs e)
-        {
-            Numero_Cavalo = Cavalo.CadastrarNumero(_casa.Cavalos);
+        private void button_Numero_Click(object sender, EventArgs e) { 
 
-            label_Numero.Text = Numero_Cavalo.ToString();
+           // double Numero_Cavalo = _cavaloController.CadastrarNumero();
+
+           // label_Numero.Text = Numero_Cavalo.ToString();
             label_Numero.Visible = true;
         }
 
@@ -126,8 +125,10 @@ namespace ApostaEmCorrida.View.Pages
             {
                 try
                 {
-                    Cavalo.CadastrarCavalo(_casa.Cavalos, NomeCavalo, AlturaCavalo, PesoCavalo, Numero_Cavalo, _casa.Saldo);
-                    resultado_Cadastro.Text = ($"Cavalo cadastrado com sucesso!\nCavalo: {NomeCavalo} - {Numero_Cavalo}");
+                    // PARA REFAZER APÓS ALTERAÇÕES
+
+                    /*Cavalo.CadastrarCavalo(_casa.Cavalos, NomeCavalo, AlturaCavalo, PesoCavalo, Numero_Cavalo, _casa.Saldo);
+                    resultado_Cadastro.Text = ($"Cavalo cadastrado com sucesso!\nCavalo: {NomeCavalo} - {Numero_Cavalo}");*/
 
                     resultado_Cadastro.Visible = true;
                     textBox_NomeCavalo.Text = "";

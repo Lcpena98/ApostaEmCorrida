@@ -14,22 +14,18 @@ namespace ApostaEmCorrida.View.Pages
     public partial class Menu_Cadastro_Apostador : Form
     {
         Menu_Inicial _Inicial;
-        Casa _casa;
-        string NomeApostador, EmailApostador, SenhaApostador,ConfirmaSenhaApostador;
-        int Numero_Apostador;
 
-        public Menu_Cadastro_Apostador(Menu_Inicial inicial, Casa casa)
+        public Menu_Cadastro_Apostador(Menu_Inicial inicial)
         {
             InitializeComponent();
             _Inicial = inicial;
-            _casa = casa;
         }
 
         private void textBox_NomeApostador_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                NomeApostador = textBox_NomeApostador.Text;
+                //NomeApostador = textBox_NomeApostador.Text;
             }
             catch (Exception ex)
             {
@@ -41,7 +37,7 @@ namespace ApostaEmCorrida.View.Pages
         {
             try
             {
-                EmailApostador = textBox_EmailApostador.Text;
+                //EmailApostador = textBox_EmailApostador.Text;
             }
             catch (Exception ex)
             {
@@ -53,7 +49,7 @@ namespace ApostaEmCorrida.View.Pages
         {
             try
             {
-                SenhaApostador = textBox_SenhaApostador.Text;
+                //SenhaApostador = textBox_SenhaApostador.Text;
             }
             catch (Exception ex)
             {
@@ -65,7 +61,7 @@ namespace ApostaEmCorrida.View.Pages
         {
             try
             {
-                ConfirmaSenhaApostador = textBox_ConfirmarSenha.Text;
+               // ConfirmaSenhaApostador = textBox_ConfirmarSenha.Text;
             }
             catch (Exception ex)
             {
@@ -75,10 +71,12 @@ namespace ApostaEmCorrida.View.Pages
 
         private void button_Numero_Click(object sender, EventArgs e)
         {
-            Numero_Apostador = Apostador.CriarNumero(_casa.Apostadores);
+            // PARA REFAZER APÓS ALTERAÇÕES
+
+            /*Numero_Apostador = Apostador.CriarNumero(_casa.Apostadores);
 
             label_Numero.Text = Numero_Apostador.ToString();
-            label_Numero.Visible = true;
+            label_Numero.Visible = true;*/
         }
         private void button_Cadastrar_Click(object sender, EventArgs e)
         {
@@ -102,10 +100,12 @@ namespace ApostaEmCorrida.View.Pages
             else
             {
 
-                if (SenhaApostador == ConfirmaSenhaApostador)
+                /*if (SenhaApostador == ConfirmaSenhaApostador)
                 {
                     try
                     {
+                        // PARA REFAZER APÓS ALTERAÇÕES
+
                         Apostador.Cadastrar(_casa.Apostadores, NomeApostador, EmailApostador, SenhaApostador, Numero_Apostador);
 
                         resultado_Cadastro.Text = ($"Apostador cadastrado com sucesso!\nApostador: {NomeApostador} - {Numero_Apostador}");
@@ -144,7 +144,7 @@ namespace ApostaEmCorrida.View.Pages
                     textBox_ConfirmarSenha.Text = "";
                     label_Numero.Text = "";
                     label_Numero.Visible = false;
-                }
+                }*/
             }
         }
         private void button_Voltar_Click(object sender, EventArgs e)

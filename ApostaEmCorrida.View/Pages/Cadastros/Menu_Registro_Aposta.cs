@@ -19,22 +19,21 @@ namespace ApostaEmCorrida.View.Pages
         Cavalo cavalo;
         double valor;
         
-        public Menu_Registro_Aposta(Menu_Inicial inicial, Casa casa)
+        public Menu_Registro_Aposta(Menu_Inicial inicial)
         {
             InitializeComponent();
-            _casa = casa;
             _Inicial = inicial;
             
             foreach (Apostador apostador in _casa.Apostadores)
             {
-                comboBox_Apostador.DataSource = _casa.Apostadores.OfType<Apostador>().ToList();
+                comboBox_Apostador.DataSource = _casa.Apostadores.ToList();
                 //comboBox_Apostador.DisplayMember = "Nome";       // O que aparece na lista
                 //comboBox_Apostador.ValueMember = "Numero";       // Valor interno (id ou número)
             }
 
             foreach (Cavalo cavalo in _casa.Cavalos)
             {
-                comboBox_Cavalo.DataSource = _casa.Cavalos.OfType<Cavalo>().ToList();
+                comboBox_Cavalo.DataSource = _casa.Cavalos.ToList();
                 //comboBox_Apostador.DisplayMember = "Nome";       // O que aparece na lista
                 //comboBox_Apostador.ValueMember = "Numero_Cavalo";       // Valor interno (id ou número)
             }
@@ -91,7 +90,9 @@ namespace ApostaEmCorrida.View.Pages
             {
                 try
                 {
-                    Aposta.NovaAposta(_casa, cavalo, apostador, valor);
+                    // PARA REFAZER APÓS ALTERAÇÕES
+                    
+                    // Aposta.NovaAposta(_casa, cavalo, apostador, valor);
                     resultado_Cadastro.Text = ($"Aposta cadastrada com sucesso!");
                     resultado_Cadastro.Visible = true;
                 }

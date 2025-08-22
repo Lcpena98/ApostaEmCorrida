@@ -10,6 +10,8 @@ namespace ApostaEmCorrida.Services.Interfaces
     public interface ICavaloService
     {
         public void CadastrarCavalo(List<Cavalo> ListaCavalos, string nome, double altura, double peso, int numero, double saldo);
+        public List<Cavalo> BuscarTodosCavalos();
+        public Cavalo BuscarCavaloPorNumero(int numero);
         public int CadastrarNumero(List<Cavalo> cavalosCadastrados);
         public void AtualizarDesempenho(List<Cavalo> cavalos, Cavalo primeiroLugar, Cavalo segundoLugar, Cavalo terceiroLugar);
     }
