@@ -58,14 +58,14 @@ namespace ApostaEmCorrida.Dapper
             }
         }
 
-        public int CadastrarNumero(List<Cavalo> cavalosCadastrados)
+        public void CadastrarCavalo(string nome, double altura, double peso, int numero)
         {
-            throw new NotImplementedException();
-        }
-
-        public void CadastrarCavalo(List<Cavalo> ListaCavalos, string nome, double altura, double peso, int numero, double saldo)
-        {
-            throw new NotImplementedException();
+            using IDbConnection dbConnection = DbConnection;
+            dbConnection.Open();
+            string query = @"INSERT INTO CAVALO (Numero_Cavalo, Nome, Altura, Peso, Numero_de_Corridas, Numero_de_Vitorias, Desempenho) 
+                             VALUES (@Numero_Cavalo, @Nome, @Altura,@Peso, 0, 0, 0)";
+            dbConnection.Execute(query, new { Numero_Cavalo = numero, Nome = nome, Altura = altura, Peso = peso });
+            dbConnection.Close();
         }
         public void AtualizarDesempenho(List<Cavalo> cavalos, Cavalo primeiroLugar, Cavalo segundoLugar, Cavalo terceiroLugar)
         {

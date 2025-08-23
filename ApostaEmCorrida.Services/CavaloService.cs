@@ -1,4 +1,5 @@
 ﻿using ApostaEmCorrida.Domain;
+using ApostaEmCorrida.Dapper;
 using ApostaEmCorrida.Domain.Enumerator;
 using ApostaEmCorrida.Services.Interfaces;
 using System;
@@ -11,22 +12,22 @@ namespace ApostaEmCorrida.Services
 {
     public class CavaloService : ICavaloService
     {
-        protected readonly Cavalo _cavalo;
-        public CavaloService(Cavalo cavalo) 
+        protected readonly CavaloRepository _cavaloRepository;
+        public CavaloService(CavaloRepository cavaloRepository) 
         { 
-            _cavalo = cavalo;
+            _cavaloRepository = cavaloRepository;
         }
 
         //Função que cadastra os participantes
-        public void CadastrarCavalo(List<Cavalo> ListaCavalos, string nome, double altura, double peso, int numero, double saldo)
+        public void CadastrarCavalo(string nome, double altura, double peso, int numero)
         {
-            ListaCavalos.Add(new Cavalo(numero, nome, altura, peso, 0, 0, 100,StatusCavalo.OnHold));
-            saldo += 50;
+            _cavaloRepository.CadastrarCavalo(nome, altura, peso, numero);
         }
 
         //Função que cria o numero do cavalo e impede que haja 2 cavalos com o mesmo numero
-        public int CadastrarNumero(List<Cavalo> cavalosCadastrados)
+        public int CadastrarNumero()
         {
+            List<Cavalo> cavalosCadastrados = _cavaloRepository.BuscarTodosCavalos();
             List<int> numerosExistentes = cavalosCadastrados.Select(c => c.Numero_Cavalo).ToList();
             Random rnd = new Random();
             int novoNumero;
@@ -41,8 +42,18 @@ namespace ApostaEmCorrida.Services
         public void AtualizarDesempenho(List<Cavalo> cavalos, Cavalo primeiroLugar, Cavalo segundoLugar, Cavalo terceiroLugar)
         {
             {
-                _cavalo.AtualizarDesempenho(cavalos,primeiroLugar,segundoLugar,terceiroLugar);
+                //_cavalo.AtualizarDesempenho(cavalos,primeiroLugar,segundoLugar,terceiroLugar);
             }
+        }
+
+        public List<Cavalo> BuscarTodosCavalos()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Cavalo BuscarCavaloPorNumero(int numero)
+        {
+            throw new NotImplementedException();
         }
     }
 }

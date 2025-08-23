@@ -15,18 +15,15 @@ namespace ApostaEmCorrida.API.Controllers
             _cavaloService = cavaloService;
         }
 
-        public CavaloController()
+        public void CadastrarCavalo(string nome, double altura, double peso, int numero)
         {
+            _cavaloService.CadastrarCavalo(nome, altura, peso, numero);
         }
 
-        public void CadastrarCavalo(List<Cavalo> ListaCavalos, string nome, double altura, double peso, int numero, double saldo)
+        public int CadastrarNumero()
         {
-            _cavaloService.CadastrarCavalo(ListaCavalos, nome, altura, peso, numero, saldo);
-        }
-
-        public int CadastrarNumero(List<Cavalo> cavalosCadastrados)
-        {
-            return _cavaloService.CadastrarNumero(cavalosCadastrados);
+            int numero = _cavaloService.CadastrarNumero();
+            return _cavaloService.CadastrarNumero();
         }
         public void AtualizarDesempenho(List<Cavalo> cavalos, Cavalo primeiroLugar, Cavalo segundoLugar, Cavalo terceiroLugar)
         {

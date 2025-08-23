@@ -11,8 +11,6 @@ namespace ApostaEmCorrida.Services.Interfaces
     {
         public Casa CadastrarCasa();
         public void ValidarAposta(Corrida resultado, List<Aposta> apostas);
-
-        public Cavalo 
         public double SomaDeValoresApostados(List<Aposta> apostas);
         public void Calculo_de_aposta(Casa casa);
     }

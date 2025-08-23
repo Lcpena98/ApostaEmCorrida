@@ -8,20 +8,27 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ApostaEmCorrida.API.Controllers;
+using ApostaEmCorrida.Dapper;
+using ApostaEmCorrida.Services;
+using Microsoft.Extensions.Configuration;
 
 namespace ApostaEmCorrida.View.Pages
 {
     public partial class Menu_Cadastro_Cavalo : Form
     {
         Menu_Inicial _inicial;
-        CasaController _casaController;
         CavaloController _cavaloController;
+        CavaloService _cavaloService;
+        CavaloRepository _cavaloRepository;
+        IConfiguration _config;
         public Menu_Cadastro_Cavalo(Menu_Inicial menu)
         {
             InitializeComponent();
             _inicial = menu;
-            _casaController = new CasaController();
-            _cavaloController = new CavaloController();
+
+            _cavaloRepository = new CavaloRepository(_config);
+            _cavaloService = new CavaloService(_cavaloRepository);
+            _cavaloController = new CavaloController(_cavaloService);
         }
 
         private void Menu_Cadastro_Cavalo_Load(object sender, EventArgs e)
@@ -97,11 +104,11 @@ namespace ApostaEmCorrida.View.Pages
                 Console.WriteLine(ex.Message);
             }
         }
-        private void button_Numero_Click(object sender, EventArgs e) { 
+        private void button_Numero_Click(object sender, EventArgs e)
+        {
 
-           // double Numero_Cavalo = _cavaloController.CadastrarNumero();
-
-           // label_Numero.Text = Numero_Cavalo.ToString();
+            double Numero_Cavalo = _cavaloController.CadastrarNumero();
+            label_Numero.Text = Numero_Cavalo.ToString();
             label_Numero.Visible = true;
         }
 
@@ -110,8 +117,8 @@ namespace ApostaEmCorrida.View.Pages
             if (
             string.IsNullOrEmpty(textBox_NomeCavalo.Text) ||
             string.IsNullOrEmpty(textBox_AlturaCavalo.Text) ||
-            string.IsNullOrEmpty(textBox_PesoCavalo.Text) ||
-            string.IsNullOrEmpty(label_Numero.Text))
+            string.IsNullOrEmpty(textBox_PesoCavalo.Text))// ||
+            //string.IsNullOrEmpty(label_Numero.Text))
             {
                 resultado_Cadastro.Text = "Favor Preencher os campos obrigatórios";
                 resultado_Cadastro.Visible = true;
@@ -127,8 +134,12 @@ namespace ApostaEmCorrida.View.Pages
                 {
                     // PARA REFAZER APÓS ALTERAÇÕES
 
-                    /*Cavalo.CadastrarCavalo(_casa.Cavalos, NomeCavalo, AlturaCavalo, PesoCavalo, Numero_Cavalo, _casa.Saldo);
-                    resultado_Cadastro.Text = ($"Cavalo cadastrado com sucesso!\nCavalo: {NomeCavalo} - {Numero_Cavalo}");*/
+                    _cavaloController.CadastrarCavalo(
+                        textBox_NomeCavalo.Text,
+                        double.Parse(textBox_AlturaCavalo.Text),
+                        double.Parse(textBox_PesoCavalo.Text), 34);
+                        //int.Parse(label_Numero.Text));
+                    resultado_Cadastro.Text = ($"Cavalo cadastrado com sucesso!\nCavalo: {textBox_NomeCavalo.Text} - {label_Numero.Text}");
 
                     resultado_Cadastro.Visible = true;
                     textBox_NomeCavalo.Text = "";
@@ -149,6 +160,11 @@ namespace ApostaEmCorrida.View.Pages
         {
             _inicial.Show();
             this.Close();
+        }
+
+        private void resultado_Cadastro_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
