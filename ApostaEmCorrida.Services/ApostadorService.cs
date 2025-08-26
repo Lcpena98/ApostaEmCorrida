@@ -1,5 +1,8 @@
-﻿using ApostaEmCorrida.Domain;
+﻿using ApostaEmCorrida.Dapper;
+using ApostaEmCorrida.Domain;
+using ApostaEmCorrida.Domain.Retorno;
 using ApostaEmCorrida.Services.Interfaces;
+using ApostaEmCorrida.Dapper.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,35 +13,73 @@ namespace ApostaEmCorrida.Services
 {
     public class ApostadorService: IApostadorService
     {
+        protected readonly IApostadorRepository _apostadorRepository;
 
-        public void CadastrarApostador(List<Apostador> listaApostadores, string nome, string email, string senha, int numero)
+        public ApostadorService(IApostadorRepository apostadorRepository)
         {
-            listaApostadores.Add(new Apostador(nome, email, senha, numero, 0));
+            _apostadorRepository = apostadorRepository;
         }
 
-        //Função que cria uma senha de 5 digitos para o usuário e impede que haja 2 senhas iguais
-        public int CriarNumero(List<Apostador> pessoasCadastradas)
+        public RetornoDados<Apostador> BuscarApostadorPorNumero(int numero)
         {
-            List<Apostador> apostadoresCadastrados = new List<Apostador>();
-            foreach (Apostador apostador in pessoasCadastradas)
-            {
-                apostadoresCadastrados.Add(apostador);
+            throw new NotImplementedException();
+        }
+
+        public RetornoDados<List<Apostador>> BuscarTodosApostadores()
+        {
+            return _apostadorRepository.BuscarTodosApostadores();
+        }
+
+        public RetornoStatus CadastrarApostador(string nome, string senha, string confirmaSenha, string email, int numero, double saldo)
+        {
+            if (senha == confirmaSenha) 
+            { 
+            return _apostadorRepository.CadastrarApostador(nome, senha, email, numero, saldo);
             }
-            List<int> numerosCadastrados = apostadoresCadastrados.Select(a => a.Numero).ToList();
-            Random rnd = new Random();
-            int novaSenha;
-            do
+            else
             {
-                novaSenha = rnd.Next(10000, 99999);
-            } while (numerosCadastrados.Contains(novaSenha));
-
-            return novaSenha;
+                return new RetornoStatus(false, "As senhas não batem!");
+            }
         }
 
-        //Função que chama o metodo de adição do saldo ao Apostador em caso de vitória
-        public void AdicionarSaldo(Apostador apostador, double valor)
+        public RetornoStatus AlterarDadosApostador(string nome, string email, int numero)
         {
-            apostador.AdicionarSaldo(apostador, valor);
+            throw new NotImplementedException();
+        }
+
+        public RetornoStatus TrocarSenhaApostador(string senha, string novaSenha, string confirmaNovaSenha, int numero)
+        {
+            throw new NotImplementedException();
+        }
+
+        public RetornoDados<int> CadastrarNumero()
+        {
+            try
+            {
+                List<Apostador> apostadoresCadastrados = _apostadorRepository.BuscarTodosApostadores().Dados;
+                List<int> numerosCadastrados = apostadoresCadastrados.Select(a => a.Numero).ToList();
+                Random rnd = new Random();
+                int novaSenha;
+                do
+                {
+                    novaSenha = rnd.Next(10000, 99999);
+                } while (numerosCadastrados.Contains(novaSenha));
+                return new RetornoDados<int>(true, $"Numero cadastrado com sucesso!", novaSenha);
+            }
+            catch (Exception ex)
+            {
+                return new RetornoDados<int>(false,$"Erro ao cadastrar o numero{ex.Message.ToString()}", -1);
+            }
+        }
+
+        public RetornoStatus AdicionarSaldo(int numero, double valor)
+        {
+            throw new NotImplementedException();
+        }
+
+        public RetornoStatus RemoverApostador(int numero)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -143,7 +143,6 @@
             textBox_ConfirmarSenha.Size = new Size(155, 23);
             textBox_ConfirmarSenha.TabIndex = 1;
             textBox_ConfirmarSenha.UseSystemPasswordChar = true;
-            textBox_ConfirmarSenha.TextChanged += textBox_ConfirmarSenha_TextChanged;
             // 
             // label5
             // 
@@ -222,7 +221,6 @@
             textBox_SenhaApostador.Size = new Size(155, 23);
             textBox_SenhaApostador.TabIndex = 1;
             textBox_SenhaApostador.UseSystemPasswordChar = true;
-            textBox_SenhaApostador.TextChanged += textBox_SenhaApostador_TextChanged;
             // 
             // label4
             // 
@@ -248,7 +246,6 @@
             textBox_EmailApostador.Name = "textBox_EmailApostador";
             textBox_EmailApostador.Size = new Size(155, 23);
             textBox_EmailApostador.TabIndex = 1;
-            textBox_EmailApostador.TextChanged += textBox_EmailApostador_TextChanged;
             // 
             // label3
             // 
@@ -274,7 +271,6 @@
             textBox_NomeApostador.Name = "textBox_NomeApostador";
             textBox_NomeApostador.Size = new Size(155, 23);
             textBox_NomeApostador.TabIndex = 2;
-            textBox_NomeApostador.TextChanged += textBox_NomeApostador_TextChanged;
             // 
             // label2
             // 

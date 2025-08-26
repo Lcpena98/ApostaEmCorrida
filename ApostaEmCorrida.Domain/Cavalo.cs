@@ -12,6 +12,7 @@ namespace ApostaEmCorrida.Domain
     {
         public int Numero_Cavalo { get; protected set; }
         public string Nome { get; set; }
+        public string Raca { get; set; }
         public double Altura { get; set; }
         public double Peso { get; set; }
         public int Numero_de_Corridas { get; protected set; }
@@ -20,10 +21,12 @@ namespace ApostaEmCorrida.Domain
 
         public StatusCavalo StatusCavalo { get; set; }
 
-        public Cavalo(int numero, string nome, double altura, double peso, int numero_de_Corridas, int numero_de_Vitorias, double desempenho,StatusCavalo statusCavalo)
+        public Cavalo() { }
+        public Cavalo(int numero, string nome, string raca ,double altura, double peso, int numero_de_Corridas, int numero_de_Vitorias, double desempenho,StatusCavalo statusCavalo)
         {
             Numero_Cavalo = numero;
             Nome = nome;
+            Raca = raca;
             Altura = altura;
             Peso = peso;
             Numero_de_Corridas = numero_de_Corridas;

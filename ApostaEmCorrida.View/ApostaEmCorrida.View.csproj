@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ApostaEmCorrida.API\ApostaEmCorrida.API.csproj" />
+    <ProjectReference Include="..\ApostaEmCorrida.Controller\ApostaEmCorrida.Controller.csproj" />
   </ItemGroup>
 
 </Project>

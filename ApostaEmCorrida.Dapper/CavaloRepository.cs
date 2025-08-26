@@ -9,67 +9,86 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ApostaEmCorrida.Domain.Retorno;
 
 namespace ApostaEmCorrida.Dapper
 {
-    public class CavaloRepository : ICavaloRepository
+    public class CavaloRepository : Conexao, ICavaloRepository
     {
-        protected readonly IConfiguration _config;
 
-        public CavaloRepository(IConfiguration config)
-        {
-            _config = config;
-        }
-
-        public IDbConnection DbConnection
-        {
-            get
-            {
-                return new SqlConnection(_config.GetConnectionString("DefaultConnection"));
-            }
-        }
-        public Cavalo BuscarCavaloPorNumero(int numero)
+        public RetornoDados<Cavalo> BuscarCavaloPorNumero(int numero)
         {
             try
             {
-                using IDbConnection dbConnection = DbConnection;
-                dbConnection.Open();
                 string query = @"SELECT * FROM CAVALO WHERE Numero_Cavalo = @Numero_Cavalo";
-                return dbConnection.Query<Cavalo>(query, new { Numero_Cavalo = numero }).FirstOrDefault();
+                return new RetornoDados<Cavalo>(true, $"Cavalo buscado com sucesso!", banco.Query<Cavalo>(query, new { Numero_Cavalo = numero }).FirstOrDefault());
             }
             catch (Exception ex)
             {
-            throw new Exception($"Erro ao buscar cavalo por numero: {ex.Message}", ex);
+                return new RetornoDados<Cavalo>(false, $"Erro ao buscar cavalo por número: {ex.Message}", new Cavalo());
             }
         }
 
-        public List<Cavalo> BuscarTodosCavalos()
+        public RetornoDados<List<Cavalo>> BuscarTodosCavalos()
         {
             try
             {
-                using IDbConnection dbConnection = DbConnection;
-                dbConnection.Open();
-                string query = @"SELECT * FROM CAVALO";
-                return dbConnection.Query<Cavalo>(query).ToList();
+                return new RetornoDados<List<Cavalo>>(true, $"Lista de cavalos buscada com sucesso!", banco.Query<Cavalo>(@"SELECT * FROM CAVALO").ToList());
             }
             catch (Exception ex)
             {
-                throw new Exception($"Erro ao buscar todos os cavalos: {ex.Message}", ex);
+                List<Cavalo> listaVazia = new List<Cavalo>();
+                return new RetornoDados<List<Cavalo>>(false, $"Falha ao buscar a lista de cavalos!", listaVazia);
             }
         }
 
-        public void CadastrarCavalo(string nome, double altura, double peso, int numero)
+        public RetornoStatus CadastrarCavalo(string nome, string raca, double altura, double peso, int numero)
         {
-            using IDbConnection dbConnection = DbConnection;
-            dbConnection.Open();
-            string query = @"INSERT INTO CAVALO (Numero_Cavalo, Nome, Altura, Peso, Numero_de_Corridas, Numero_de_Vitorias, Desempenho) 
-                             VALUES (@Numero_Cavalo, @Nome, @Altura,@Peso, 0, 0, 0)";
-            dbConnection.Execute(query, new { Numero_Cavalo = numero, Nome = nome, Altura = altura, Peso = peso });
-            dbConnection.Close();
+            try
+            {
+                string query = @"INSERT INTO CAVALO (Nome, Raca, Altura, Peso, Numero_Cavalo, Numero_de_Corridas, Numero_de_Vitorias, Desempenho,StatusCavalo) 
+                             VALUES (@Nome, @Raca, @Altura, @Peso, @Numero_Cavalo, 0, 0, 100,0)";
+                banco.Execute(query, new { Nome = nome, Raca = raca, Altura = altura, Peso = peso, Numero_Cavalo = numero });
+                return new RetornoStatus(true, $"Cavalo cadastrado com sucesso!\n {nome} - {numero}");
+            }
+            catch (Exception ex)
+            {
+                return new RetornoStatus(false, $"Erro ao cadastrar cavalo: {ex.Message}");
+            }
         }
-        public void AtualizarDesempenho(List<Cavalo> cavalos, Cavalo primeiroLugar, Cavalo segundoLugar, Cavalo terceiroLugar)
+        public RetornoStatus AtualizarDesempenho(List<Cavalo> cavalos, Cavalo primeiroLugar, Cavalo segundoLugar, Cavalo terceiroLugar)
         {
             throw new NotImplementedException();
+        }
+
+        public RetornoStatus AlterarDadosCavalo(string novoNome, string novaRaca, double novaAltura, double novoPeso, int numero)
+        {
+            try
+            {
+                string query = @"UPDATE CAVALO 
+                             SET Nome = @Nome, Raca = @Raca, Altura = @Altura, Peso = @Peso 
+                             WHERE Numero_Cavalo = @Numero_Cavalo";
+                banco.Execute(query, new { Nome = novoNome, Raca = novaRaca, Altura = novaAltura, Peso = novoPeso, Numero_Cavalo = numero });
+                return new RetornoStatus(true, $"Dados do cavalo alterados com sucesso! Número: {numero}");
+            }
+            catch (Exception ex)
+            {
+                return new RetornoStatus(false, $"Erro ao alterar dados do cavalo: {ex.Message}");
+            }
+        }
+
+        public RetornoStatus RemoverCavalo(int numero)
+        {
+            try
+            {
+                string query = @"DELETE FROM CAVALO WHERE Numero_Cavalo = @Numero_Cavalo";
+                banco.Execute(query, new { Numero_Cavalo = numero });
+                return new RetornoStatus(true, $"Cavalo removido com sucesso! Número: {numero}");
+            }
+            catch (Exception ex)
+            {
+                return new RetornoStatus(false, $"Erro ao remover cavalo: {ex.Message}");
+            }
         }
     }
 }

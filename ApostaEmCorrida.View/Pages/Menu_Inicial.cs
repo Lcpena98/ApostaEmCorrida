@@ -1,5 +1,4 @@
-﻿using ApostaEmCorrida.API.Controllers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,33 +8,31 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using ApostaEmCorrida.View.Pages.Gestao_Cavalo;
+using ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Apostador;
 
 namespace ApostaEmCorrida.View.Pages
 {
     public partial class Menu_Inicial : Form
     {
-        CasaController _CasaController;
         public Menu_Inicial()
         {
             InitializeComponent();
-            _CasaController = new CasaController();
-
         }
 
 
         private void button_Cadastro_Cavalo_Click(object sender, EventArgs e)
         {
-            Menu_Cadastro_Cavalo menu_Cadastro_Cavalo = new Menu_Cadastro_Cavalo(this);
-            menu_Cadastro_Cavalo.Show();
+            Gerenciamento_Cavalo menu_Gerenciamento_Cavalo = new Gerenciamento_Cavalo(this);
+            menu_Gerenciamento_Cavalo.Show();
             label_Resultado_Corrida.Visible = false;
             this.Hide();
         }
 
         private void button_Cadastro_Apostador_Click(object sender, EventArgs e)
         {
-            /*Menu_Cadastro_Apostador menu_Cadastro_Apostador = new Menu_Cadastro_Apostador(this,_CasaController);
-            menu_Cadastro_Apostador.Show();
-            label_Resultado_Corrida.Visible = false;*/
+            Gerenciamento_Apostador menu_Gerenciamento_Apostador = new Gerenciamento_Apostador(this);
+            menu_Gerenciamento_Apostador.Show();
             this.Hide();
         }
 

@@ -75,7 +75,7 @@ namespace ApostaEmCorrida.View.Pages
             {
                 resultado_Cadastro.Text = ($"Valor inválido");
                 resultado_Cadastro.Visible = true;
-                textBox_Valor_Apostado.Text = "";
+                textBox_Valor_Apostado.Text = string.Empty;
             }
         }
 
@@ -85,6 +85,7 @@ namespace ApostaEmCorrida.View.Pages
             {
                 resultado_Cadastro.Text = ("Valor em branco");
                 resultado_Cadastro.Visible = true;
+                textBox_Valor_Apostado.Text = string.Empty;
             }
             else
             {
@@ -95,10 +96,16 @@ namespace ApostaEmCorrida.View.Pages
                     // Aposta.NovaAposta(_casa, cavalo, apostador, valor);
                     resultado_Cadastro.Text = ($"Aposta cadastrada com sucesso!");
                     resultado_Cadastro.Visible = true;
+                    comboBox_Apostador.SelectedIndex = -1;
+                    comboBox_Apostador.Text = string.Empty;
+                    comboBox_Cavalo.SelectedIndex = -1;
+                    comboBox_Cavalo.Text = string.Empty;
+                    textBox_Valor_Apostado.Text = string.Empty;
                 }
                 catch
                 {
                     resultado_Cadastro.Text = ($"Não foi possível cadastrar a aposta!");
+                    textBox_Valor_Apostado.Text = string.Empty;
                     resultado_Cadastro.Visible = true;
                 }
             }

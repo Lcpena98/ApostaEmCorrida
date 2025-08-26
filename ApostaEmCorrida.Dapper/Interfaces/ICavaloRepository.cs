@@ -1,4 +1,5 @@
 ﻿using ApostaEmCorrida.Domain;
+using ApostaEmCorrida.Domain.Retorno;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,11 @@ namespace ApostaEmCorrida.Dapper.Interfaces
 {
     public interface ICavaloRepository
     {
-        public void CadastrarCavalo(string nome, double altura, double peso, int numero);
-        public List<Cavalo> BuscarTodosCavalos();
-        public Cavalo BuscarCavaloPorNumero(int numero);
-        public void AtualizarDesempenho(List<Cavalo> cavalos, Cavalo primeiroLugar, Cavalo segundoLugar, Cavalo terceiroLugar);
+        public RetornoStatus CadastrarCavalo(string nome, string raca, double altura, double peso, int numero);
+        public RetornoDados<List<Cavalo>> BuscarTodosCavalos();
+        public RetornoDados<Cavalo> BuscarCavaloPorNumero(int numero);
+        public RetornoStatus AtualizarDesempenho(List<Cavalo> cavalos, Cavalo primeiroLugar, Cavalo segundoLugar, Cavalo terceiroLugar);
+        public RetornoStatus AlterarDadosCavalo(string novoNome, string novaRaca, double novaAltura, double novoPeso, int numero);
+        public RetornoStatus RemoverCavalo(int numero);
     }
 }

@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApostaEmCorrida.View", "Apo
 		{F40792FD-8D7F-46DC-BA85-21D4692607C4} = {F40792FD-8D7F-46DC-BA85-21D4692607C4}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApostaEmCorrida.API", "ApostaEmCorrida.API\ApostaEmCorrida.API.csproj", "{1243B5EA-08EF-490E-BF0D-949B59819EE5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApostaEmCorrida.Controller", "ApostaEmCorrida.Controller\ApostaEmCorrida.Controller.csproj", "{283C5C59-E357-4F5E-9B71-4A50CD63394F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{D5BB4069-ABFA-466F-948A-FB07C22D1896}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5BB4069-ABFA-466F-948A-FB07C22D1896}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5BB4069-ABFA-466F-948A-FB07C22D1896}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1243B5EA-08EF-490E-BF0D-949B59819EE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1243B5EA-08EF-490E-BF0D-949B59819EE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1243B5EA-08EF-490E-BF0D-949B59819EE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1243B5EA-08EF-490E-BF0D-949B59819EE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{283C5C59-E357-4F5E-9B71-4A50CD63394F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{283C5C59-E357-4F5E-9B71-4A50CD63394F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{283C5C59-E357-4F5E-9B71-4A50CD63394F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{283C5C59-E357-4F5E-9B71-4A50CD63394F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -15,7 +15,7 @@ namespace ApostaEmCorrida.Domain
         public int Numero { get; protected set; }//Codigo publico para a identificação do mesmo. um numero gerado para que o mesmo seja identificado caso ganhe a aposta
         public double Saldo { get; private set; }
 
-
+        public Apostador(){ }
         public Apostador(string nome, string email, string senha, int numero, double saldo)
         {
             Nome = nome;

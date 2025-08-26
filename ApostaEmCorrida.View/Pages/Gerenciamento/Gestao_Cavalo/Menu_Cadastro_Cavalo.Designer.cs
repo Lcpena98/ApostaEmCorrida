@@ -29,11 +29,14 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            panel8 = new Panel();
+            button_Voltar = new Button();
+            panel9 = new Panel();
+            textBox_Raca = new TextBox();
+            label5 = new Label();
             panel7 = new Panel();
+            resultado_Cadastro = new Label();
             button_Cadastrar = new Button();
-            panel6 = new Panel();
-            button_Numero = new Button();
-            label_Numero = new Label();
             panel5 = new Panel();
             textBox_PesoCavalo = new TextBox();
             label4 = new Label();
@@ -43,40 +46,100 @@
             panel3 = new Panel();
             textBox_NomeCavalo = new TextBox();
             label2 = new Label();
-            resultado_Cadastro = new Label();
-            button_Voltar = new Button();
+            panel6 = new Panel();
+            button_Numero = new Button();
+            label_Numero = new Label();
             panel2 = new Panel();
             label1 = new Label();
-            panel8 = new Panel();
             panel1.SuspendLayout();
+            panel8.SuspendLayout();
+            panel9.SuspendLayout();
             panel7.SuspendLayout();
-            panel6.SuspendLayout();
             panel5.SuspendLayout();
             panel4.SuspendLayout();
             panel3.SuspendLayout();
+            panel6.SuspendLayout();
             panel2.SuspendLayout();
-            panel8.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
+            panel1.Controls.Add(panel8);
+            panel1.Controls.Add(panel9);
             panel1.Controls.Add(panel7);
-            panel1.Controls.Add(panel6);
             panel1.Controls.Add(panel5);
             panel1.Controls.Add(panel4);
             panel1.Controls.Add(panel3);
             panel1.Location = new Point(2, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(263, 317);
+            panel1.Size = new Size(263, 447);
             panel1.TabIndex = 0;
+            // 
+            // panel8
+            // 
+            panel8.Controls.Add(button_Voltar);
+            panel8.Location = new Point(0, 401);
+            panel8.Name = "panel8";
+            panel8.Size = new Size(256, 41);
+            panel8.TabIndex = 2;
+            // 
+            // button_Voltar
+            // 
+            button_Voltar.Location = new Point(94, 7);
+            button_Voltar.Name = "button_Voltar";
+            button_Voltar.Size = new Size(75, 23);
+            button_Voltar.TabIndex = 1;
+            button_Voltar.Text = "Voltar";
+            button_Voltar.UseVisualStyleBackColor = true;
+            button_Voltar.Click += button_Voltar_Click;
+            // 
+            // panel9
+            // 
+            panel9.Controls.Add(textBox_Raca);
+            panel9.Controls.Add(label5);
+            panel9.Location = new Point(3, 104);
+            panel9.Name = "panel9";
+            panel9.Size = new Size(260, 45);
+            panel9.TabIndex = 6;
+            // 
+            // textBox_Raca
+            // 
+            textBox_Raca.Location = new Point(60, 12);
+            textBox_Raca.Name = "textBox_Raca";
+            textBox_Raca.Size = new Size(155, 23);
+            textBox_Raca.TabIndex = 1;
+            textBox_Raca.TextChanged += textBox_Raca_TextChanged;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(11, 15);
+            label5.Name = "label5";
+            label5.Size = new Size(35, 15);
+            label5.TabIndex = 0;
+            label5.Text = "Raça:";
             // 
             // panel7
             // 
+            panel7.Controls.Add(resultado_Cadastro);
             panel7.Controls.Add(button_Cadastrar);
-            panel7.Location = new Point(3, 264);
+            panel7.Location = new Point(3, 289);
             panel7.Name = "panel7";
             panel7.Size = new Size(256, 106);
             panel7.TabIndex = 5;
+            // 
+            // resultado_Cadastro
+            // 
+            resultado_Cadastro.AutoSize = true;
+            resultado_Cadastro.BorderStyle = BorderStyle.Fixed3D;
+            resultado_Cadastro.Location = new Point(12, 29);
+            resultado_Cadastro.MaximumSize = new Size(240, 60);
+            resultado_Cadastro.MinimumSize = new Size(240, 60);
+            resultado_Cadastro.Name = "resultado_Cadastro";
+            resultado_Cadastro.Size = new Size(240, 60);
+            resultado_Cadastro.TabIndex = 1;
+            resultado_Cadastro.TextAlign = ContentAlignment.MiddleCenter;
+            resultado_Cadastro.Visible = false;
             // 
             // button_Cadastrar
             // 
@@ -88,43 +151,11 @@
             button_Cadastrar.UseVisualStyleBackColor = true;
             button_Cadastrar.Click += button_Cadastrar_Click;
             // 
-            // panel6
-            // 
-            panel6.Controls.Add(button_Numero);
-            panel6.Controls.Add(label_Numero);
-            panel6.Location = new Point(3, 213);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(260, 45);
-            panel6.TabIndex = 4;
-            // 
-            // button_Numero
-            // 
-            button_Numero.Location = new Point(7, 13);
-            button_Numero.Name = "button_Numero";
-            button_Numero.Size = new Size(92, 23);
-            button_Numero.TabIndex = 1;
-            button_Numero.Text = "Gerar Numero";
-            button_Numero.UseVisualStyleBackColor = true;
-            button_Numero.Click += button_Numero_Click;
-            // 
-            // label_Numero
-            // 
-            label_Numero.AutoSize = true;
-            label_Numero.BorderStyle = BorderStyle.FixedSingle;
-            label_Numero.Location = new Point(115, 17);
-            label_Numero.MaximumSize = new Size(100, 15);
-            label_Numero.MinimumSize = new Size(100, 15);
-            label_Numero.Name = "label_Numero";
-            label_Numero.Size = new Size(100, 15);
-            label_Numero.TabIndex = 0;
-            label_Numero.TextAlign = ContentAlignment.MiddleCenter;
-            label_Numero.Visible = false;
-            // 
             // panel5
             // 
             panel5.Controls.Add(textBox_PesoCavalo);
             panel5.Controls.Add(label4);
-            panel5.Location = new Point(3, 162);
+            panel5.Location = new Point(3, 206);
             panel5.Name = "panel5";
             panel5.Size = new Size(260, 45);
             panel5.TabIndex = 3;
@@ -151,7 +182,7 @@
             // 
             panel4.Controls.Add(textBox_AlturaCavalo);
             panel4.Controls.Add(label3);
-            panel4.Location = new Point(3, 111);
+            panel4.Location = new Point(4, 155);
             panel4.Name = "panel4";
             panel4.Size = new Size(260, 45);
             panel4.TabIndex = 2;
@@ -200,28 +231,37 @@
             label2.TabIndex = 0;
             label2.Text = "Nome:";
             // 
-            // resultado_Cadastro
+            // panel6
             // 
-            resultado_Cadastro.AutoSize = true;
-            resultado_Cadastro.BorderStyle = BorderStyle.Fixed3D;
-            resultado_Cadastro.Location = new Point(12, 295);
-            resultado_Cadastro.MaximumSize = new Size(240, 60);
-            resultado_Cadastro.MinimumSize = new Size(240, 60);
-            resultado_Cadastro.Name = "resultado_Cadastro";
-            resultado_Cadastro.Size = new Size(240, 60);
-            resultado_Cadastro.TabIndex = 1;
-            resultado_Cadastro.TextAlign = ContentAlignment.MiddleCenter;
-            resultado_Cadastro.Visible = false;
+            panel6.Controls.Add(button_Numero);
+            panel6.Controls.Add(label_Numero);
+            panel6.Location = new Point(2, 249);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(260, 45);
+            panel6.TabIndex = 4;
             // 
-            // button_Voltar
+            // button_Numero
             // 
-            button_Voltar.Location = new Point(94, 7);
-            button_Voltar.Name = "button_Voltar";
-            button_Voltar.Size = new Size(75, 23);
-            button_Voltar.TabIndex = 1;
-            button_Voltar.Text = "Voltar";
-            button_Voltar.UseVisualStyleBackColor = true;
-            button_Voltar.Click += button_Voltar_Click;
+            button_Numero.Location = new Point(7, 13);
+            button_Numero.Name = "button_Numero";
+            button_Numero.Size = new Size(92, 23);
+            button_Numero.TabIndex = 1;
+            button_Numero.Text = "Gerar Numero";
+            button_Numero.UseVisualStyleBackColor = true;
+            button_Numero.Click += button_Numero_Click;
+            // 
+            // label_Numero
+            // 
+            label_Numero.AutoSize = true;
+            label_Numero.BorderStyle = BorderStyle.FixedSingle;
+            label_Numero.Location = new Point(115, 17);
+            label_Numero.MaximumSize = new Size(100, 15);
+            label_Numero.MinimumSize = new Size(100, 15);
+            label_Numero.Name = "label_Numero";
+            label_Numero.Size = new Size(100, 15);
+            label_Numero.TabIndex = 0;
+            label_Numero.TextAlign = ContentAlignment.MiddleCenter;
+            label_Numero.Visible = false;
             // 
             // panel2
             // 
@@ -235,48 +275,40 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(3, 7);
+            label1.Location = new Point(16, 7);
             label1.Name = "label1";
             label1.Size = new Size(244, 32);
             label1.TabIndex = 0;
             label1.Text = "Cadastro de Cavalos";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // panel8
-            // 
-            panel8.Controls.Add(button_Voltar);
-            panel8.Location = new Point(5, 371);
-            panel8.Name = "panel8";
-            panel8.Size = new Size(256, 41);
-            panel8.TabIndex = 2;
-            // 
             // Menu_Cadastro_Cavalo
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(266, 413);
-            Controls.Add(resultado_Cadastro);
-            Controls.Add(panel8);
+            ClientSize = new Size(266, 447);
+            Controls.Add(panel6);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "Menu_Cadastro_Cavalo";
             Text = "Menu_Cadastro_Cavalo";
-            Load += Menu_Cadastro_Cavalo_Load;
             panel1.ResumeLayout(false);
+            panel8.ResumeLayout(false);
+            panel9.ResumeLayout(false);
+            panel9.PerformLayout();
             panel7.ResumeLayout(false);
-            panel6.ResumeLayout(false);
-            panel6.PerformLayout();
+            panel7.PerformLayout();
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            panel6.ResumeLayout(false);
+            panel6.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
-            panel8.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -301,5 +333,8 @@
         private Button button_Cadastrar;
         private Label resultado_Cadastro;
         private Panel panel8;
+        private Panel panel9;
+        private TextBox textBox_Raca;
+        private Label label5;
     }
 }

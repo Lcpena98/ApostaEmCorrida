@@ -114,7 +114,7 @@ namespace ApostaEmCorrida.Services
                     valorApostadoTotal -= valorTerceiro;
                     double valorApostadorTerceiro = valorTerceiro / apostasTerceiro.Count(); //Valor individual para os apostadores que apostaram no terceiro colocado
 
-                    foreach (Apostador apostador in casa.Apostadores)
+                    /*foreach (Apostador apostador in casa.Apostadores)
                     {
                         foreach (Aposta apostouNoPrimeiroColocado in apostasPrimeiro)
                         {
@@ -136,7 +136,7 @@ namespace ApostaEmCorrida.Services
                     foreach (Aposta aposta in casa.Apostas)
                     {
                         aposta.Status = StatusAposta.Finished;
-                    }
+                    }*/
                 }
             }
 

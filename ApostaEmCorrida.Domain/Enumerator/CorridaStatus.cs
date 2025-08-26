@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace ApostaEmCorrida.Domain.Enumerator
 {
-    public enum CorridaStatus
+    public enum CorridaStatus: int
     {
-        Waiting,
-        InProgress,
-        Finished
+        Waiting=0,
+        InProgress=1,
+        Finished=2
     }
 }

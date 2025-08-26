@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            label_Resultado_Corrida = new Label();
             button_Sair = new Button();
             button_Nova_Corrida = new Button();
             panel5 = new Panel();
@@ -46,7 +47,6 @@
             panel2 = new Panel();
             label1 = new Label();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            label_Resultado_Corrida = new Label();
             panel1.SuspendLayout();
             panel5.SuspendLayout();
             panel6.SuspendLayout();
@@ -69,6 +69,19 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(301, 321);
             panel1.TabIndex = 0;
+            // 
+            // label_Resultado_Corrida
+            // 
+            label_Resultado_Corrida.AutoSize = true;
+            label_Resultado_Corrida.BorderStyle = BorderStyle.Fixed3D;
+            label_Resultado_Corrida.Location = new Point(12, 275);
+            label_Resultado_Corrida.MaximumSize = new Size(280, 31);
+            label_Resultado_Corrida.MinimumSize = new Size(280, 31);
+            label_Resultado_Corrida.Name = "label_Resultado_Corrida";
+            label_Resultado_Corrida.Size = new Size(280, 31);
+            label_Resultado_Corrida.TabIndex = 7;
+            label_Resultado_Corrida.TextAlign = ContentAlignment.MiddleCenter;
+            label_Resultado_Corrida.Visible = false;
             // 
             // button_Sair
             // 
@@ -102,7 +115,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semibold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(19, 0);
+            label3.Location = new Point(30, 4);
             label3.Name = "label3";
             label3.Size = new Size(74, 30);
             label3.TabIndex = 0;
@@ -163,9 +176,9 @@
             label2.Font = new Font("Segoe UI Semibold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.Location = new Point(12, 0);
             label2.Name = "label2";
-            label2.Size = new Size(99, 30);
+            label2.Size = new Size(104, 30);
             label2.TabIndex = 0;
-            label2.Text = "Cadastro";
+            label2.Text = "Gerenciar";
             label2.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // panel3
@@ -184,7 +197,7 @@
             button_Registro_Aposta.Name = "button_Registro_Aposta";
             button_Registro_Aposta.Size = new Size(131, 28);
             button_Registro_Aposta.TabIndex = 2;
-            button_Registro_Aposta.Text = "Registrar Aposta";
+            button_Registro_Aposta.Text = "Aposta";
             button_Registro_Aposta.UseVisualStyleBackColor = true;
             button_Registro_Aposta.Click += button_Registro_Aposta_Click;
             // 
@@ -194,7 +207,7 @@
             button_Cadastro_Apostador.Name = "button_Cadastro_Apostador";
             button_Cadastro_Apostador.Size = new Size(131, 28);
             button_Cadastro_Apostador.TabIndex = 1;
-            button_Cadastro_Apostador.Text = "Cadastrar Apostador";
+            button_Cadastro_Apostador.Text = "Apostador";
             button_Cadastro_Apostador.UseVisualStyleBackColor = true;
             button_Cadastro_Apostador.Click += button_Cadastro_Apostador_Click;
             // 
@@ -204,7 +217,7 @@
             button_Cadastro_Cavalo.Name = "button_Cadastro_Cavalo";
             button_Cadastro_Cavalo.Size = new Size(131, 28);
             button_Cadastro_Cavalo.TabIndex = 0;
-            button_Cadastro_Cavalo.Text = "Cadastrar Cavalo";
+            button_Cadastro_Cavalo.Text = "Cavalo";
             button_Cadastro_Cavalo.UseVisualStyleBackColor = true;
             button_Cadastro_Cavalo.Click += button_Cadastro_Cavalo_Click;
             // 
@@ -226,19 +239,6 @@
             label1.TabIndex = 0;
             label1.Text = "Central de Serviços";
             label1.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // label_Resultado_Corrida
-            // 
-            label_Resultado_Corrida.AutoSize = true;
-            label_Resultado_Corrida.BorderStyle = BorderStyle.Fixed3D;
-            label_Resultado_Corrida.Location = new Point(12, 275);
-            label_Resultado_Corrida.MaximumSize = new Size(280, 31);
-            label_Resultado_Corrida.MinimumSize = new Size(280, 31);
-            label_Resultado_Corrida.Name = "label_Resultado_Corrida";
-            label_Resultado_Corrida.Size = new Size(280, 31);
-            label_Resultado_Corrida.TabIndex = 7;
-            label_Resultado_Corrida.TextAlign = ContentAlignment.MiddleCenter;
-            label_Resultado_Corrida.Visible = false;
             // 
             // Menu_Inicial
             // 
