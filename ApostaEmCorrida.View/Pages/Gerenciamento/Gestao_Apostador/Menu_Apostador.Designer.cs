@@ -106,6 +106,7 @@
             button_alterar_dados.TabIndex = 9;
             button_alterar_dados.Text = "Alterar dados";
             button_alterar_dados.UseVisualStyleBackColor = true;
+            button_alterar_dados.Click += button_alterar_dados_Click;
             // 
             // button_trocar_senha
             // 

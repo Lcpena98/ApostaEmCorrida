@@ -106,7 +106,25 @@ namespace ApostaEmCorrida.Dapper
 
         public RetornoStatus AlterarDadosApostador(string nome, string email, int numero)
         {
-            throw new NotImplementedException();
+            string sqlVerifica = @"SELECT * FROM APOSTADOR WHERE NUMERO = @Numero";
+            try
+            {
+                var apostador = banco.QueryFirstOrDefault<Apostador>(sqlVerifica, new { Numero = numero });
+                if (apostador != null)
+                {
+                    string sqlAtualiza = @"UPDATE APOSTADOR SET NOME = @Nome, EMAIL = @Email WHERE NUMERO = @Numero";
+                    banco.Execute(sqlAtualiza, new { Nome = nome, Email = email, Numero = numero });
+                    return new RetornoStatus(true, "Dados alterados com sucesso!");
+                }
+                else
+                {
+                    return new RetornoStatus(false, "Apostador não encontrado!");
+                }
+            }
+            catch (Exception ex)
+            {
+                return new RetornoStatus(false, "Erro ao alterar dados: " + ex.Message);
+            }
         }
 
         public RetornoStatus AdicionarSaldo(int numero, double valor)

@@ -84,7 +84,7 @@ namespace ApostaEmCorrida.Services
 
         public RetornoStatus AlterarDadosApostador(string nome, string email, int numero)
         {
-            throw new NotImplementedException();
+            return _apostadorRepository.AlterarDadosApostador(nome, email, numero);
         }
 
         

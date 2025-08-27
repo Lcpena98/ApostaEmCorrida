@@ -24,8 +24,15 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Apostador
 
         private void button_trocar_senha_Click(object sender, EventArgs e)
         {
-            Menu_TrocaSenha_Apostador _menu_TrocaSenha_Apostador = new Menu_TrocaSenha_Apostador(this,_apostador);
+            Menu_TrocaSenha_Apostador _menu_TrocaSenha_Apostador = new Menu_TrocaSenha_Apostador(this, _apostador);
             _menu_TrocaSenha_Apostador.Show();
+            this.Hide();
+        }
+
+        private void button_alterar_dados_Click(object sender, EventArgs e)
+        {
+            Menu_AlterarDados_Apostador _menu_AlterarDados_Apostador = new Menu_AlterarDados_Apostador(this, _apostador);
+            _menu_AlterarDados_Apostador.Show();
             this.Hide();
         }
 
