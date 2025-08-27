@@ -22,9 +22,12 @@ namespace ApostaEmCorrida.Services
 
         public RetornoDados<Apostador> BuscarApostadorPorNumero(int numero)
         {
-            throw new NotImplementedException();
+            return _apostadorRepository.BuscarApostadorPorNumero(numero);
         }
-
+        public RetornoDados<Apostador> BuscarApostadorPorEmail(string email)
+        {
+            return _apostadorRepository.BuscarApostadorPorEmail(email);
+        }
         public RetornoDados<List<Apostador>> BuscarTodosApostadores()
         {
             return _apostadorRepository.BuscarTodosApostadores();
@@ -32,24 +35,19 @@ namespace ApostaEmCorrida.Services
 
         public RetornoStatus CadastrarApostador(string nome, string senha, string confirmaSenha, string email, int numero, double saldo)
         {
-            if (senha == confirmaSenha) 
-            { 
-            return _apostadorRepository.CadastrarApostador(nome, senha, email, numero, saldo);
+            List<Apostador> apostadoresCadastrados = _apostadorRepository.BuscarTodosApostadores().Dados;
+            if (apostadoresCadastrados.Any(a => a.Email == email))
+            {
+                return new RetornoStatus(false, "Email já cadastrado!");
             }
-            else
+            else if (senha != confirmaSenha)
             {
                 return new RetornoStatus(false, "As senhas não batem!");
             }
-        }
-
-        public RetornoStatus AlterarDadosApostador(string nome, string email, int numero)
-        {
-            throw new NotImplementedException();
-        }
-
-        public RetornoStatus TrocarSenhaApostador(string senha, string novaSenha, string confirmaNovaSenha, int numero)
-        {
-            throw new NotImplementedException();
+            else
+            {
+                return _apostadorRepository.CadastrarApostador(nome, senha, email, numero, saldo);
+            }
         }
 
         public RetornoDados<int> CadastrarNumero()
@@ -71,6 +69,25 @@ namespace ApostaEmCorrida.Services
                 return new RetornoDados<int>(false,$"Erro ao cadastrar o numero{ex.Message.ToString()}", -1);
             }
         }
+
+        public RetornoStatus TrocarSenhaApostador(string senha, string novaSenha, string confirmaNovaSenha, int numero)
+        {
+            if(novaSenha != confirmaNovaSenha)
+            {
+                return new RetornoStatus(false, "As senhas não batem!");
+            }
+            else
+            {
+                return _apostadorRepository.TrocarSenhaApostador(senha, novaSenha, numero);
+            }
+        }
+
+        public RetornoStatus AlterarDadosApostador(string nome, string email, int numero)
+        {
+            throw new NotImplementedException();
+        }
+
+        
 
         public RetornoStatus AdicionarSaldo(int numero, double valor)
         {

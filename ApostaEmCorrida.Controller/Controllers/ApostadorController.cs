@@ -16,6 +16,10 @@ namespace ApostaEmCorrida.Controller
         {
             return _apostadorService.BuscarApostadorPorNumero(numero);
         }
+        public RetornoDados<Apostador> BuscarApostadorPorEmail(string email)
+        {
+            return _apostadorService.BuscarApostadorPorEmail(email);
+        }
         public RetornoDados<List<Apostador>> BuscarTodosApostadores()
         {
             return _apostadorService.BuscarTodosApostadores();
@@ -28,6 +32,11 @@ namespace ApostaEmCorrida.Controller
         public RetornoDados<int> CadastrarNumero()
         {
             return _apostadorService.CadastrarNumero();
+        }
+
+        public RetornoStatus TrocarSenhaApostador(string senha, string novaSenha, string confirmaNovaSenha, int numero)
+        {
+            return _apostadorService.TrocarSenhaApostador(senha, novaSenha, confirmaNovaSenha, numero);
         }
         public RetornoStatus AlterarDadosApostador(string nome, string email, int numero)
         {

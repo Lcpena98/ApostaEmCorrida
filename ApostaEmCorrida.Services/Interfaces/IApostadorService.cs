@@ -11,6 +11,7 @@ namespace ApostaEmCorrida.Services.Interfaces
     public interface IApostadorService
     {
         public RetornoDados<Apostador> BuscarApostadorPorNumero(int numero);
+        public RetornoDados<Apostador> BuscarApostadorPorEmail(string email);
         public RetornoDados<List<Apostador>> BuscarTodosApostadores();
         public RetornoStatus CadastrarApostador(string nome, string senha, string confirmaSenha, string email, int numero, double saldo);
         public RetornoStatus AlterarDadosApostador(string nome, string email, int numero);

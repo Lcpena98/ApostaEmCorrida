@@ -12,19 +12,46 @@ namespace ApostaEmCorrida.Dapper
 {
     public class ApostadorRepository : Conexao, IApostadorRepository
     {
-        public RetornoStatus AdicionarSaldo(int numero, double valor)
-        {
-            throw new NotImplementedException();
-        }
-
-        public RetornoStatus AlterarDadosApostador(string nome, string email, int numero)
-        {
-            throw new NotImplementedException();
-        }
-
         public RetornoDados<Apostador> BuscarApostadorPorNumero(int numero)
         {
-            throw new NotImplementedException();
+            string sql = @"SELECT * FROM APOSTADOR WHERE NUMERO = @Numero";
+            try
+            {
+                var apostador = banco.QueryFirstOrDefault<Apostador>(sql, new { Numero = numero });
+                if (apostador != null)
+                {
+                    return new RetornoDados<Apostador>(true, "Bem vindo!", apostador);
+                }
+                else
+                {
+                    return new RetornoDados<Apostador>(false, "Apostador não encontrado", null);
+                }
+            }
+            catch (Exception ex)
+            {
+                return new RetornoDados<Apostador>(false, "Erro ao buscar apostador: " + ex.Message, null);
+            }
+        }
+
+        public RetornoDados<Apostador> BuscarApostadorPorEmail(string email)
+        {
+            string sql = @"SELECT * FROM APOSTADOR WHERE EMAIL = @Email";
+            try
+            {
+                var apostador = banco.QueryFirstOrDefault<Apostador>(sql, new { Email = email });
+                if (apostador != null)
+                {
+                    return new RetornoDados<Apostador>(true, $"Bem vindo! {apostador.Nome}", apostador);
+                }
+                else
+                {
+                    return new RetornoDados<Apostador>(false, "Apostador não encontrado", null);
+                }
+            }
+            catch (Exception ex)
+            {
+                return new RetornoDados<Apostador>(false, "Erro ao buscar apostador: " + ex.Message, null);
+            }
         }
 
         public RetornoDados<List<Apostador>> BuscarTodosApostadores()
@@ -54,12 +81,40 @@ namespace ApostaEmCorrida.Dapper
             }
         }
 
-        public RetornoStatus RemoverApostador(int numero)
+        public RetornoStatus TrocarSenhaApostador(string senha, string novaSenha, int numero)
+        {
+            string sqlVerifica = @"SELECT * FROM APOSTADOR WHERE NUMERO = @Numero AND SENHA = @Senha";
+            try
+            {
+                var apostador = banco.QueryFirstOrDefault<Apostador>(sqlVerifica, new { Numero = numero, Senha = senha });
+                if (apostador != null)
+                {
+                    string sqlAtualiza = @"UPDATE APOSTADOR SET SENHA = @NovaSenha WHERE NUMERO = @Numero";
+                    banco.Execute(sqlAtualiza, new { NovaSenha = novaSenha, Numero = numero });
+                    return new RetornoStatus(true, "Senha alterada com sucesso!");
+                }
+                else
+                {
+                    return new RetornoStatus(false, "Senha atual incorreta!");
+                }
+            }
+            catch (Exception ex)
+            {
+                return new RetornoStatus(false, "Erro ao trocar senha: " + ex.Message);
+            }
+        }
+
+        public RetornoStatus AlterarDadosApostador(string nome, string email, int numero)
         {
             throw new NotImplementedException();
         }
 
-        public RetornoStatus TrocarSenhaApostador(string senha, string novaSenha, int numero)
+        public RetornoStatus AdicionarSaldo(int numero, double valor)
+        {
+            throw new NotImplementedException();
+        }
+
+        public RetornoStatus RemoverApostador(int numero)
         {
             throw new NotImplementedException();
         }

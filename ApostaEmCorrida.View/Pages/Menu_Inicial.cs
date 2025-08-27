@@ -31,7 +31,7 @@ namespace ApostaEmCorrida.View.Pages
 
         private void button_Cadastro_Apostador_Click(object sender, EventArgs e)
         {
-            Gerenciamento_Apostador menu_Gerenciamento_Apostador = new Gerenciamento_Apostador(this);
+            Login_Apostador menu_Gerenciamento_Apostador = new Login_Apostador(this);
             menu_Gerenciamento_Apostador.Show();
             this.Hide();
         }

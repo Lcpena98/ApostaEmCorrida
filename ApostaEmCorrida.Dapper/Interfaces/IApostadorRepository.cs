@@ -11,6 +11,7 @@ namespace ApostaEmCorrida.Dapper.Interfaces
     public interface IApostadorRepository
     {
         public RetornoDados<Apostador> BuscarApostadorPorNumero(int numero);
+        public RetornoDados<Apostador> BuscarApostadorPorEmail(string email);
         public RetornoDados<List<Apostador>> BuscarTodosApostadores();
         public RetornoStatus CadastrarApostador(string nome, string senha, string email, int numero, double saldo);
         public RetornoStatus AlterarDadosApostador(string nome, string email, int numero);

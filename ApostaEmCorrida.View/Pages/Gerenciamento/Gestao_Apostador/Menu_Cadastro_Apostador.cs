@@ -19,12 +19,12 @@ namespace ApostaEmCorrida.View.Pages
 {
     public partial class Menu_Cadastro_Apostador : Form
     {
-        Gerenciamento_Apostador _gerenciamento_Apostador;
+        Login_Apostador _gerenciamento_Apostador;
         ApostadorController _apostadorController;
         ApostadorService _apostadorService;
         ApostadorRepository _apostadorRepository;
 
-        public Menu_Cadastro_Apostador(Gerenciamento_Apostador gerenciamento_Apostador)
+        public Menu_Cadastro_Apostador(Login_Apostador gerenciamento_Apostador)
         {
             InitializeComponent();
             _gerenciamento_Apostador = gerenciamento_Apostador;
