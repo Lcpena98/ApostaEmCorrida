@@ -8,8 +8,8 @@ namespace ApostaEmCorrida.Domain.Enumerator
 {
     public enum CorridaStatus: int
     {
-        Waiting=0,
-        InProgress=1,
-        Finished=2
+        Agendada=0,
+        EmAndamento=1,
+        Finalizada=2
     }
 }

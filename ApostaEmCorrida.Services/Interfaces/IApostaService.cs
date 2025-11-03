@@ -1,4 +1,5 @@
 ﻿using ApostaEmCorrida.Domain;
+using ApostaEmCorrida.Domain.Retorno;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace ApostaEmCorrida.Services.Interfaces
 {
     public interface IApostaService
     {
-        public void NovaAposta(Casa casa, Cavalo cavalo, Apostador apostador, double valorApostado);
+        public RetornoStatus RegistrarAposta(int numeroCavalo, int numeroApostador, double valorApostado);
     }
 }

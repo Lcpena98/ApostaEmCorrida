@@ -1,4 +1,5 @@
 ﻿using ApostaEmCorrida.Dapper;
+using ApostaEmCorrida.Dapper.Interfaces;
 using ApostaEmCorrida.Domain;
 using ApostaEmCorrida.Domain.Enumerator;
 using ApostaEmCorrida.Domain.Retorno;
@@ -13,7 +14,7 @@ namespace ApostaEmCorrida.Services
 {
     public class CavaloService : ICavaloService
     {
-        protected readonly CavaloRepository _cavaloRepository;
+        protected readonly ICavaloRepository _cavaloRepository;
         public CavaloService(CavaloRepository cavaloRepository)
         {
             _cavaloRepository = cavaloRepository;

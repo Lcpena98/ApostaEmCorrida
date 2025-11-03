@@ -1,4 +1,11 @@
-﻿using ApostaEmCorrida.Domain;
+﻿using ApostaEmCorrida.Controller;
+using ApostaEmCorrida.Dapper;
+using ApostaEmCorrida.Dapper.Interfaces;
+using ApostaEmCorrida.Domain;
+using ApostaEmCorrida.Domain.Retorno;
+using ApostaEmCorrida.Services;
+using ApostaEmCorrida.Services.Interfaces;
+using ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Apostador;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,39 +20,24 @@ namespace ApostaEmCorrida.View.Pages
 {
     public partial class Menu_Registro_Aposta : Form
     {
-        Casa _casa;
-        Menu_Inicial _Inicial;
-        Apostador apostador;
-        Cavalo cavalo;
-        double valor;
-        
-        public Menu_Registro_Aposta(Menu_Inicial inicial)
+        Menu_Apostador _menu_Apostador;
+        Apostador _apostador;
+        CavaloController _cavaloController;
+        ApostaController _apostaController;
+
+        public Menu_Registro_Aposta(Menu_Apostador menu_Apostador, Apostador apostador)
         {
             InitializeComponent();
-            _Inicial = inicial;
-            
-            foreach (Apostador apostador in _casa.Apostadores)
+            _menu_Apostador = menu_Apostador;
+            _apostador = apostador;
+            _cavaloController = new CavaloController(new CavaloService(new CavaloRepository()));
+            _apostaController = new ApostaController(new ApostaService(new ApostaRepository()));
+            label_Dados_Usuario.Text = $"{_apostador.Nome.ToString()} - {_apostador.Numero.ToString()}";
+            RetornoDados<List<Cavalo>> retornoCavalos = _cavaloController.BuscarTodosCavalos();
+            foreach (Cavalo cavalo in retornoCavalos.Dados)
             {
-                comboBox_Apostador.DataSource = _casa.Apostadores.ToList();
-                //comboBox_Apostador.DisplayMember = "Nome";       // O que aparece na lista
-                //comboBox_Apostador.ValueMember = "Numero";       // Valor interno (id ou número)
+                comboBox_Cavalo.Items.Add(cavalo);
             }
-
-            foreach (Cavalo cavalo in _casa.Cavalos)
-            {
-                comboBox_Cavalo.DataSource = _casa.Cavalos.ToList();
-                //comboBox_Apostador.DisplayMember = "Nome";       // O que aparece na lista
-                //comboBox_Apostador.ValueMember = "Numero_Cavalo";       // Valor interno (id ou número)
-            }
-        }
-
-        private void comboBox_Apostador_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            apostador = (Apostador)comboBox_Apostador.SelectedItem;
-        }
-        private void comboBox_Cavalo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            cavalo = (Cavalo)comboBox_Cavalo.SelectedItem;
         }
         private void TextBox_Valor_Apostado_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -65,57 +57,51 @@ namespace ApostaEmCorrida.View.Pages
             }
         }
 
-        private void textBox_Valor_Apostado_TextChanged(object sender, EventArgs e)
+        private void button_Registrar_Click(object sender, EventArgs e)
         {
+            //FEITO A ALTERAÇÃO PARA VINCULAR A APOSTA A CORRIDA, AINDA FALTA FAZER ESSA LIGAÇÃO APÓS CRIAR E GERENCIAR A CORRIDA
             try
             {
-                valor = double.Parse(textBox_Valor_Apostado.Text);
+                if (string.IsNullOrEmpty(textBox_Valor_Apostado.Text))
+                {
+                    resultado_Cadastro.Text = ("Valor em branco");
+                    resultado_Cadastro.Visible = true;
+                    textBox_Valor_Apostado.Text = string.Empty;
+                }
+                else
+                {
+                    try
+                    {
+                        /*Cavalo cavalo = comboBox_Cavalo.SelectedItem as Cavalo;
+                        double valorApostado = Convert.ToDouble(textBox_Valor_Apostado.Text);
+                        RetornoStatus retorno = _apostaController.RegistrarAposta(cavalo.Numero_Cavalo, _apostador.Numero, valorApostado);
+                        resultado_Cadastro.Text = (retorno.Message);
+                        resultado_Cadastro.Visible = true;
+                        textBox_Valor_Apostado.Text = string.Empty;
+                        comboBox_Cavalo.SelectedItem = -1;
+                        comboBox_Cavalo.Text = string.Empty;*/
+                        resultado_Cadastro.Text = ("FEITO A ALTERAÇÃO PARA VINCULAR A APOSTA A CORRIDA, AINDA FALTA FAZER ESSA LIGAÇÃO APÓS CRIAR E GERENCIAR A CORRIDA");
+                        resultado_Cadastro.Visible = true;
+
+                    }
+                    catch
+                    {
+                        resultado_Cadastro.Text = ("Selecione um cavalo");
+                        resultado_Cadastro.Visible = true;
+                        textBox_Valor_Apostado.Text = string.Empty;
+                    }
+                }
             }
             catch (Exception ex)
             {
-                resultado_Cadastro.Text = ($"Valor inválido");
+                resultado_Cadastro.Text = ($"Erro inesperado: {ex.Message}");
                 resultado_Cadastro.Visible = true;
-                textBox_Valor_Apostado.Text = string.Empty;
-            }
-        }
-
-        private void button_Registrar_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(textBox_Valor_Apostado.Text))
-            {
-                resultado_Cadastro.Text = ("Valor em branco");
-                resultado_Cadastro.Visible = true;
-                textBox_Valor_Apostado.Text = string.Empty;
-            }
-            else
-            {
-                try
-                {
-                    // PARA REFAZER APÓS ALTERAÇÕES
-                    
-                    // Aposta.NovaAposta(_casa, cavalo, apostador, valor);
-                    resultado_Cadastro.Text = ($"Aposta cadastrada com sucesso!");
-                    resultado_Cadastro.Visible = true;
-                    comboBox_Apostador.SelectedIndex = -1;
-                    comboBox_Apostador.Text = string.Empty;
-                    comboBox_Cavalo.SelectedIndex = -1;
-                    comboBox_Cavalo.Text = string.Empty;
-                    textBox_Valor_Apostado.Text = string.Empty;
-                }
-                catch
-                {
-                    resultado_Cadastro.Text = ($"Não foi possível cadastrar a aposta!");
-                    textBox_Valor_Apostado.Text = string.Empty;
-                    resultado_Cadastro.Visible = true;
-                }
             }
         }
         private void button_Voltar_Click(object sender, EventArgs e)
         {
-            _Inicial.Show();
+            _menu_Apostador.Show();
             this.Close();
         }
-
-        
     }
 }

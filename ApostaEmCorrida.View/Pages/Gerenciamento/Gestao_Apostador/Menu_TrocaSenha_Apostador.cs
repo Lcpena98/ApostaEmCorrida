@@ -21,16 +21,12 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Apostador
         Menu_Apostador _menu_Apostador;
         Apostador _apostador;
         ApostadorController _apostadorController;
-        ApostadorService _apostadorService;
-        ApostadorRepository _apostadorRepository;
         public Menu_TrocaSenha_Apostador(Menu_Apostador menu_Apostador, Apostador apostador)
         {
             InitializeComponent();
             _menu_Apostador = menu_Apostador;
             _apostador = apostador;
-            _apostadorRepository = new ApostadorRepository();
-            _apostadorService = new ApostadorService(_apostadorRepository);
-            _apostadorController = new ApostadorController(_apostadorService);
+            _apostadorController = new ApostadorController(new ApostadorService(new ApostadorRepository()));
             label_Dados_Usuario.Text = $"{_apostador.Nome.ToString()} - {_apostador.Numero.ToString()}";
         }
         private void button_Alterar_Click(object sender, EventArgs e)

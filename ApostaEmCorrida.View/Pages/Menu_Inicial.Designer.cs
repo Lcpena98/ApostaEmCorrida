@@ -29,21 +29,20 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            label_Resultado_Corrida = new Label();
             button_Sair = new Button();
-            button_Nova_Corrida = new Button();
             panel5 = new Panel();
             label3 = new Label();
             panel6 = new Panel();
-            button_Documentos = new Button();
+            button_Dados_Apostas = new Button();
+            button_Dados_Apostadores = new Button();
             button_Corridas = new Button();
-            button_Dados_Cadastrados = new Button();
+            button_Dados_Cavalos = new Button();
             panel4 = new Panel();
             label2 = new Label();
             panel3 = new Panel();
-            button_Registro_Aposta = new Button();
             button_Cadastro_Apostador = new Button();
             button_Cadastro_Cavalo = new Button();
+            button_Corrida = new Button();
             panel2 = new Panel();
             label1 = new Label();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
@@ -57,9 +56,7 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(label_Resultado_Corrida);
             panel1.Controls.Add(button_Sair);
-            panel1.Controls.Add(button_Nova_Corrida);
             panel1.Controls.Add(panel5);
             panel1.Controls.Add(panel6);
             panel1.Controls.Add(panel4);
@@ -67,41 +64,18 @@
             panel1.Controls.Add(panel2);
             panel1.Location = new Point(0, -2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(301, 321);
+            panel1.Size = new Size(301, 348);
             panel1.TabIndex = 0;
-            // 
-            // label_Resultado_Corrida
-            // 
-            label_Resultado_Corrida.AutoSize = true;
-            label_Resultado_Corrida.BorderStyle = BorderStyle.Fixed3D;
-            label_Resultado_Corrida.Location = new Point(12, 275);
-            label_Resultado_Corrida.MaximumSize = new Size(280, 31);
-            label_Resultado_Corrida.MinimumSize = new Size(280, 31);
-            label_Resultado_Corrida.Name = "label_Resultado_Corrida";
-            label_Resultado_Corrida.Size = new Size(280, 31);
-            label_Resultado_Corrida.TabIndex = 7;
-            label_Resultado_Corrida.TextAlign = ContentAlignment.MiddleCenter;
-            label_Resultado_Corrida.Visible = false;
             // 
             // button_Sair
             // 
-            button_Sair.Location = new Point(161, 240);
+            button_Sair.Location = new Point(81, 310);
             button_Sair.Name = "button_Sair";
             button_Sair.Size = new Size(130, 23);
             button_Sair.TabIndex = 6;
             button_Sair.Text = "Sair";
             button_Sair.UseVisualStyleBackColor = true;
             button_Sair.Click += button_Sair_Click;
-            // 
-            // button_Nova_Corrida
-            // 
-            button_Nova_Corrida.Location = new Point(12, 240);
-            button_Nova_Corrida.Name = "button_Nova_Corrida";
-            button_Nova_Corrida.Size = new Size(130, 23);
-            button_Nova_Corrida.TabIndex = 5;
-            button_Nova_Corrida.Text = "Nova Corrida";
-            button_Nova_Corrida.UseVisualStyleBackColor = true;
-            button_Nova_Corrida.Click += button_Nova_Corrida_Click;
             // 
             // panel5
             // 
@@ -124,27 +98,36 @@
             // 
             // panel6
             // 
-            panel6.Controls.Add(button_Documentos);
+            panel6.Controls.Add(button_Dados_Apostas);
+            panel6.Controls.Add(button_Dados_Apostadores);
             panel6.Controls.Add(button_Corridas);
-            panel6.Controls.Add(button_Dados_Cadastrados);
+            panel6.Controls.Add(button_Dados_Cavalos);
             panel6.Location = new Point(158, 61);
             panel6.Name = "panel6";
-            panel6.Size = new Size(140, 173);
+            panel6.Size = new Size(140, 227);
             panel6.TabIndex = 3;
             // 
-            // button_Documentos
+            // button_Dados_Apostas
             // 
-            button_Documentos.Location = new Point(5, 132);
-            button_Documentos.Name = "button_Documentos";
-            button_Documentos.Size = new Size(131, 28);
-            button_Documentos.TabIndex = 2;
-            button_Documentos.Text = "Documentos";
-            button_Documentos.UseVisualStyleBackColor = true;
-            button_Documentos.Click += button_Documentos_Click;
+            button_Dados_Apostas.Location = new Point(6, 139);
+            button_Dados_Apostas.Name = "button_Dados_Apostas";
+            button_Dados_Apostas.Size = new Size(131, 28);
+            button_Dados_Apostas.TabIndex = 7;
+            button_Dados_Apostas.Text = "Apostas";
+            button_Dados_Apostas.UseVisualStyleBackColor = true;
+            // 
+            // button_Dados_Apostadores
+            // 
+            button_Dados_Apostadores.Location = new Point(6, 92);
+            button_Dados_Apostadores.Name = "button_Dados_Apostadores";
+            button_Dados_Apostadores.Size = new Size(131, 28);
+            button_Dados_Apostadores.TabIndex = 6;
+            button_Dados_Apostadores.Text = "Apostadores";
+            button_Dados_Apostadores.UseVisualStyleBackColor = true;
             // 
             // button_Corridas
             // 
-            button_Corridas.Location = new Point(6, 92);
+            button_Corridas.Location = new Point(6, 183);
             button_Corridas.Name = "button_Corridas";
             button_Corridas.Size = new Size(131, 28);
             button_Corridas.TabIndex = 1;
@@ -152,15 +135,14 @@
             button_Corridas.UseVisualStyleBackColor = true;
             button_Corridas.Click += button_Corridas_Click;
             // 
-            // button_Dados_Cadastrados
+            // button_Dados_Cavalos
             // 
-            button_Dados_Cadastrados.Location = new Point(6, 51);
-            button_Dados_Cadastrados.Name = "button_Dados_Cadastrados";
-            button_Dados_Cadastrados.Size = new Size(131, 28);
-            button_Dados_Cadastrados.TabIndex = 0;
-            button_Dados_Cadastrados.Text = "Dados Cadastrados";
-            button_Dados_Cadastrados.UseVisualStyleBackColor = true;
-            button_Dados_Cadastrados.Click += button_Dados_Cadastrados_Click;
+            button_Dados_Cavalos.Location = new Point(6, 51);
+            button_Dados_Cavalos.Name = "button_Dados_Cavalos";
+            button_Dados_Cavalos.Size = new Size(131, 28);
+            button_Dados_Cavalos.TabIndex = 0;
+            button_Dados_Cavalos.Text = "Cavalos";
+            button_Dados_Cavalos.UseVisualStyleBackColor = true;
             // 
             // panel4
             // 
@@ -183,27 +165,17 @@
             // 
             // panel3
             // 
-            panel3.Controls.Add(button_Registro_Aposta);
             panel3.Controls.Add(button_Cadastro_Apostador);
             panel3.Controls.Add(button_Cadastro_Cavalo);
+            panel3.Controls.Add(button_Corrida);
             panel3.Location = new Point(6, 61);
             panel3.Name = "panel3";
-            panel3.Size = new Size(140, 173);
+            panel3.Size = new Size(140, 227);
             panel3.TabIndex = 1;
-            // 
-            // button_Registro_Aposta
-            // 
-            button_Registro_Aposta.Location = new Point(5, 132);
-            button_Registro_Aposta.Name = "button_Registro_Aposta";
-            button_Registro_Aposta.Size = new Size(131, 28);
-            button_Registro_Aposta.TabIndex = 2;
-            button_Registro_Aposta.Text = "Aposta";
-            button_Registro_Aposta.UseVisualStyleBackColor = true;
-            button_Registro_Aposta.Click += button_Registro_Aposta_Click;
             // 
             // button_Cadastro_Apostador
             // 
-            button_Cadastro_Apostador.Location = new Point(6, 92);
+            button_Cadastro_Apostador.Location = new Point(3, 115);
             button_Cadastro_Apostador.Name = "button_Cadastro_Apostador";
             button_Cadastro_Apostador.Size = new Size(131, 28);
             button_Cadastro_Apostador.TabIndex = 1;
@@ -213,13 +185,23 @@
             // 
             // button_Cadastro_Cavalo
             // 
-            button_Cadastro_Cavalo.Location = new Point(6, 51);
+            button_Cadastro_Cavalo.Location = new Point(3, 69);
             button_Cadastro_Cavalo.Name = "button_Cadastro_Cavalo";
             button_Cadastro_Cavalo.Size = new Size(131, 28);
             button_Cadastro_Cavalo.TabIndex = 0;
             button_Cadastro_Cavalo.Text = "Cavalo";
             button_Cadastro_Cavalo.UseVisualStyleBackColor = true;
             button_Cadastro_Cavalo.Click += button_Cadastro_Cavalo_Click;
+            // 
+            // button_Corrida
+            // 
+            button_Corrida.Location = new Point(4, 162);
+            button_Corrida.Name = "button_Corrida";
+            button_Corrida.Size = new Size(130, 23);
+            button_Corrida.TabIndex = 5;
+            button_Corrida.Text = "Corrida";
+            button_Corrida.UseVisualStyleBackColor = true;
+            button_Corrida.Click += button_Corrida_Click;
             // 
             // panel2
             // 
@@ -244,12 +226,11 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(300, 322);
+            ClientSize = new Size(300, 344);
             Controls.Add(panel1);
             Name = "Menu_Inicial";
             Text = "Menu_Inicial";
             panel1.ResumeLayout(false);
-            panel1.PerformLayout();
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
             panel6.ResumeLayout(false);
@@ -271,17 +252,16 @@
         private Button button_Cadastro_Cavalo;
         private Panel panel2;
         private Label label1;
-        private Button button_Registro_Aposta;
         private Button button_Cadastro_Apostador;
         private Panel panel5;
         private Label label3;
         private Panel panel6;
-        private Button button_Documentos;
         private Button button_Corridas;
-        private Button button_Dados_Cadastrados;
+        private Button button_Dados_Cavalos;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private Button button_Nova_Corrida;
+        private Button button_Corrida;
         private Button button_Sair;
-        private Label label_Resultado_Corrida;
+        private Button button_Dados_Apostadores;
+        private Button button_Dados_Apostas;
     }
 }

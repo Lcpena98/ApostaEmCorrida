@@ -1,5 +1,7 @@
 ﻿using ApostaEmCorrida.Domain;
+using ApostaEmCorrida.Domain.Retorno;
 using ApostaEmCorrida.Services.Interfaces;
+using ApostaEmCorrida.Dapper.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +12,16 @@ namespace ApostaEmCorrida.Services
 {
     public class ApostaService:IApostaService
     {
-        //metodo para cadastrar a aposta feita
-        public void NovaAposta(Casa casa, Cavalo cavalo, Apostador apostador, double valorApostado)
+        protected readonly IApostaRepository _apostaRepository;
+
+        public ApostaService(IApostaRepository apostaRepository)
         {
-            casa.Apostas.Add(new Aposta(cavalo, apostador, valorApostado));
+            _apostaRepository = apostaRepository;
+        }
+
+        public RetornoStatus RegistrarAposta(int numeroCavalo, int numeroApostador, double valorApostado)
+        {
+            return _apostaRepository.RegistrarAposta(numeroCavalo, numeroApostador, valorApostado);
         }
     }
 }

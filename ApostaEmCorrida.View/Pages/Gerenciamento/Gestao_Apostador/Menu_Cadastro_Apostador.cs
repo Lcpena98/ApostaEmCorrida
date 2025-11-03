@@ -21,16 +21,12 @@ namespace ApostaEmCorrida.View.Pages
     {
         Login_Apostador _gerenciamento_Apostador;
         ApostadorController _apostadorController;
-        ApostadorService _apostadorService;
-        ApostadorRepository _apostadorRepository;
 
         public Menu_Cadastro_Apostador(Login_Apostador gerenciamento_Apostador)
         {
             InitializeComponent();
             _gerenciamento_Apostador = gerenciamento_Apostador;
-            _apostadorRepository = new ApostadorRepository();
-            _apostadorService = new ApostadorService(_apostadorRepository);
-            _apostadorController = new ApostadorController(_apostadorService);
+            _apostadorController = new ApostadorController(new ApostadorService(new ApostadorRepository()));
         }
 
         private void button_Numero_Click(object sender, EventArgs e)

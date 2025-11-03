@@ -36,12 +36,22 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Apostador
             this.Hide();
         }
 
+        private void button_Cadastrar_Aposta_Click(object sender, EventArgs e)
+        {
+            Menu_Registro_Aposta _menu_Registro_Aposta = new Menu_Registro_Aposta(this, _apostador);
+            _menu_Registro_Aposta.Show();
+            this.Hide();
+        }
+
+        private void button_Alterar_Aposta_Click(object sender, EventArgs e)
+        {
+            
+        }
         private void button_voltar_Click(object sender, EventArgs e)
         {
             _login_Apostador.Show();
             this.Close();
         }
 
-        
     }
 }

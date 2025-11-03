@@ -32,6 +32,7 @@
             panel8 = new Panel();
             button_Voltar = new Button();
             panel2 = new Panel();
+            label_Dados_Usuario = new Label();
             label1 = new Label();
             panel1 = new Panel();
             panel7 = new Panel();
@@ -42,16 +43,12 @@
             panel4 = new Panel();
             comboBox_Cavalo = new ComboBox();
             label3 = new Label();
-            panel3 = new Panel();
-            comboBox_Apostador = new ComboBox();
-            label2 = new Label();
             panel8.SuspendLayout();
             panel2.SuspendLayout();
             panel1.SuspendLayout();
             panel7.SuspendLayout();
             panel5.SuspendLayout();
             panel4.SuspendLayout();
-            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // resultado_Cadastro
@@ -70,9 +67,9 @@
             // panel8
             // 
             panel8.Controls.Add(button_Voltar);
-            panel8.Location = new Point(6, 326);
+            panel8.Location = new Point(4, 336);
             panel8.Name = "panel8";
-            panel8.Size = new Size(249, 41);
+            panel8.Size = new Size(259, 41);
             panel8.TabIndex = 6;
             // 
             // button_Voltar
@@ -87,11 +84,25 @@
             // 
             // panel2
             // 
+            panel2.Controls.Add(label_Dados_Usuario);
             panel2.Controls.Add(label1);
             panel2.Location = new Point(2, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(260, 54);
+            panel2.Size = new Size(260, 116);
             panel2.TabIndex = 5;
+            // 
+            // label_Dados_Usuario
+            // 
+            label_Dados_Usuario.AutoSize = true;
+            label_Dados_Usuario.BorderStyle = BorderStyle.FixedSingle;
+            label_Dados_Usuario.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label_Dados_Usuario.Location = new Point(26, 57);
+            label_Dados_Usuario.MaximumSize = new Size(205, 32);
+            label_Dados_Usuario.MinimumSize = new Size(205, 32);
+            label_Dados_Usuario.Name = "label_Dados_Usuario";
+            label_Dados_Usuario.Size = new Size(205, 32);
+            label_Dados_Usuario.TabIndex = 5;
+            label_Dados_Usuario.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label1
             // 
@@ -106,20 +117,20 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(panel8);
             panel1.Controls.Add(panel7);
             panel1.Controls.Add(panel5);
             panel1.Controls.Add(panel4);
-            panel1.Controls.Add(panel3);
             panel1.Location = new Point(-1, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(263, 317);
+            panel1.Size = new Size(263, 384);
             panel1.TabIndex = 3;
             // 
             // panel7
             // 
             panel7.Controls.Add(resultado_Cadastro);
             panel7.Controls.Add(button_Registrar);
-            panel7.Location = new Point(4, 211);
+            panel7.Location = new Point(4, 224);
             panel7.Name = "panel7";
             panel7.Size = new Size(256, 106);
             panel7.TabIndex = 5;
@@ -138,7 +149,7 @@
             // 
             panel5.Controls.Add(textBox_Valor_Apostado);
             panel5.Controls.Add(label4);
-            panel5.Location = new Point(3, 162);
+            panel5.Location = new Point(3, 173);
             panel5.Name = "panel5";
             panel5.Size = new Size(260, 45);
             panel5.TabIndex = 3;
@@ -149,7 +160,6 @@
             textBox_Valor_Apostado.Name = "textBox_Valor_Apostado";
             textBox_Valor_Apostado.Size = new Size(100, 23);
             textBox_Valor_Apostado.TabIndex = 1;
-            textBox_Valor_Apostado.TextChanged += textBox_Valor_Apostado_TextChanged;
             textBox_Valor_Apostado.KeyPress += TextBox_Valor_Apostado_KeyPress;
             // 
             // label4
@@ -165,7 +175,7 @@
             // 
             panel4.Controls.Add(comboBox_Cavalo);
             panel4.Controls.Add(label3);
-            panel4.Location = new Point(3, 111);
+            panel4.Location = new Point(3, 122);
             panel4.Name = "panel4";
             panel4.Size = new Size(260, 45);
             panel4.TabIndex = 2;
@@ -177,7 +187,6 @@
             comboBox_Cavalo.Name = "comboBox_Cavalo";
             comboBox_Cavalo.Size = new Size(177, 23);
             comboBox_Cavalo.TabIndex = 1;
-            comboBox_Cavalo.SelectedIndexChanged += comboBox_Cavalo_SelectedIndexChanged;
             // 
             // label3
             // 
@@ -188,39 +197,11 @@
             label3.TabIndex = 0;
             label3.Text = "Cavalo:";
             // 
-            // panel3
-            // 
-            panel3.Controls.Add(comboBox_Apostador);
-            panel3.Controls.Add(label2);
-            panel3.Location = new Point(3, 60);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(260, 45);
-            panel3.TabIndex = 0;
-            // 
-            // comboBox_Apostador
-            // 
-            comboBox_Apostador.FormattingEnabled = true;
-            comboBox_Apostador.Location = new Point(76, 15);
-            comboBox_Apostador.Name = "comboBox_Apostador";
-            comboBox_Apostador.Size = new Size(177, 23);
-            comboBox_Apostador.TabIndex = 1;
-            comboBox_Apostador.SelectedIndexChanged += comboBox_Apostador_SelectedIndexChanged;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(11, 15);
-            label2.Name = "label2";
-            label2.Size = new Size(65, 15);
-            label2.TabIndex = 0;
-            label2.Text = "Apostador:";
-            // 
             // Menu_Registro_Aposta
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(267, 369);
-            Controls.Add(panel8);
+            ClientSize = new Size(267, 389);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "Menu_Registro_Aposta";
@@ -235,8 +216,6 @@
             panel5.PerformLayout();
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -259,10 +238,8 @@
         private Label label4;
         private Panel panel4;
         private Label label3;
-        private Panel panel3;
-        private Label label2;
         private ComboBox comboBox_Cavalo;
-        private ComboBox comboBox_Apostador;
         private TextBox textBox_Valor_Apostado;
+        private Label label_Dados_Usuario;
     }
 }

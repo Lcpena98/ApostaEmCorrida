@@ -31,8 +31,7 @@
             panel7 = new Panel();
             button_voltar = new Button();
             panel8 = new Panel();
-            button_Alterar_Aposta = new Button();
-            butto_alterar_aposta = new Button();
+            button_Cadastrar_Aposta = new Button();
             panel9 = new Panel();
             button_alterar_dados = new Button();
             button_trocar_senha = new Button();
@@ -54,7 +53,7 @@
             // 
             // button_voltar
             // 
-            button_voltar.Location = new Point(104, 24);
+            button_voltar.Location = new Point(104, 17);
             button_voltar.Name = "button_voltar";
             button_voltar.Size = new Size(131, 28);
             button_voltar.TabIndex = 14;
@@ -64,30 +63,21 @@
             // 
             // panel8
             // 
-            panel8.Controls.Add(button_Alterar_Aposta);
-            panel8.Controls.Add(butto_alterar_aposta);
+            panel8.Controls.Add(button_Cadastrar_Aposta);
             panel8.Location = new Point(6, 135);
             panel8.Name = "panel8";
             panel8.Size = new Size(343, 54);
             panel8.TabIndex = 22;
             // 
-            // button_Alterar_Aposta
+            // button_Cadastrar_Aposta
             // 
-            button_Alterar_Aposta.Location = new Point(3, 14);
-            button_Alterar_Aposta.Name = "button_Alterar_Aposta";
-            button_Alterar_Aposta.Size = new Size(131, 28);
-            button_Alterar_Aposta.TabIndex = 9;
-            button_Alterar_Aposta.Text = "Fazer uma aposta";
-            button_Alterar_Aposta.UseVisualStyleBackColor = true;
-            // 
-            // butto_alterar_aposta
-            // 
-            butto_alterar_aposta.Location = new Point(180, 14);
-            butto_alterar_aposta.Name = "butto_alterar_aposta";
-            butto_alterar_aposta.Size = new Size(131, 28);
-            butto_alterar_aposta.TabIndex = 6;
-            butto_alterar_aposta.Text = "Alterar Aposta";
-            butto_alterar_aposta.UseVisualStyleBackColor = true;
+            button_Cadastrar_Aposta.Location = new Point(104, 12);
+            button_Cadastrar_Aposta.Name = "button_Cadastrar_Aposta";
+            button_Cadastrar_Aposta.Size = new Size(131, 28);
+            button_Cadastrar_Aposta.TabIndex = 9;
+            button_Cadastrar_Aposta.Text = "Fazer uma aposta";
+            button_Cadastrar_Aposta.UseVisualStyleBackColor = true;
+            button_Cadastrar_Aposta.Click += button_Cadastrar_Aposta_Click;
             // 
             // panel9
             // 
@@ -161,8 +151,7 @@
         private Panel panel7;
         private Button button_voltar;
         private Panel panel8;
-        private Button button_Alterar_Aposta;
-        private Button butto_alterar_aposta;
+        private Button button_Cadastrar_Aposta;
         private Panel panel9;
         private Button button_alterar_dados;
         private Button button_trocar_senha;

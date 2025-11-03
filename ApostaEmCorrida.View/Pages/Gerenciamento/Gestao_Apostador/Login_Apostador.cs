@@ -20,15 +20,11 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Apostador
     {
         Menu_Inicial _menu_Inicial;
         ApostadorController _apostadorController;
-        ApostadorService _apostadorService;
-        ApostadorRepository _apostadorRepository;
         public Login_Apostador(Menu_Inicial menu_Inicial)
         {
             InitializeComponent();
             _menu_Inicial = menu_Inicial;
-            _apostadorRepository = new ApostadorRepository();
-            _apostadorService = new ApostadorService(_apostadorRepository);
-            _apostadorController = new ApostadorController(_apostadorService);
+            _apostadorController = new ApostadorController(new ApostadorService(new ApostadorRepository()));
         }
 
         private void button_login_Click(object sender, EventArgs e)

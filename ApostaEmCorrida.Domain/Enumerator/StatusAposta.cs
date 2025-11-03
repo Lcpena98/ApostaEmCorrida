@@ -8,13 +8,12 @@ namespace ApostaEmCorrida.Domain.Enumerator
 {
     public enum StatusAposta : int
     {
-        Pending=0,
-        FirstPlace=1,
-        SecondPlace=2,
-        ThirdPlace=3,
-        Lose=4,
-        Cancel=5,
-        Error=6,
-        Finished=7
+        EmEspera=0,
+        Correndo = 1,
+        PrimeiroLugar = 2,
+        SegundoLugar = 3,
+        TerceiroLugar = 4,
+        Perdedor = 5,
+        Finalizada =6
     }
 }

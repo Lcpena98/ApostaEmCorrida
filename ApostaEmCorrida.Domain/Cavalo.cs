@@ -52,19 +52,19 @@ namespace ApostaEmCorrida.Domain
                     if (cavalo == primeiroLugar)
                     {
                         cavalo.Numero_de_Vitorias += 1;
-                        cavalo.StatusCavalo = StatusCavalo.FirstPlace;
+                        cavalo.StatusCavalo = StatusCavalo.PrimeiroLugar;
                     }
                     else if (cavalo == segundoLugar)
                     {
-                        cavalo.StatusCavalo = StatusCavalo.SecondPlace;
+                        cavalo.StatusCavalo = StatusCavalo.SegundoLugar;
                     }
                     else if(cavalo == terceiroLugar)
                     {
-                        cavalo.StatusCavalo = StatusCavalo.ThirdPlace;
+                        cavalo.StatusCavalo = StatusCavalo.TerceiroLugar;
                     }
                     else
                     {
-                        cavalo.StatusCavalo = StatusCavalo.Lose;
+                        cavalo.StatusCavalo = StatusCavalo.Perdedor;
                     }
                     cavalo.Desempenho = (cavalo.Numero_de_Vitorias * 100) / cavalo.Numero_de_Corridas;
                 }

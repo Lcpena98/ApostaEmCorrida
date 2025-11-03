@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using ApostaEmCorrida.View.Pages.Gestao_Cavalo;
 using ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Apostador;
+using ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Corridas;
 
 namespace ApostaEmCorrida.View.Pages
 {
@@ -25,7 +26,6 @@ namespace ApostaEmCorrida.View.Pages
         {
             Gerenciamento_Cavalo menu_Gerenciamento_Cavalo = new Gerenciamento_Cavalo(this);
             menu_Gerenciamento_Cavalo.Show();
-            label_Resultado_Corrida.Visible = false;
             this.Hide();
         }
 
@@ -36,38 +36,18 @@ namespace ApostaEmCorrida.View.Pages
             this.Hide();
         }
 
-        private void button_Registro_Aposta_Click(object sender, EventArgs e)
-        {
-            /*Menu_Registro_Aposta menu_Registro_Aposta = new Menu_Registro_Aposta(this, _CasaController);
-            menu_Registro_Aposta.Show();
-            label_Resultado_Corrida.Visible = false;*/
-            this.Hide();
-        }
-
-        private void button_Dados_Cadastrados_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button_Corridas_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void button_Documentos_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button_Nova_Corrida_Click(object sender, EventArgs e)
+        private void button_Corrida_Click(object sender, EventArgs e)
         {
             try
             {
-                // PARA REFAZER APÓS ALTERAÇÕES
-
-                /*Cavalo vencedor = Corrida.novaCorrida(casa);
-                label_Resultado_Corrida.Text = ($"O Vencedor é: {vencedor.Nome.ToString()} - [{vencedor.Numero_Cavalo}]");
-                label_Resultado_Corrida.Visible = true;*/
+                Menu_Gerenciar_Corridas menu_Gerenciar_Corridas = new Menu_Gerenciar_Corridas(this);
+                menu_Gerenciar_Corridas.Show();
+                this.Hide();
             }
             catch (ApplicationException ex)
             {
@@ -79,5 +59,6 @@ namespace ApostaEmCorrida.View.Pages
         {
             this.Close();
         }
+
     }
 }

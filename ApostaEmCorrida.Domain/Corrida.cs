@@ -10,18 +10,21 @@ namespace ApostaEmCorrida.Domain
 {
     public class Corrida
     {
-        public List<Cavalo> Competidores { get; set; }
-        public Cavalo Primeiro_lugar { get; set; }
-        public Cavalo Segundo_lugar { get; set; }
-        public Cavalo Terceiro_lugar { get; set; }
+        public int Corrida_Id { get; set; }
+        public List<Cavalo> Competidores { get; set; } = new List<Cavalo>();
+        public int Numero_de_Voltas { get; set; }
+        public List<Voltas> Voltas { get; set; } = new List<Voltas>();
+        public double Percurso { get; set; }
         public DateTime DataInicio { get; set; }
         public DateTime DataFim {  get; set; }
         public TimeSpan Duracao { get; set; }
-        public CorridaStatus CorridaStatus { get; set; }
-        public Corrida(List<Cavalo> competidores, CorridaStatus corridaStatus)
+        public CorridaStatus CorridaStatus { get; set; } = CorridaStatus.Agendada;
+        public Corrida(List<Cavalo> competidores,int numero_de_voltas, double percurso, DateTime dataInicio)
         {
             Competidores = competidores;
-            CorridaStatus = corridaStatus;
+            Numero_de_Voltas = numero_de_voltas;
+            Percurso = percurso;
+            DataInicio = dataInicio;
         }
     }
 }

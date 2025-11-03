@@ -21,16 +21,11 @@ namespace ApostaEmCorrida.View.Pages
     {
         Gerenciamento_Cavalo _gerenciamento_Cavalo;
         CavaloController _cavaloController;
-        CavaloService _cavaloService;
-        CavaloRepository _cavaloRepository;
         public Menu_Cadastro_Cavalo(Gerenciamento_Cavalo gerenciamento_Cavalo)
         {
             InitializeComponent();
             _gerenciamento_Cavalo = gerenciamento_Cavalo;
-
-            _cavaloRepository = new CavaloRepository();
-            _cavaloService = new CavaloService(_cavaloRepository);
-            _cavaloController = new CavaloController(_cavaloService);
+            _cavaloController = new CavaloController(new CavaloService(new CavaloRepository()));
         }
 
         private void textBox_NomeCavalo_TextChanged(object sender, EventArgs e)

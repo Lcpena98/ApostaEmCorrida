@@ -8,10 +8,11 @@ namespace ApostaEmCorrida.Domain.Enumerator
 {
     public enum StatusCavalo : int
     {
-        OnHold=0,
-        FirstPlace=1,
-        SecondPlace=2,
-        ThirdPlace=3,
-        Lose=4
+        EmEspera=0,
+        Correndo=1,
+        PrimeiroLugar=2,
+        SegundoLugar=3,
+        TerceiroLugar=4,
+        Perdedor=5
     }
 }
