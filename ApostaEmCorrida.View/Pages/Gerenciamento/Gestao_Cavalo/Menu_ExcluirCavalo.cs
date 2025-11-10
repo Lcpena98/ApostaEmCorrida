@@ -40,7 +40,7 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Cavalo
 
         private void button_Excluir_Cavalo_Click(object sender, EventArgs e)
         {
-            if (comboBox_Cavalos.Items.Count > 0)
+            /*if (comboBox_Cavalos.Items.Count > 0)
             {
                 Cavalo cavaloSelecionado = (Cavalo)comboBox_Cavalos.SelectedItem;
                 int numeroCavalo = cavaloSelecionado.Numero_Cavalo;
@@ -63,7 +63,12 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Cavalo
             {
                 resultado_Exclusao.Text = "Nenhum cavalo disponível para exclusão.";
                 resultado_Exclusao.Visible = true;
-            }
+            }*/
+
+            /*
+             * 
+            */
+            MessageBox.Show("Em Desenvolvimento!\r\nAgora que Cavalos são registrados em corridas.\r\n É necessário validar que o cavalo não esteja registrado em nenhuma corrida para que o mesmo seja excluido.\r\n Minha ideia é fazer a validação e apenas criar o Status do Cavalo (Removido) e apenas alterar para o mesmo, sem remove-lo do banco.");
         }
 
         private void button_Voltar_Click(object sender, EventArgs e)

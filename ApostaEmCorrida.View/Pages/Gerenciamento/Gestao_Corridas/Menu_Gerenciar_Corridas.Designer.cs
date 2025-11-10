@@ -31,12 +31,13 @@
             panel7 = new Panel();
             button_voltar = new Button();
             panel9 = new Panel();
+            button_Corridas_Andamento = new Button();
+            button_Corridas_Finalizadas = new Button();
             button_Nova_Corrida = new Button();
             button_Corridas_Agendadas = new Button();
             panel10 = new Panel();
             label2 = new Label();
-            button_Corridas_Finalizadas = new Button();
-            button_Corridas_Andamento = new Button();
+            sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
             panel7.SuspendLayout();
             panel9.SuspendLayout();
             panel10.SuspendLayout();
@@ -70,6 +71,26 @@
             panel9.Name = "panel9";
             panel9.Size = new Size(336, 114);
             panel9.TabIndex = 25;
+            // 
+            // button_Corridas_Andamento
+            // 
+            button_Corridas_Andamento.Location = new Point(9, 64);
+            button_Corridas_Andamento.Name = "button_Corridas_Andamento";
+            button_Corridas_Andamento.Size = new Size(155, 28);
+            button_Corridas_Andamento.TabIndex = 11;
+            button_Corridas_Andamento.Text = "Corridas em andamento";
+            button_Corridas_Andamento.UseVisualStyleBackColor = true;
+            button_Corridas_Andamento.Click += button_Corridas_Andamento_Click;
+            // 
+            // button_Corridas_Finalizadas
+            // 
+            button_Corridas_Finalizadas.Location = new Point(181, 64);
+            button_Corridas_Finalizadas.Name = "button_Corridas_Finalizadas";
+            button_Corridas_Finalizadas.Size = new Size(137, 28);
+            button_Corridas_Finalizadas.TabIndex = 10;
+            button_Corridas_Finalizadas.Text = "Corridas Finalizadas";
+            button_Corridas_Finalizadas.UseVisualStyleBackColor = true;
+            button_Corridas_Finalizadas.Click += button_Corridas_Finalizadas_Click;
             // 
             // button_Nova_Corrida
             // 
@@ -110,25 +131,10 @@
             label2.Text = "Corridas";
             label2.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // button_Corridas_Finalizadas
+            // sqlCommand1
             // 
-            button_Corridas_Finalizadas.Location = new Point(181, 64);
-            button_Corridas_Finalizadas.Name = "button_Corridas_Finalizadas";
-            button_Corridas_Finalizadas.Size = new Size(137, 28);
-            button_Corridas_Finalizadas.TabIndex = 10;
-            button_Corridas_Finalizadas.Text = "Corridas Finalizadas";
-            button_Corridas_Finalizadas.UseVisualStyleBackColor = true;
-            button_Corridas_Finalizadas.Click += button_Corridas_Finalizadas_Click;
-            // 
-            // button_Corridas_Andamento
-            // 
-            button_Corridas_Andamento.Location = new Point(9, 64);
-            button_Corridas_Andamento.Name = "button_Corridas_Andamento";
-            button_Corridas_Andamento.Size = new Size(155, 28);
-            button_Corridas_Andamento.TabIndex = 11;
-            button_Corridas_Andamento.Text = "Corridas em andamento";
-            button_Corridas_Andamento.UseVisualStyleBackColor = true;
-            button_Corridas_Andamento.Click += button_Corridas_Andamento_Click;
+            sqlCommand1.CommandTimeout = 30;
+            sqlCommand1.EnableOptimizedParameterBinding = false;
             // 
             // Menu_Gerenciar_Corridas
             // 
@@ -158,5 +164,6 @@
         private Button button_Corridas_Agendadas;
         private Panel panel10;
         private Label label2;
+        private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
     }
 }

@@ -77,7 +77,10 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Corridas
             }
 
             bloqueio = false;
-            distancia = double.Parse(textBox_Percurso.Text.Replace("m", "").Trim());
+            if (textBox_Percurso.Text.Length > 0)
+            {
+                distancia = double.Parse(textBox_Percurso.Text.Replace("m", "").Trim());
+            }
         }
         private void button_Cadastrar_Cavalo_Click(object sender, EventArgs e)
         {
@@ -113,7 +116,7 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Corridas
                 comboBox_Cavalo.SelectedItem = -1;
                 comboBox_Cavalo.Text = string.Empty;
                 dataGridView_Cavalos.DataSource = null;
-                textBox_Percurso.Text = string.Empty;
+                textBox_Percurso.Text = "";
                 data_Inicio_Corrida.Text = string.Empty;
             }
         }

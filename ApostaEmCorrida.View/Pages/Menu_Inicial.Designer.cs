@@ -35,7 +35,7 @@
             panel6 = new Panel();
             button_Dados_Apostas = new Button();
             button_Dados_Apostadores = new Button();
-            button_Corridas = new Button();
+            button_Dados_Corridas = new Button();
             button_Dados_Cavalos = new Button();
             panel4 = new Panel();
             label2 = new Label();
@@ -100,7 +100,7 @@
             // 
             panel6.Controls.Add(button_Dados_Apostas);
             panel6.Controls.Add(button_Dados_Apostadores);
-            panel6.Controls.Add(button_Corridas);
+            panel6.Controls.Add(button_Dados_Corridas);
             panel6.Controls.Add(button_Dados_Cavalos);
             panel6.Location = new Point(158, 61);
             panel6.Name = "panel6";
@@ -115,6 +115,7 @@
             button_Dados_Apostas.TabIndex = 7;
             button_Dados_Apostas.Text = "Apostas";
             button_Dados_Apostas.UseVisualStyleBackColor = true;
+            button_Dados_Apostas.Click += button_Dados_Apostas_Click;
             // 
             // button_Dados_Apostadores
             // 
@@ -124,16 +125,17 @@
             button_Dados_Apostadores.TabIndex = 6;
             button_Dados_Apostadores.Text = "Apostadores";
             button_Dados_Apostadores.UseVisualStyleBackColor = true;
+            button_Dados_Apostadores.Click += button_Dados_Apostadores_Click;
             // 
-            // button_Corridas
+            // button_Dados_Corridas
             // 
-            button_Corridas.Location = new Point(6, 183);
-            button_Corridas.Name = "button_Corridas";
-            button_Corridas.Size = new Size(131, 28);
-            button_Corridas.TabIndex = 1;
-            button_Corridas.Text = "Corridas";
-            button_Corridas.UseVisualStyleBackColor = true;
-            button_Corridas.Click += button_Corridas_Click;
+            button_Dados_Corridas.Location = new Point(6, 183);
+            button_Dados_Corridas.Name = "button_Dados_Corridas";
+            button_Dados_Corridas.Size = new Size(131, 28);
+            button_Dados_Corridas.TabIndex = 1;
+            button_Dados_Corridas.Text = "Corridas";
+            button_Dados_Corridas.UseVisualStyleBackColor = true;
+            button_Dados_Corridas.Click += button_Dados_Corridas_Click;
             // 
             // button_Dados_Cavalos
             // 
@@ -143,6 +145,7 @@
             button_Dados_Cavalos.TabIndex = 0;
             button_Dados_Cavalos.Text = "Cavalos";
             button_Dados_Cavalos.UseVisualStyleBackColor = true;
+            button_Dados_Cavalos.Click += button_Dados_Cavalos_Click;
             // 
             // panel4
             // 
@@ -263,5 +266,6 @@
         private Button button_Sair;
         private Button button_Dados_Apostadores;
         private Button button_Dados_Apostas;
+        private Button button_Dados_Corridas;
     }
 }

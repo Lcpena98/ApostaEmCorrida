@@ -28,17 +28,21 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Corridas
 
         private void button_Corridas_Agendadas_Click(object sender, EventArgs e)
         {
-
+            Menu_Corridas_Agendadas menu_Corridas_Agendadas = new Menu_Corridas_Agendadas(this);
+            menu_Corridas_Agendadas.Show();
+            this.Hide();
         }
 
         private void button_Corridas_Andamento_Click(object sender, EventArgs e)
         {
-
+           Menu_Exibicao_Corridas_Em_Andamento menu_Exibicao_Corridas_Em_Andamento = new Menu_Exibicao_Corridas_Em_Andamento(this);
+              menu_Exibicao_Corridas_Em_Andamento.Show();
+            this.Hide();
         }
 
         private void button_Corridas_Finalizadas_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("Em Desenvolvimento!");
         }
         private void button_voltar_Click(object sender, EventArgs e)
         {

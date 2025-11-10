@@ -66,6 +66,11 @@ namespace ApostaEmCorrida.Services
             return BuscarCavaloPorNumero(numero);
         }
 
+        public List<Cavalo> BuscarCavalosNaoCadastradosEmCorrida(Corrida corrida)
+        {
+            return _cavaloRepository.BuscarCavalosNaoCadastradosEmCorrida(corrida);
+        }
+
         public RetornoStatus AlterarDadosCavalo(string novoNome, string novaRaca, double novaAltura, double novoPeso, int numero)
         {
             return _cavaloRepository.AlterarDadosCavalo(novoNome, novaRaca, novaAltura, novoPeso, numero);

@@ -13,6 +13,7 @@ namespace ApostaEmCorrida.Dapper.Interfaces
         public RetornoStatus CadastrarCavalo(string nome, string raca, double altura, double peso, int numero);
         public RetornoDados<List<Cavalo>> BuscarTodosCavalos();
         public RetornoDados<Cavalo> BuscarCavaloPorNumero(int numero);
+        public List<Cavalo> BuscarCavalosNaoCadastradosEmCorrida(Corrida corrida);
         public RetornoStatus AtualizarDesempenho(List<Cavalo> cavalos, Cavalo primeiroLugar, Cavalo segundoLugar, Cavalo terceiroLugar);
         public RetornoStatus AlterarDadosCavalo(string novoNome, string novaRaca, double novaAltura, double novoPeso, int numero);
         public RetornoStatus RemoverCavalo(int numero);

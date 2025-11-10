@@ -21,9 +21,13 @@ namespace ApostaEmCorrida.Controller
         {
             return _cavaloService.BuscarTodosCavalos();
         }
-        public RetornoStatus CadastrarCavalo(string nome,string raca, double altura, double peso, int numero)
+        public List<Cavalo> BuscarCavalosNaoCadastradosEmCorrida(Corrida corrida)
         {
-           return _cavaloService.CadastrarCavalo(nome,raca, altura, peso, numero);
+            return _cavaloService.BuscarCavalosNaoCadastradosEmCorrida(corrida);
+        }
+        public RetornoStatus CadastrarCavalo(string nome, string raca, double altura, double peso, int numero)
+        {
+            return _cavaloService.CadastrarCavalo(nome, raca, altura, peso, numero);
         }
         public RetornoDados<int> CadastrarNumero()
         {

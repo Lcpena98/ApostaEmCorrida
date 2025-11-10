@@ -42,6 +42,23 @@ namespace ApostaEmCorrida.Dapper
             }
         }
 
+        public List<Cavalo> BuscarCavalosNaoCadastradosEmCorrida(Corrida corrida)
+        {
+            try
+            {
+                string query = @"SELECT C.*
+                               FROM CAVALO C
+                               LEFT JOIN INSCRICAO_CORRIDA IC 
+                               ON IC.Id_Cavalo = C.Numero_Cavalo 
+                               AND IC.Id_Corrida = @Corrida_Id
+                               WHERE IC.Id_Cavalo IS NULL;";
+                return banco.Query<Cavalo>(query, new { Corrida_Id = corrida.Corrida_Id }).ToList();
+            }
+            catch (Exception ex)
+            {
+                return new List<Cavalo>();
+            }
+        }
         public RetornoStatus CadastrarCavalo(string nome, string raca, double altura, double peso, int numero)
         {
             try

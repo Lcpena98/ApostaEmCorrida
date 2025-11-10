@@ -60,7 +60,8 @@ namespace ApostaEmCorrida.View.Pages
         private void button_Registrar_Click(object sender, EventArgs e)
         {
             //FEITO A ALTERAÇÃO PARA VINCULAR A APOSTA A CORRIDA, AINDA FALTA FAZER ESSA LIGAÇÃO APÓS CRIAR E GERENCIAR A CORRIDA
-            try
+            
+            /*try
             {
                 if (string.IsNullOrEmpty(textBox_Valor_Apostado.Text))
                 {
@@ -71,7 +72,8 @@ namespace ApostaEmCorrida.View.Pages
                 else
                 {
                     try
-                    {
+                    {*/
+
                         /*Cavalo cavalo = comboBox_Cavalo.SelectedItem as Cavalo;
                         double valorApostado = Convert.ToDouble(textBox_Valor_Apostado.Text);
                         RetornoStatus retorno = _apostaController.RegistrarAposta(cavalo.Numero_Cavalo, _apostador.Numero, valorApostado);
@@ -80,7 +82,8 @@ namespace ApostaEmCorrida.View.Pages
                         textBox_Valor_Apostado.Text = string.Empty;
                         comboBox_Cavalo.SelectedItem = -1;
                         comboBox_Cavalo.Text = string.Empty;*/
-                        resultado_Cadastro.Text = ("FEITO A ALTERAÇÃO PARA VINCULAR A APOSTA A CORRIDA, AINDA FALTA FAZER ESSA LIGAÇÃO APÓS CRIAR E GERENCIAR A CORRIDA");
+
+                        /*resultado_Cadastro.Text = ("FEITO A ALTERAÇÃO PARA VINCULAR A APOSTA A CORRIDA, AINDA FALTA FAZER ESSA LIGAÇÃO APÓS CRIAR E GERENCIAR A CORRIDA");
                         resultado_Cadastro.Visible = true;
 
                     }
@@ -96,7 +99,9 @@ namespace ApostaEmCorrida.View.Pages
             {
                 resultado_Cadastro.Text = ($"Erro inesperado: {ex.Message}");
                 resultado_Cadastro.Visible = true;
-            }
+            }*/
+
+            MessageBox.Show("Em Desenvolvimento! \r\n Agora que as corridas estão cadastradas.\r\n É necessário vincular as apostas com as mesmas.");
         }
         private void button_Voltar_Click(object sender, EventArgs e)
         {

@@ -36,9 +36,24 @@ namespace ApostaEmCorrida.View.Pages
             this.Hide();
         }
 
-        private void button_Corridas_Click(object sender, EventArgs e)
+        private void button_Dados_Cavalos_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("Em Desenvolvimento!");
+        }
 
+        private void button_Dados_Apostadores_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Em Desenvolvimento!");
+        }
+
+        private void button_Dados_Apostas_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Em Desenvolvimento!");
+        }
+
+        private void button_Dados_Corridas_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Em Desenvolvimento!");
         }
 
         private void button_Corrida_Click(object sender, EventArgs e)
@@ -59,6 +74,18 @@ namespace ApostaEmCorrida.View.Pages
         {
             this.Close();
         }
-
     }
 }
+/*
+             IDEIA DE IMPLEMENTAÇÃO FUTURA
+            1. Verificar as datas de corridas agendadas que são menores que o Datetime.Now e alterar o status para "Em Andamento"
+            2. Carregar as corridas com status "Em Andamento" na datagridview
+            3. Criar botões para "Finalizar Corrida" e "Ver Detalhes da Corrida"
+            4. Usar o método Random em cada cavalo para determinar o desempenho em cada volta e preencher a tabela de Voltas
+            5. Calcular o tempo total de cada cavalo e determinar a ordem de chegada
+            6. Validar os vencedores e posições e preencher os dados na tabela de Resultados
+            7. Atualizar o status da corrida para "Finalizada"
+            8. Notificar os usuários sobre os resultados das corridas finalizadas
+
+            OBS: O Banco já está implementado para suportar essas funcionalidades.
+             */

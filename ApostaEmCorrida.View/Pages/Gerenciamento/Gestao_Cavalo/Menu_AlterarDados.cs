@@ -52,7 +52,7 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Cavalo
 
         private void button_Alterar_Click(object sender, EventArgs e)
         {
-            if (comboBox_Cavalos.SelectedIndex == -1)
+            /*if (comboBox_Cavalos.SelectedIndex == -1)
             {
                 resultado_Alteracao.Text = "Selecione um cavalo para alterar os dados.";
                 resultado_Alteracao.Visible = true;
@@ -94,7 +94,9 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Cavalo
                 textBox_AlturaCavalo.Text = string.Empty;
                 textBox_Raca.Text = string.Empty;
                 textBox_PesoCavalo.Text = string.Empty;
-            }
+            }*/
+
+            MessageBox.Show("Em Desenvolvimento!\r\nAgora que Cavalos são registrados em corridas. \r\n É necessário validar que o cavalo esteja em espera para que os dados mesmo sejam alterados.");
         }
 
         private void button_Voltar_Click(object sender, EventArgs e)

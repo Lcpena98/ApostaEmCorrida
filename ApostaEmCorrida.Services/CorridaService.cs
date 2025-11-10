@@ -19,10 +19,33 @@ namespace ApostaEmCorrida.Services
         {
             _corridaRepository = corridaRepository;
         }
-
         public RetornoStatus AgendarCorrida(Corrida corrida)
         {
-           return _corridaRepository.AgendarCorrida(corrida);
+            return _corridaRepository.AgendarCorrida(corrida);
+        }
+        public List<Corrida> BuscarCorridasPorStatus(int status)
+        {
+            return _corridaRepository.BuscarCorridasPorStatus(status);
+        }
+        public List<Cavalo> BuscarCompetidores(Corrida corrida)
+        {
+            return _corridaRepository.BuscarCompetidores(corrida);
+        }
+        public RetornoStatus CadastrarParticipantes(Corrida corrida, List<Cavalo> competidores)
+        {
+            return _corridaRepository.CadastrarParticipantes(corrida, competidores);
+        }
+        public RetornoStatus RemoverParticipantes(Corrida corrida, List<Cavalo> competidores)
+        {
+            return _corridaRepository.RemoverParticipantes(corrida, competidores);
+        }
+        public RetornoStatus AtualizarDadosDaCorrida(Corrida corrida, int Numero_Voltas, double percurso, DateTime dataInicio)
+        {
+            return _corridaRepository.AtualizarDadosDaCorrida(corrida, Numero_Voltas, percurso, dataInicio);
+        }
+        public RetornoStatus CancelarCorrida(Corrida corrida)
+        {
+            return _corridaRepository.CancelarCorrida(corrida);
         }
         public void IniciarCorrida()
         {
