@@ -43,9 +43,10 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Apostador
             this.Hide();
         }
 
-        private void button_Alterar_Aposta_Click(object sender, EventArgs e)
+        private void button_Saldo_Click(object sender, EventArgs e)
         {
-            
+            MessageBox.Show($"Seu saldo atual é: R$ {_apostador.Saldo:F2}");
+            MessageBox.Show("Função Em Desenvolvimento.");
         }
         private void button_voltar_Click(object sender, EventArgs e)
         {
@@ -53,5 +54,6 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Apostador
             this.Close();
         }
 
+        
     }
 }

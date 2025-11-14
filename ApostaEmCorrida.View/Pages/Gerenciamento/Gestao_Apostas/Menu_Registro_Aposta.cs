@@ -6,12 +6,14 @@ using ApostaEmCorrida.Domain.Retorno;
 using ApostaEmCorrida.Services;
 using ApostaEmCorrida.Services.Interfaces;
 using ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Apostador;
+using ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Corridas;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -24,20 +26,44 @@ namespace ApostaEmCorrida.View.Pages
         Apostador _apostador;
         CavaloController _cavaloController;
         ApostaController _apostaController;
-
+        CorridaController _corridaController;
+        Corrida corridaSelecionada = new Corrida();
         public Menu_Registro_Aposta(Menu_Apostador menu_Apostador, Apostador apostador)
         {
             InitializeComponent();
             _menu_Apostador = menu_Apostador;
             _apostador = apostador;
             _cavaloController = new CavaloController(new CavaloService(new CavaloRepository()));
-            _apostaController = new ApostaController(new ApostaService(new ApostaRepository()));
+            _corridaController = new CorridaController(new CorridaService(new CorridaRepository(),new VoltasRepository()));
+            _apostaController = new ApostaController(new ApostaService(new ApostaRepository(),new CorridaRepository()));
             label_Dados_Usuario.Text = $"{_apostador.Nome.ToString()} - {_apostador.Numero.ToString()}";
-            RetornoDados<List<Cavalo>> retornoCavalos = _cavaloController.BuscarTodosCavalos();
-            foreach (Cavalo cavalo in retornoCavalos.Dados)
+
+            dataGridView_Corridas.DataSource = null;
+            dataGridView_Corridas.AutoGenerateColumns = false;
+            dataGridView_Corridas.Columns.Clear();
+            dataGridView_Corridas.Columns.Add(new DataGridViewTextBoxColumn
             {
-                comboBox_Cavalo.Items.Add(cavalo);
-            }
+                DataPropertyName = "Numero_de_Voltas",
+                HeaderText = "Voltas"
+            });
+
+            dataGridView_Corridas.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "Percurso",
+                HeaderText = "Distância (m)"
+            });
+
+            dataGridView_Corridas.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "DataInicio",
+                HeaderText = "Data e hora"
+            });
+
+            dataGridView_Corridas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView_Corridas.ReadOnly = true;
+            dataGridView_Corridas.MultiSelect = false;
+            dataGridView_Corridas.DataSource = _corridaController.BuscarCorridasPorStatus(0);
+            dataGridView_Corridas.ClearSelection();
         }
         private void TextBox_Valor_Apostado_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -57,51 +83,44 @@ namespace ApostaEmCorrida.View.Pages
             }
         }
 
+        private void button_Selecionar_Corrida_Click(object sender, EventArgs e)
+        {
+            corridaSelecionada = dataGridView_Corridas.SelectedRows[0].DataBoundItem as Corrida;
+            List<Cavalo> cavalosNaCorrida = _corridaController.BuscarCompetidores(corridaSelecionada);
+            foreach (Cavalo cavalo in cavalosNaCorrida)
+            {
+                comboBox_Cavalo.Items.Add(cavalo);
+            }
+            comboBox_Cavalo.Text = string.Empty;
+            comboBox_Cavalo.SelectedItem = -1;
+        }
+
         private void button_Registrar_Click(object sender, EventArgs e)
         {
-            //FEITO A ALTERAÇÃO PARA VINCULAR A APOSTA A CORRIDA, AINDA FALTA FAZER ESSA LIGAÇÃO APÓS CRIAR E GERENCIAR A CORRIDA
-            
-            /*try
+            MessageBox.Show("Ainda é necessário fazer o controle de saldo com o valor apostado");
+            if (corridaSelecionada == null)
             {
-                if (string.IsNullOrEmpty(textBox_Valor_Apostado.Text))
-                {
-                    resultado_Cadastro.Text = ("Valor em branco");
-                    resultado_Cadastro.Visible = true;
-                    textBox_Valor_Apostado.Text = string.Empty;
-                }
-                else
-                {
-                    try
-                    {*/
-
-                        /*Cavalo cavalo = comboBox_Cavalo.SelectedItem as Cavalo;
-                        double valorApostado = Convert.ToDouble(textBox_Valor_Apostado.Text);
-                        RetornoStatus retorno = _apostaController.RegistrarAposta(cavalo.Numero_Cavalo, _apostador.Numero, valorApostado);
-                        resultado_Cadastro.Text = (retorno.Message);
-                        resultado_Cadastro.Visible = true;
-                        textBox_Valor_Apostado.Text = string.Empty;
-                        comboBox_Cavalo.SelectedItem = -1;
-                        comboBox_Cavalo.Text = string.Empty;*/
-
-                        /*resultado_Cadastro.Text = ("FEITO A ALTERAÇÃO PARA VINCULAR A APOSTA A CORRIDA, AINDA FALTA FAZER ESSA LIGAÇÃO APÓS CRIAR E GERENCIAR A CORRIDA");
-                        resultado_Cadastro.Visible = true;
-
-                    }
-                    catch
-                    {
-                        resultado_Cadastro.Text = ("Selecione um cavalo");
-                        resultado_Cadastro.Visible = true;
-                        textBox_Valor_Apostado.Text = string.Empty;
-                    }
-                }
+                MessageBox.Show("Selecione uma corrida para apostar.");
             }
-            catch (Exception ex)
+            else if (comboBox_Cavalo.SelectedItem == null)
             {
-                resultado_Cadastro.Text = ($"Erro inesperado: {ex.Message}");
-                resultado_Cadastro.Visible = true;
-            }*/
-
-            MessageBox.Show("Em Desenvolvimento! \r\n Agora que as corridas estão cadastradas.\r\n É necessário vincular as apostas com as mesmas.");
+                MessageBox.Show("Selecione um cavalo para apostar.");
+            }
+            else if (string.IsNullOrEmpty(textBox_Valor_Apostado.Text))
+            {
+                MessageBox.Show("Insira um valor para apostar.");
+            }
+            else
+            {
+                Cavalo cavaloSelecionado = comboBox_Cavalo.SelectedItem as Cavalo;
+                double valorApostado = Convert.ToDouble(textBox_Valor_Apostado.Text);
+                RetornoStatus retorno = _apostaController.RegistrarAposta(corridaSelecionada, cavaloSelecionado.Numero_Cavalo, _apostador.Numero, valorApostado);
+                comboBox_Cavalo.Items.Clear();
+                comboBox_Cavalo.Text = string.Empty;
+                comboBox_Cavalo.SelectedItem = -1;
+                textBox_Valor_Apostado.Text = "";
+                MessageBox.Show(retorno.Message);
+            }
         }
         private void button_Voltar_Click(object sender, EventArgs e)
         {

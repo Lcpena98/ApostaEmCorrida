@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ApostaEmCorrida.View.Pages.Dados;
 
 namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Corridas
 {
@@ -26,13 +27,6 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Corridas
             this.Hide();
         }
 
-        private void button_Corridas_Agendadas_Click(object sender, EventArgs e)
-        {
-            Menu_Corridas_Agendadas menu_Corridas_Agendadas = new Menu_Corridas_Agendadas(this);
-            menu_Corridas_Agendadas.Show();
-            this.Hide();
-        }
-
         private void button_Corridas_Andamento_Click(object sender, EventArgs e)
         {
            Menu_Exibicao_Corridas_Em_Andamento menu_Exibicao_Corridas_Em_Andamento = new Menu_Exibicao_Corridas_Em_Andamento(this);
@@ -42,7 +36,9 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Corridas
 
         private void button_Corridas_Finalizadas_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Em Desenvolvimento!");
+            Relatorio_Corridas_Finalizadas relatorio_Corridas_Finalizadas = new Relatorio_Corridas_Finalizadas(this);
+            relatorio_Corridas_Finalizadas.Show();
+            this.Hide();
         }
         private void button_voltar_Click(object sender, EventArgs e)
         {

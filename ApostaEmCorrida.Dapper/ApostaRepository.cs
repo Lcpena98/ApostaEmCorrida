@@ -13,12 +13,13 @@ namespace ApostaEmCorrida.Dapper
 {
     public class ApostaRepository : Conexao, IApostaRepository
     {
-        public RetornoStatus RegistrarAposta(int numeroCavalo, int numeroApostador, double valorApostado)
+        public RetornoStatus RegistrarAposta(Corrida corrida, int numeroCavalo, int numeroApostador, double valorApostado)
         {
             try
             {
-                string sql = @"INSERT INTO APOSTA (CavaloApostado, Apostador, ValorApostado,StatusAposta) VALUES (@NumeroCavalo, @NumeroApostador, @ValorApostado,0)";
-                banco.Execute(sql, new { NumeroCavalo = numeroCavalo, NumeroApostador = numeroApostador, ValorApostado = valorApostado });
+                string sql = @"INSERT INTO APOSTA (Id_Corrida, CavaloApostado, Apostador, ValorApostado,StatusAposta)
+                                VALUES (@CorridaId, @NumeroCavalo, @NumeroApostador, @ValorApostado,0)"; ;
+                banco.Execute(sql, new {CorridaId=corrida.Corrida_Id, NumeroCavalo = numeroCavalo, NumeroApostador = numeroApostador, ValorApostado = valorApostado });
                 return new RetornoStatus(true, "Aposta registrada com sucesso!");
             }
             catch (Exception ex)

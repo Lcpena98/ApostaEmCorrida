@@ -37,6 +37,7 @@
             button_trocar_senha = new Button();
             panel10 = new Panel();
             label2 = new Label();
+            button_Saldo = new Button();
             panel7.SuspendLayout();
             panel8.SuspendLayout();
             panel9.SuspendLayout();
@@ -63,6 +64,7 @@
             // 
             // panel8
             // 
+            panel8.Controls.Add(button_Saldo);
             panel8.Controls.Add(button_Cadastrar_Aposta);
             panel8.Location = new Point(6, 135);
             panel8.Name = "panel8";
@@ -71,7 +73,7 @@
             // 
             // button_Cadastrar_Aposta
             // 
-            button_Cadastrar_Aposta.Location = new Point(104, 12);
+            button_Cadastrar_Aposta.Location = new Point(11, 14);
             button_Cadastrar_Aposta.Name = "button_Cadastrar_Aposta";
             button_Cadastrar_Aposta.Size = new Size(131, 28);
             button_Cadastrar_Aposta.TabIndex = 9;
@@ -127,6 +129,16 @@
             label2.Text = "Apostador";
             label2.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // button_Saldo
+            // 
+            button_Saldo.Location = new Point(176, 14);
+            button_Saldo.Name = "button_Saldo";
+            button_Saldo.Size = new Size(131, 28);
+            button_Saldo.TabIndex = 10;
+            button_Saldo.Text = "Gerenciar_Saldo";
+            button_Saldo.UseVisualStyleBackColor = true;
+            button_Saldo.Click += button_Saldo_Click;
+            // 
             // Menu_Apostador
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -157,5 +169,6 @@
         private Button button_trocar_senha;
         private Panel panel10;
         private Label label2;
+        private Button button_Saldo;
     }
 }

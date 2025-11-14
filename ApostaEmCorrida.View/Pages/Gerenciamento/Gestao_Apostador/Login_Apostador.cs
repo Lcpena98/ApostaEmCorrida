@@ -72,15 +72,15 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Apostador
             this.Hide();
         }
 
+
+        private void button_esqueci_senha_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Em Desenvolvimento!");
+        }
         private void button_Voltar_Click(object sender, EventArgs e)
         {
             _menu_Inicial.Show();
             this.Close();
-        }
-
-        private void button_esqueci_senha_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

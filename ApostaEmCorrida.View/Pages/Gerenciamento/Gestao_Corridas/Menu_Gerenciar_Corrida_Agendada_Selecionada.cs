@@ -17,7 +17,7 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Corridas
 {
     public partial class Menu_Gerenciar_Corrida_Agendada_Selecionada : Form
     {
-        Menu_Corridas_Agendadas _menu_Corridas_Agendadas;
+        Menu_Exibicao_Corridas_Em_Andamento _menu_Corridas_Agendadas;
         Corrida _corrida_selecionada;
         CavaloController _cavaloController;
         CorridaController _corridaController;
@@ -27,11 +27,11 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Corridas
         int tipo_gerenciamento = 0;
         string resultado_gerenciamento = "";
 
-        public Menu_Gerenciar_Corrida_Agendada_Selecionada(Menu_Corridas_Agendadas menu_Corridas_Agendadas, Corrida corrida_selecionada)
+        public Menu_Gerenciar_Corrida_Agendada_Selecionada(Menu_Exibicao_Corridas_Em_Andamento menu_Corridas_Agendadas, Corrida corrida_selecionada)
         {
             InitializeComponent();
             _cavaloController = new CavaloController(new CavaloService(new CavaloRepository()));
-            _corridaController = new CorridaController(new CorridaService(new CorridaRepository()));
+            _corridaController = new CorridaController(new CorridaService(new CorridaRepository(), new VoltasRepository()));
             _menu_Corridas_Agendadas = menu_Corridas_Agendadas;
             _corrida_selecionada = corrida_selecionada;
             distancia = corrida_selecionada.Percurso;
@@ -62,18 +62,6 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Corridas
             MessageBox.Show("Selecione os cavalos que deseja cadastrar na corrida e clique em 'Adicionar Cavalo'.");
             tipo_gerenciamento = 1;
         }
-        private void button_Remover_Cavalo_Click(object sender, EventArgs e)
-        {
-            competidores = _corridaController.BuscarCompetidores(_corrida_selecionada);
-            dataGridView_Cavalos.DataSource=null;
-            dataGridView_Cavalos.DataSource = competidores.ToList();
-            dataGridView_Cavalos.ClearSelection();
-
-            button_Gerenciar_Cavalo.Text = "Remover Cavalo";
-            competidores = _corridaController.BuscarCompetidores(_corrida_selecionada);
-            MessageBox.Show("Selecione os cavalos que deseja cadastrar na corrida e clique em 'Adicionar Cavalo'.");
-            tipo_gerenciamento = 2;
-        }
 
         private void button_Gerenciar_Cavalo_Click(object sender, EventArgs e)
         {
@@ -81,7 +69,7 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Corridas
             {
                 MessageBox.Show("Selecione uma opção de gerenciamento de cavalos.");
             }
-            else if (tipo_gerenciamento == 1)
+            else
             {
                 var resultado = MessageBox.Show("Tem certeza que deseja adicionar os cavalos a corrida?", "Confirmação", MessageBoxButtons.YesNo);
                 if (resultado == DialogResult.Yes)
@@ -96,28 +84,6 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Corridas
                         }
                         _corridaController.CadastrarParticipantes(_corrida_selecionada, cavalos_selecionados);
                         MessageBox.Show("Cavalos cadastrados com sucesso na corrida.");
-                    }
-                    catch (Exception)
-                    {
-                        MessageBox.Show("Erro ao selecionar cavalos. Tente novamente.");
-                    }
-                }
-            }
-            else
-            {
-                var resultado = MessageBox.Show("Tem certeza que deseja remover os cavalos da corrida?", "Confirmação", MessageBoxButtons.YesNo);
-                if (resultado == DialogResult.Yes)
-                {
-                    List<Cavalo> cavalos_selecionados = new List<Cavalo>();
-                    try
-                    {
-                        foreach (DataGridViewRow row in dataGridView_Cavalos.SelectedRows)
-                        {
-                            var cavaloSelecionado = row.DataBoundItem as Cavalo;
-                            cavalos_selecionados.Add(cavaloSelecionado);
-                        }
-                        RetornoStatus status_Remocao = _corridaController.RemoverParticipantes(_corrida_selecionada, cavalos_selecionados);
-                        MessageBox.Show(status_Remocao.Message.ToString());
                     }
                     catch (Exception)
                     {

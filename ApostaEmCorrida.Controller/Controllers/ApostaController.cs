@@ -12,9 +12,9 @@ namespace ApostaEmCorrida.Controller
         {
             _apostaService = apostaService;
         }
-        public RetornoStatus RegistrarAposta(int numeroCavalo, int numeroApostador, double valorApostado)
+        public RetornoStatus RegistrarAposta(Corrida corrida,int numeroCavalo, int numeroApostador, double valorApostado)
         {
-            return _apostaService.RegistrarAposta(numeroCavalo, numeroApostador, valorApostado);
+            return _apostaService.RegistrarAposta(corrida, numeroCavalo, numeroApostador, valorApostado);
         }
     }
 }

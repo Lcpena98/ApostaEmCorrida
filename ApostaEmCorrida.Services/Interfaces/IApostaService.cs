@@ -10,6 +10,6 @@ namespace ApostaEmCorrida.Services.Interfaces
 {
     public interface IApostaService
     {
-        public RetornoStatus RegistrarAposta(int numeroCavalo, int numeroApostador, double valorApostado);
+        public RetornoStatus RegistrarAposta(Corrida corrida,int numeroCavalo, int numeroApostador, double valorApostado);
     }
 }

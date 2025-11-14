@@ -85,26 +85,7 @@ namespace ApostaEmCorrida.Dapper
                 return new RetornoStatus(false, "Falha ao cadastrar os participantes");
             }
         }
-        public RetornoStatus RemoverParticipantes(Corrida corrida, List<Cavalo> competidores)
-        {
-            try
-            {
-                foreach (Cavalo cavalo in competidores)
-                {
-                    string sqlCompetidor = @"DELETE FROM INSCRICAO_CORRIDA WHERE Id_Corrida = @Id_Corrida AND Id_Cavalo = @Numero_Cavalo";
-                    banco.Execute(sqlCompetidor, new
-                    {
-                        Id_Corrida = corrida.Corrida_Id,
-                        Numero_Cavalo = cavalo.Numero_Cavalo
-                    });
-                }
-                return new RetornoStatus(true, "Participantes Removidos com sucesso!");
-            }
-            catch (Exception ex)
-            {
-                return new RetornoStatus(false, "Falha ao remover os participantes");
-            }
-        }
+        
         public List<Cavalo> BuscarCompetidores(Corrida corrida)
         {
             string sql = @"
@@ -149,17 +130,86 @@ namespace ApostaEmCorrida.Dapper
             }
         }
 
-        public RetornoStatus CancelarCorrida(Corrida corrida)
+        public RetornoStatus AdicionarValoresCorrida(Corrida corrida, double valor)
         {
-            string sql = @"delete from INSCRICAO_CORRIDA where Id_Corrida = @Corrida_Id";
-            banco.Execute(sql, new { Corrida_Id= corrida.Corrida_Id});
-            sql = @"delete from CORRIDA where Id_Corrida = @Corrida_Id";
-            banco.Execute(sql, new { Corrida_Id = corrida.Corrida_Id });
-            return new RetornoStatus(true, "Corrida cancelada com sucesso!");
+            try
+            {
+                string sql = @"
+                UPDATE CORRIDA
+                SET ValorApostado += @Valor
+                WHERE Id_Corrida = @Id_Corrida";
+                banco.Execute(sql, new
+                {
+                    valor = valor,
+                    Id_Corrida = corrida.Corrida_Id
+                });
+                return new RetornoStatus(true, "Valor adicionado com sucesso!");
+            }
+            catch (Exception ex)
+            {
+                return new RetornoStatus(false, "Não foi possível adicionar o valor!");
+            }
         }
-        public void IniciarCorrida()
+
+        public RetornoStatus AlterarStatus(Corrida corrida, int status)
         {
-            throw new NotImplementedException();
+            try
+                {
+                string sql = @"
+                UPDATE CORRIDA
+                SET StatusCorrida = @StatusCorrida
+                WHERE Id_Corrida = @Id_Corrida";
+                banco.Execute(sql, new
+                {
+                    StatusCorrida = status,
+                    Id_Corrida = corrida.Corrida_Id
+                });
+                return new RetornoStatus(true, "Status da corrida atualizado com sucesso!");
+            }
+            catch (Exception ex)
+            {
+                return new RetornoStatus(false, "Não foi possível atualizar o status da corrida!");
+            }
+
+        }
+        public void AtualizarStatusCompetidores(Cavalo cavalo,int status)
+        {
+            string sql = @"
+                UPDATE CAVALO
+                SET StatusCavalo = @StatusCavalo
+                WHERE Numero_Cavalo = @Numero_Cavalo";
+            banco.Execute(sql, new
+                {
+                StatusCavalo = status,
+                Numero_Cavalo = cavalo.Numero_Cavalo
+            });
+        }
+
+        public void AtualizarTempoTotalCorrida(Corrida corridaSelecionada, TimeSpan tempoCorrida)
+        {
+            string sql = @"
+                UPDATE CORRIDA
+                SET DataFim = @TempoTotalCorrida
+                WHERE Id_Corrida = @Id_Corrida";
+            banco.Execute(sql, new
+                {
+                TempoTotalCorrida = corridaSelecionada.DataInicio.AddTicks(tempoCorrida.Ticks),
+                Id_Corrida = corridaSelecionada.Corrida_Id
+            });
+        }
+
+        public List<Cavalo> BuscarCavalosNaoCadastradosEmCorrida(int status)
+        {
+            string sql = @"SELECT *
+                           FROM CAVALO cav
+                           WHERE cav.Numero_Cavalo NOT IN(
+                           SELECT Id_Cavalo
+                           FROM INSCRICAO_CORRIDA ins
+                           LEFT JOIN CORRIDA cor
+                           ON ins.Id_Corrida = cor.Id_Corrida and cor.StatusCorrida=@Status) 
+                ";
+            List<Cavalo> cavalosNaoCadastrados = banco.Query<Cavalo>(sql, new { Status = status }).ToList();
+            return new List<Cavalo>(cavalosNaoCadastrados);
         }
         public void CadastrarFimCorrida()
         {
@@ -170,5 +220,7 @@ namespace ApostaEmCorrida.Dapper
         {
             throw new NotImplementedException();
         }
+
+        
     }
 }

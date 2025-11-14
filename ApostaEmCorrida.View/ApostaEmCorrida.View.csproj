@@ -12,8 +12,4 @@
     <ProjectReference Include="..\ApostaEmCorrida.Controller\ApostaEmCorrida.Controller.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Pages\Dados\" />
-  </ItemGroup>
-
 </Project>

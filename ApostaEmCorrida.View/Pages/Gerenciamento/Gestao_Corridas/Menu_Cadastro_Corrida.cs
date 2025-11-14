@@ -29,7 +29,7 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Corridas
             InitializeComponent();
             _menu_Gerenciar_Corridas = menu_Gerenciar_Corridas;
             _cavaloController = new CavaloController(new CavaloService(new CavaloRepository()));
-            _corridaController = new CorridaController(new CorridaService(new CorridaRepository()));
+            _corridaController = new CorridaController(new CorridaService(new CorridaRepository(), new VoltasRepository()));
 
             // Carregar cavalos no combobox
             RetornoDados<List<Cavalo>> retornoCavalos = _cavaloController.BuscarTodosCavalos();
@@ -116,6 +116,8 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Corridas
                 comboBox_Cavalo.SelectedItem = -1;
                 comboBox_Cavalo.Text = string.Empty;
                 dataGridView_Cavalos.DataSource = null;
+                numericUpDown_Numero_Voltas.Value = 0;
+                data_Inicio_Corrida.Value = DateTime.Now;
                 textBox_Percurso.Text = "";
                 data_Inicio_Corrida.Text = string.Empty;
             }

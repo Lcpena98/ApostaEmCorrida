@@ -20,7 +20,7 @@ namespace ApostaEmCorrida.Controller
 
         public RetornoStatus AgendarCorrida(Corrida corrida)
         {
-           return _corridaService.AgendarCorrida(corrida);
+            return _corridaService.AgendarCorrida(corrida);
         }
         public List<Cavalo> BuscarCompetidores(Corrida corrida)
         {
@@ -30,21 +30,21 @@ namespace ApostaEmCorrida.Controller
         {
             return _corridaService.CadastrarParticipantes(corrida, competidores);
         }
-        public RetornoStatus RemoverParticipantes(Corrida corrida, List<Cavalo> competidores)
-        {
-            return _corridaService.RemoverParticipantes(corrida, competidores);
-        }
         public RetornoStatus AtualizarDadosDaCorrida(Corrida corrida, int Numero_Voltas, double percurso, DateTime dataInicio)
         {
             return _corridaService.AtualizarDadosDaCorrida(corrida, Numero_Voltas, percurso, dataInicio);
         }
-        public RetornoStatus CancelarCorrida(Corrida corrida)
+        public RetornoStatus AlterarStatus(Corrida corrida, int status)
         {
-            return _corridaService.CancelarCorrida(corrida);
+            return _corridaService.AlterarStatus(corrida, status);
         }
-        public void IniciarCorrida()
+        public void AtualizarStatusCompetidores(Corrida corrida, int statusAtual, int novoStatus)
         {
-            _corridaService.IniciarCorrida();
+            _corridaService.AtualizarStatusCompetidores(corrida, statusAtual,novoStatus);
+        }
+        public RetornoStatus IniciarCorrida(Corrida corridaSelecionada)
+        {
+            return _corridaService.IniciarCorrida(corridaSelecionada);
         }
         public void CadastrarFimCorrida()
         {

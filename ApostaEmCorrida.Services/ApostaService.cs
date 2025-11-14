@@ -1,27 +1,42 @@
-﻿using ApostaEmCorrida.Domain;
+﻿using ApostaEmCorrida.Dapper.Interfaces;
+using ApostaEmCorrida.Domain;
 using ApostaEmCorrida.Domain.Retorno;
 using ApostaEmCorrida.Services.Interfaces;
-using ApostaEmCorrida.Dapper.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ApostaEmCorrida.Services
 {
-    public class ApostaService:IApostaService
+    public class ApostaService : IApostaService
     {
         protected readonly IApostaRepository _apostaRepository;
+        protected readonly ICorridaRepository _corridaRepository;
 
-        public ApostaService(IApostaRepository apostaRepository)
+        public ApostaService(IApostaRepository apostaRepository, ICorridaRepository corridaRepository)
         {
             _apostaRepository = apostaRepository;
+            _corridaRepository = corridaRepository;
         }
 
-        public RetornoStatus RegistrarAposta(int numeroCavalo, int numeroApostador, double valorApostado)
+        public void AdicionarValoresCorrida(Corrida corrida, double valor)
         {
-            return _apostaRepository.RegistrarAposta(numeroCavalo, numeroApostador, valorApostado);
+
+        }
+
+        public RetornoStatus RegistrarAposta(Corrida corrida, int numeroCavalo, int numeroApostador, double valorApostado)
+        {
+
+            RetornoStatus resultadoAposta = _apostaRepository.RegistrarAposta(corrida, numeroCavalo, numeroApostador, valorApostado);
+            if (resultadoAposta.Sucesso)
+            {
+                RetornoStatus resultadoSoma = _corridaRepository.AdicionarValoresCorrida(corrida, valorApostado);
+            }
+            return resultadoAposta;
+
         }
     }
 }

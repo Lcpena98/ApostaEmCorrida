@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             panel3 = new Panel();
-            button_Remover_Cavalo = new Button();
             button_Cadastrar_Cavalo = new Button();
             panel2 = new Panel();
             label1 = new Label();
@@ -67,28 +66,17 @@
             // 
             // panel3
             // 
-            panel3.Controls.Add(button_Remover_Cavalo);
             panel3.Controls.Add(button_Cadastrar_Cavalo);
             panel3.Location = new Point(6, 63);
             panel3.Name = "panel3";
             panel3.Size = new Size(377, 40);
             panel3.TabIndex = 8;
             // 
-            // button_Remover_Cavalo
-            // 
-            button_Remover_Cavalo.Location = new Point(187, 9);
-            button_Remover_Cavalo.Name = "button_Remover_Cavalo";
-            button_Remover_Cavalo.Size = new Size(134, 23);
-            button_Remover_Cavalo.TabIndex = 1;
-            button_Remover_Cavalo.Text = "Remover Cavalo";
-            button_Remover_Cavalo.UseVisualStyleBackColor = true;
-            button_Remover_Cavalo.Click += button_Remover_Cavalo_Click;
-            // 
             // button_Cadastrar_Cavalo
             // 
             button_Cadastrar_Cavalo.Location = new Point(17, 9);
             button_Cadastrar_Cavalo.Name = "button_Cadastrar_Cavalo";
-            button_Cadastrar_Cavalo.Size = new Size(134, 23);
+            button_Cadastrar_Cavalo.Size = new Size(350, 23);
             button_Cadastrar_Cavalo.TabIndex = 0;
             button_Cadastrar_Cavalo.Text = "Cadastrar Cavalo";
             button_Cadastrar_Cavalo.UseVisualStyleBackColor = true;
@@ -332,7 +320,6 @@
         private Button button_Gerenciar_Corrida;
         private Panel panel1;
         private Panel panel8;
-        private Button button_Remover_Cavalo;
         private Button button_Gerenciar_Cavalo;
     }
 }

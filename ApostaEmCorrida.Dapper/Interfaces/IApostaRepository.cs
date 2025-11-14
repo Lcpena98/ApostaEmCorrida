@@ -1,4 +1,5 @@
-﻿using ApostaEmCorrida.Domain.Retorno;
+﻿using ApostaEmCorrida.Domain;
+using ApostaEmCorrida.Domain.Retorno;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace ApostaEmCorrida.Dapper.Interfaces
 {
     public interface IApostaRepository
     {
-        public RetornoStatus RegistrarAposta(int numeroCavalo, int numeroApostador, double valorApostado);
+        public RetornoStatus RegistrarAposta(Corrida corrida,int numeroCavalo, int numeroApostador, double valorApostado);
     }
 }

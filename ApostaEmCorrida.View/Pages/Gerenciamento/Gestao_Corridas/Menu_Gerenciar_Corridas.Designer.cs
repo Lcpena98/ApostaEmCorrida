@@ -34,7 +34,6 @@
             button_Corridas_Andamento = new Button();
             button_Corridas_Finalizadas = new Button();
             button_Nova_Corrida = new Button();
-            button_Corridas_Agendadas = new Button();
             panel10 = new Panel();
             label2 = new Label();
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
@@ -66,7 +65,6 @@
             panel9.Controls.Add(button_Corridas_Andamento);
             panel9.Controls.Add(button_Corridas_Finalizadas);
             panel9.Controls.Add(button_Nova_Corrida);
-            panel9.Controls.Add(button_Corridas_Agendadas);
             panel9.Location = new Point(3, 64);
             panel9.Name = "panel9";
             panel9.Size = new Size(336, 114);
@@ -74,17 +72,17 @@
             // 
             // button_Corridas_Andamento
             // 
-            button_Corridas_Andamento.Location = new Point(9, 64);
+            button_Corridas_Andamento.Location = new Point(175, 14);
             button_Corridas_Andamento.Name = "button_Corridas_Andamento";
-            button_Corridas_Andamento.Size = new Size(155, 28);
+            button_Corridas_Andamento.Size = new Size(155, 44);
             button_Corridas_Andamento.TabIndex = 11;
-            button_Corridas_Andamento.Text = "Corridas em andamento";
+            button_Corridas_Andamento.Text = "Corridas Agendadas e em Andamento";
             button_Corridas_Andamento.UseVisualStyleBackColor = true;
             button_Corridas_Andamento.Click += button_Corridas_Andamento_Click;
             // 
             // button_Corridas_Finalizadas
             // 
-            button_Corridas_Finalizadas.Location = new Point(181, 64);
+            button_Corridas_Finalizadas.Location = new Point(106, 73);
             button_Corridas_Finalizadas.Name = "button_Corridas_Finalizadas";
             button_Corridas_Finalizadas.Size = new Size(137, 28);
             button_Corridas_Finalizadas.TabIndex = 10;
@@ -94,23 +92,13 @@
             // 
             // button_Nova_Corrida
             // 
-            button_Nova_Corrida.Location = new Point(9, 14);
+            button_Nova_Corrida.Location = new Point(9, 22);
             button_Nova_Corrida.Name = "button_Nova_Corrida";
             button_Nova_Corrida.Size = new Size(155, 28);
             button_Nova_Corrida.TabIndex = 9;
             button_Nova_Corrida.Text = "Agendar Nova Corrida";
             button_Nova_Corrida.UseVisualStyleBackColor = true;
             button_Nova_Corrida.Click += button_Nova_Corrida_Click;
-            // 
-            // button_Corridas_Agendadas
-            // 
-            button_Corridas_Agendadas.Location = new Point(181, 14);
-            button_Corridas_Agendadas.Name = "button_Corridas_Agendadas";
-            button_Corridas_Agendadas.Size = new Size(137, 28);
-            button_Corridas_Agendadas.TabIndex = 6;
-            button_Corridas_Agendadas.Text = "Corridas Agendadas";
-            button_Corridas_Agendadas.UseVisualStyleBackColor = true;
-            button_Corridas_Agendadas.Click += button_Corridas_Agendadas_Click;
             // 
             // panel10
             // 
@@ -161,7 +149,6 @@
         private Button button_Corridas_Andamento;
         private Button button_Corridas_Finalizadas;
         private Button button_Nova_Corrida;
-        private Button button_Corridas_Agendadas;
         private Panel panel10;
         private Label label2;
         private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
