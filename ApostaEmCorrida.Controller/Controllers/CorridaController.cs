@@ -60,6 +60,10 @@ namespace ApostaEmCorrida.Controller
                 }
             }
         }
+        public List<ResultadoCorrida> BuscarResultadosDaCorrida(Corrida corrida)
+        {
+            return _corridaService.BuscarResultadosDaCorrida(corrida);
+        }
     }
 }
 

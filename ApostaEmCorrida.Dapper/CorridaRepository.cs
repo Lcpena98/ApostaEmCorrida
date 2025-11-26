@@ -85,7 +85,7 @@ namespace ApostaEmCorrida.Dapper
                 return new RetornoStatus(false, "Falha ao cadastrar os participantes");
             }
         }
-        
+
         public List<Cavalo> BuscarCompetidores(Corrida corrida)
         {
             string sql = @"
@@ -104,7 +104,7 @@ namespace ApostaEmCorrida.Dapper
             return competidores;
         }
 
-        public RetornoStatus AtualizarDadosDaCorrida(Corrida corrida, int Numero_Voltas,double percurso,DateTime dataInicio)
+        public RetornoStatus AtualizarDadosDaCorrida(Corrida corrida, int Numero_Voltas, double percurso, DateTime dataInicio)
         {
             try
             {
@@ -123,7 +123,7 @@ namespace ApostaEmCorrida.Dapper
                 });
                 return new RetornoStatus(true, "Dados da corrida atualizados com sucesso!");
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 return new RetornoStatus(false, "Não foi possível atualizar os dados da corrida!");
             }
@@ -153,7 +153,7 @@ namespace ApostaEmCorrida.Dapper
         public RetornoStatus AlterarStatus(Corrida corrida, int status)
         {
             try
-                {
+            {
                 string sql = @"
                 UPDATE CORRIDA
                 SET StatusCorrida = @StatusCorrida
@@ -171,14 +171,14 @@ namespace ApostaEmCorrida.Dapper
             }
 
         }
-        public void AtualizarStatusCompetidores(Cavalo cavalo,int status)
+        public void AtualizarStatusCompetidores(Cavalo cavalo, int status)
         {
             string sql = @"
                 UPDATE CAVALO
                 SET StatusCavalo = @StatusCavalo
                 WHERE Numero_Cavalo = @Numero_Cavalo";
             banco.Execute(sql, new
-                {
+            {
                 StatusCavalo = status,
                 Numero_Cavalo = cavalo.Numero_Cavalo
             });
@@ -191,7 +191,7 @@ namespace ApostaEmCorrida.Dapper
                 SET DataFim = @TempoTotalCorrida
                 WHERE Id_Corrida = @Id_Corrida";
             banco.Execute(sql, new
-                {
+            {
                 TempoTotalCorrida = corridaSelecionada.DataInicio.AddTicks(tempoCorrida.Ticks),
                 Id_Corrida = corridaSelecionada.Corrida_Id
             });
@@ -209,6 +209,15 @@ namespace ApostaEmCorrida.Dapper
                 ";
             List<Cavalo> cavalosNaoCadastrados = banco.Query<Cavalo>(sql, new { Status = status }).ToList();
             return new List<Cavalo>(cavalosNaoCadastrados);
+        }
+
+        public List<ResultadoCorrida> BuscarResultadosDaCorrida(Corrida corrida)
+        {
+
+            List<ResultadoCorrida> resultados = new List<ResultadoCorrida>();
+            string sql = $"SELECT * FROM RESULTADO_CORRIDA WHERE Id_Corrida = {corrida.Corrida_Id} ORDER BY Posicao ASC";
+            return banco.Query<ResultadoCorrida>(sql).ToList();
+
         }
     }
 }

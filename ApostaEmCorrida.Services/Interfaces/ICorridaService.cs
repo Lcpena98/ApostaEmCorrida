@@ -19,5 +19,6 @@ namespace ApostaEmCorrida.Services.Interfaces
         public void AtualizarStatusCompetidores(Corrida corrida, int statusAtual, int novoStatus);
         public RetornoStatus IniciarCorrida(Corrida corridaSelecionada);
         public RetornoStatus CadastrarFimCorrida(Corrida corrida);
+        public List<ResultadoCorrida> BuscarResultadosDaCorrida(Corrida corrida);
     }
 }

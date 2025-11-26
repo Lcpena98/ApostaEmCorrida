@@ -20,5 +20,6 @@ namespace ApostaEmCorrida.Dapper.Interfaces
         public void AtualizarStatusCompetidores(Cavalo cavalo, int status);
         public void AtualizarTempoTotalCorrida(Corrida corridaSelecionada,TimeSpan tempoCorrida);
         public List<Cavalo> BuscarCavalosNaoCadastradosEmCorrida(int status);
+        public List<ResultadoCorrida> BuscarResultadosDaCorrida(Corrida corrida);
     }
 }

@@ -132,5 +132,15 @@ namespace ApostaEmCorrida.Services
                 return new RetornoStatus(false, "Falha ao atualizar os dados!");
             }
         }
+
+        public List<ResultadoCorrida> BuscarResultadosDaCorrida(Corrida corrida)
+        {
+            List<ResultadoCorrida> resultadosCorrida = _voltasRepository.BuscarResultadoCorrida(corrida);
+            foreach (ResultadoCorrida resultado in resultadosCorrida)
+            {
+                resultado.Corredor = _cavaloRepository.BuscarCavaloPorNumero(resultado.Id_Cavalo).Dados;
+            }
+            return resultadosCorrida;
+        }
     }
 }

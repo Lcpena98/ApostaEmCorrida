@@ -1,5 +1,6 @@
 ﻿using ApostaEmCorrida.Controller;
 using ApostaEmCorrida.Dapper;
+using ApostaEmCorrida.Domain;
 using ApostaEmCorrida.Services;
 using ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Corridas;
 using System;
@@ -31,7 +32,8 @@ namespace ApostaEmCorrida.View.Pages.Dados
         }
         private void button_Mais_Info_Click(object sender, EventArgs e)
         {
-            Relatorio_Competidores_Da_Corrida_Selecionada relatorio_Competidores_Da_Corrida_Selecionada=new Relatorio_Competidores_Da_Corrida_Selecionada(this, dataGridView_Corridas_Finalizadas.SelectedRows[0]);
+            Corrida corridaSelecionada = (Corrida)dataGridView_Corridas_Finalizadas.CurrentRow.DataBoundItem;
+            Relatorio_Competidores_Da_Corrida_Selecionada relatorio_Competidores_Da_Corrida_Selecionada=new Relatorio_Competidores_Da_Corrida_Selecionada(this, corridaSelecionada);
             relatorio_Competidores_Da_Corrida_Selecionada.Show();
             this.Hide();
         }

@@ -45,7 +45,7 @@
             panel1.Controls.Add(panel2);
             panel1.Location = new Point(1, 1);
             panel1.Name = "panel1";
-            panel1.Size = new Size(957, 582);
+            panel1.Size = new Size(265, 429);
             panel1.TabIndex = 3;
             // 
             // dataGridView_Competidores
@@ -53,12 +53,12 @@
             dataGridView_Competidores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView_Competidores.Location = new Point(3, 61);
             dataGridView_Competidores.Name = "dataGridView_Competidores";
-            dataGridView_Competidores.Size = new Size(951, 469);
+            dataGridView_Competidores.Size = new Size(259, 305);
             dataGridView_Competidores.TabIndex = 8;
             // 
             // button_Voltar
             // 
-            button_Voltar.Location = new Point(399, 548);
+            button_Voltar.Location = new Point(67, 389);
             button_Voltar.Name = "button_Voltar";
             button_Voltar.Size = new Size(130, 23);
             button_Voltar.TabIndex = 7;
@@ -71,14 +71,14 @@
             panel2.Controls.Add(label1);
             panel2.Location = new Point(3, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(951, 52);
+            panel2.Size = new Size(259, 52);
             panel2.TabIndex = 1;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(373, 11);
+            label1.Location = new Point(34, 9);
             label1.Name = "label1";
             label1.Size = new Size(174, 32);
             label1.TabIndex = 0;
@@ -89,7 +89,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(961, 584);
+            ClientSize = new Size(266, 430);
             Controls.Add(panel1);
             Name = "Relatorio_Competidores_Da_Corrida_Selecionada";
             Text = "Relatorio_Competidores_Da_Corrida_Selecionada";

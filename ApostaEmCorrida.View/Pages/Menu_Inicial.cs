@@ -43,7 +43,7 @@ namespace ApostaEmCorrida.View.Pages
             MessageBox.Show("Bem-vindo ao sistema de gerenciamento de corridas de cavalos!");
             MessageBox.Show($"Feito o processo de rotação das corridas\r\nMas ainda é preciso validar as apostas.");
             MessageBox.Show("Ainda é necessário configurar o saldo dos apostadores!");
-            MessageBox.Show("Próximo Passo!\n\rConfigurar o menu de corridas finalizadas e construir uma pagina que repasse os dados específicos da corrida selecionada!");
+            MessageBox.Show("Próximo Passo!\n\r Iniciar a validação das apostas");
         }
 
 
