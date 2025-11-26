@@ -28,7 +28,7 @@ namespace ApostaEmCorrida.View.Pages
         public Menu_Inicial()
         {
             InitializeComponent();
-            _corridaController = new CorridaController(new CorridaService(new CorridaRepository(),new VoltasRepository()));
+            _corridaController = new CorridaController(new CorridaService(new CavaloRepository(), new CorridaRepository(), new VoltasRepository()));
             _cavaloController = new CavaloController(new CavaloService(new CavaloRepository()));
             corridas_Agendadas = _corridaController.BuscarCorridasPorStatus(0);
             foreach (Corrida corrida in corridas_Agendadas)
@@ -41,12 +41,14 @@ namespace ApostaEmCorrida.View.Pages
             }
             corridas_Em_Andamento = _corridaController.BuscarCorridasPorStatus(1);
             MessageBox.Show("Bem-vindo ao sistema de gerenciamento de corridas de cavalos!");
+            MessageBox.Show($"Feito o processo de rotação das corridas\r\nMas ainda é preciso validar as apostas.");
+            MessageBox.Show("Ainda é necessário configurar o saldo dos apostadores!");
+            MessageBox.Show("Próximo Passo!\n\rConfigurar o menu de corridas finalizadas e construir uma pagina que repasse os dados específicos da corrida selecionada!");
         }
 
 
         private void button_Cadastro_Cavalo_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Ainda é necessário corrigir o Alterar e Excluir!");
             Gerenciamento_Cavalo menu_Gerenciamento_Cavalo = new Gerenciamento_Cavalo(this);
             menu_Gerenciamento_Cavalo.Show();
             this.Hide();
@@ -93,15 +95,8 @@ namespace ApostaEmCorrida.View.Pages
     }
 }
 /*
-             IDEIA DE IMPLEMENTAÇÃO FUTURA
-            1. Verificar as datas de corridas agendadas que são menores que o Datetime.Now e alterar o status para "Em Andamento"
-            2. Carregar as corridas com status "Em Andamento" na datagridview
-            3. Criar botões para "Finalizar Corrida" e "Ver Detalhes da Corrida"
-            4. Usar o método Random em cada cavalo para determinar o desempenho em cada volta e preencher a tabela de Voltas
-            5. Calcular o tempo total de cada cavalo e determinar a ordem de chegada
-            6. Validar os vencedores e posições e preencher os dados na tabela de Resultados
-            7. Atualizar o status da corrida para "Finalizada"
-            8. Notificar os usuários sobre os resultados das corridas finalizadas
+  IDEIA DE IMPLEMENTAÇÃO FUTURA
+  8. Notificar os usuários sobre os resultados das corridas finalizadas
 
-            OBS: O Banco já está implementado para suportar essas funcionalidades.
-             */
+  OBS: O Banco já está implementado para suportar essas funcionalidades.
+*/

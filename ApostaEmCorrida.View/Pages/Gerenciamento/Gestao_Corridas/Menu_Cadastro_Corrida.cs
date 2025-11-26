@@ -29,7 +29,7 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Corridas
             InitializeComponent();
             _menu_Gerenciar_Corridas = menu_Gerenciar_Corridas;
             _cavaloController = new CavaloController(new CavaloService(new CavaloRepository()));
-            _corridaController = new CorridaController(new CorridaService(new CorridaRepository(), new VoltasRepository()));
+            _corridaController = new CorridaController(new CorridaService(new CavaloRepository(), new CorridaRepository(), new VoltasRepository()));
 
             // Carregar cavalos no combobox
             RetornoDados<List<Cavalo>> retornoCavalos = _cavaloController.BuscarTodosCavalos();

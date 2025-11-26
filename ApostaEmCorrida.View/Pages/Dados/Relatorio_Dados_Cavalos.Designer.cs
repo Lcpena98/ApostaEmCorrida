@@ -72,7 +72,7 @@
             dataGridView_Cavalos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView_Cavalos.Location = new Point(3, 61);
             dataGridView_Cavalos.Name = "dataGridView_Cavalos";
-            dataGridView_Cavalos.Size = new Size(951, 471);
+            dataGridView_Cavalos.Size = new Size(951, 469);
             dataGridView_Cavalos.TabIndex = 8;
             // 
             // button_Sair

@@ -48,13 +48,6 @@ namespace ApostaEmCorrida.Services
                 return new RetornoDados<int>(false, $"Erro ao gerar número: {ex.Message}", -1);
             }
         }
-        //Função que acessa o metodo que atualiza os dados dos Cavalos
-        public RetornoStatus AtualizarDesempenho(List<Cavalo> cavalos, Cavalo primeiroLugar, Cavalo segundoLugar, Cavalo terceiroLugar)
-        {
-            {
-                return _cavaloRepository.AtualizarDesempenho(cavalos,primeiroLugar,segundoLugar,terceiroLugar);
-            }
-        }
 
         public RetornoDados<List<Cavalo>> BuscarTodosCavalos()
         {

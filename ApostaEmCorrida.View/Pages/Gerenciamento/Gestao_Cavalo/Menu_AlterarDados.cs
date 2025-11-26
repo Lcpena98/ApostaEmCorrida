@@ -1,6 +1,7 @@
 ﻿using ApostaEmCorrida.Controller;
 using ApostaEmCorrida.Dapper;
 using ApostaEmCorrida.Domain;
+using ApostaEmCorrida.Domain.Enumerator;
 using ApostaEmCorrida.Domain.Retorno;
 using ApostaEmCorrida.Services;
 using ApostaEmCorrida.View.Pages.Gestao_Cavalo;
@@ -52,7 +53,7 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Cavalo
 
         private void button_Alterar_Click(object sender, EventArgs e)
         {
-            /*if (comboBox_Cavalos.SelectedIndex == -1)
+            if (comboBox_Cavalos.SelectedIndex == -1)
             {
                 resultado_Alteracao.Text = "Selecione um cavalo para alterar os dados.";
                 resultado_Alteracao.Visible = true;
@@ -64,39 +65,44 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Cavalo
                 string racaCavalo;
                 double alturaCavalo;
                 double pesoCavalo;
+                if (cavalo.StatusCavalo == StatusCavalo.EmEspera)
+                {
+                    if (string.IsNullOrEmpty(textBox_NomeCavalo.Text))
+                        nomeCavalo = cavalo.Nome;
+                    else
+                        nomeCavalo = textBox_NomeCavalo.Text.ToString();
 
-                if (string.IsNullOrEmpty(textBox_NomeCavalo.Text))
-                    nomeCavalo = cavalo.Nome;
+                    if (string.IsNullOrEmpty(textBox_Raca.Text))
+                        racaCavalo = cavalo.Raca.ToString();
+                    else
+                        racaCavalo = textBox_Raca.Text;
+
+                    if (string.IsNullOrEmpty(textBox_PesoCavalo.Text))
+                        pesoCavalo = cavalo.Peso;
+                    else
+                        pesoCavalo = double.Parse(textBox_PesoCavalo.Text);
+
+                    if (string.IsNullOrEmpty(textBox_AlturaCavalo.Text))
+                        alturaCavalo = cavalo.Altura;
+                    else
+                        alturaCavalo = double.Parse(textBox_AlturaCavalo.Text);
+
+                    RetornoStatus retornoStatus = _cavaloController.AlterarDadosCavalo(nomeCavalo, racaCavalo, alturaCavalo, pesoCavalo, cavalo.Numero_Cavalo);
+                    resultado_Alteracao.Text = retornoStatus.Message;
+                    resultado_Alteracao.Visible = true;
+                    comboBox_Cavalos.SelectedIndex = 0;
+                    comboBox_Cavalos.Text = string.Empty;
+                    textBox_NomeCavalo.Text = string.Empty;
+                    textBox_AlturaCavalo.Text = string.Empty;
+                    textBox_Raca.Text = string.Empty;
+                    textBox_PesoCavalo.Text = string.Empty;
+                }
+
                 else
-                    nomeCavalo = textBox_NomeCavalo.Text.ToString();
-
-                if (string.IsNullOrEmpty(textBox_Raca.Text))
-                    racaCavalo = cavalo.Raca.ToString();
-                else
-                    racaCavalo = textBox_Raca.Text;
-
-                if (string.IsNullOrEmpty(textBox_PesoCavalo.Text))
-                    pesoCavalo = cavalo.Peso;
-                else
-                    pesoCavalo = double.Parse(textBox_PesoCavalo.Text);
-
-                if (string.IsNullOrEmpty(textBox_AlturaCavalo.Text))
-                    alturaCavalo = cavalo.Altura;
-                else
-                    alturaCavalo = double.Parse(textBox_AlturaCavalo.Text);
-
-                RetornoStatus retornoStatus = _cavaloController.AlterarDadosCavalo(nomeCavalo, racaCavalo, alturaCavalo, pesoCavalo, cavalo.Numero_Cavalo);
-                resultado_Alteracao.Text = retornoStatus.Message;
-                resultado_Alteracao.Visible = true;
-                comboBox_Cavalos.SelectedIndex = 0;
-                comboBox_Cavalos.Text = string.Empty;
-                textBox_NomeCavalo.Text = string.Empty;
-                textBox_AlturaCavalo.Text = string.Empty;
-                textBox_Raca.Text = string.Empty;
-                textBox_PesoCavalo.Text = string.Empty;
-            }*/
-
-            MessageBox.Show("Em Desenvolvimento!\r\nAgora que Cavalos são registrados em corridas. \r\n É necessário validar que o cavalo esteja em espera para que os dados mesmo sejam alterados.");
+                {
+                    MessageBox.Show("Cavalo Selecionado está cadastrado em uma corrida.");
+                }
+            }
         }
 
         private void button_Voltar_Click(object sender, EventArgs e)

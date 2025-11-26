@@ -26,7 +26,7 @@ namespace ApostaEmCorrida.Dapper
                 FROM CORRIDA c
                 WHERE c.StatusCorrida = @StatusCorrida";
             corridas = banco.Query<Corrida>(sql, new { StatusCorrida = statusCorrida }).ToList();
-            return new List<Corrida>(corridas);
+            return corridas;
         }
         public RetornoStatus AgendarCorrida(Corrida corrida)
         {
@@ -96,13 +96,12 @@ namespace ApostaEmCorrida.Dapper
                        cav.Peso,
                        cav.Numero_de_Corridas,
                        cav.Numero_de_Vitorias,
-                       cav.Desempenho,
                        cav.StatusCavalo
                 FROM INSCRICAO_CORRIDA ic
                 JOIN CAVALO cav ON ic.Id_Cavalo = cav.Numero_Cavalo
                 WHERE ic.Id_Corrida = @Id_Corrida";
             List<Cavalo> competidores = banco.Query<Cavalo>(sql, new { Id_Corrida = corrida.Corrida_Id }).ToList();
-            return new List<Cavalo>(competidores);
+            return competidores;
         }
 
         public RetornoStatus AtualizarDadosDaCorrida(Corrida corrida, int Numero_Voltas,double percurso,DateTime dataInicio)
@@ -211,16 +210,5 @@ namespace ApostaEmCorrida.Dapper
             List<Cavalo> cavalosNaoCadastrados = banco.Query<Cavalo>(sql, new { Status = status }).ToList();
             return new List<Cavalo>(cavalosNaoCadastrados);
         }
-        public void CadastrarFimCorrida()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void FinalizarCorrida()
-        {
-            throw new NotImplementedException();
-        }
-
-        
     }
 }

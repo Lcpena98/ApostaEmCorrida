@@ -13,11 +13,13 @@ namespace ApostaEmCorrida.Services
 {
     public class CorridaService : ICorridaService
     {
+        protected readonly ICavaloRepository _cavaloRepository;
         protected readonly ICorridaRepository _corridaRepository;
         protected readonly IVoltasRepository _voltasRepository;
 
-        public CorridaService(ICorridaRepository corridaRepository, IVoltasRepository voltasRepository)
+        public CorridaService(ICavaloRepository cavaloRepository,ICorridaRepository corridaRepository, IVoltasRepository voltasRepository)
         {
+            _cavaloRepository = cavaloRepository;
             _corridaRepository = corridaRepository;
             _voltasRepository = voltasRepository;
         }
@@ -76,14 +78,20 @@ namespace ApostaEmCorrida.Services
                         {
                             maiorTempoVolta = duracaoVolta;
                         }
-                       volta = _voltasRepository.RegistrarVolta(corridaSelecionada, cavalo, i, duracaoVolta);
-                       voltasExistentes.Add(volta);
+                        volta = _voltasRepository.RegistrarVolta(corridaSelecionada, cavalo, i, duracaoVolta);
+                        voltasExistentes.Add(volta);
                     }
-                    _voltasRepository.RegistrarTempoVolta(volta,maiorTempoVolta);
+                    _voltasRepository.RegistrarTempoVolta(volta, maiorTempoVolta);
                     tempoCorrida += maiorTempoVolta;
                 }
                 _corridaRepository.AtualizarTempoTotalCorrida(corridaSelecionada, tempoCorrida);
                 _corridaRepository.AlterarStatus(corridaSelecionada, 2);
+                List<Cavalo> naoRegistrados = _corridaRepository.BuscarCavalosNaoCadastradosEmCorrida(1);
+                foreach (Cavalo cavalo in naoRegistrados)
+                {
+                    _corridaRepository.AtualizarStatusCompetidores(cavalo, 0);
+                }
+                corridaSelecionada.CorridaStatus = CorridaStatus.Finalizada;
                 return new RetornoStatus(true, "Corrida Finalizada.");
             }
             catch (Exception ex)
@@ -92,32 +100,37 @@ namespace ApostaEmCorrida.Services
             }
         }
 
-        public void CadastrarFimCorrida()
-        {
-            /*if (casa.CorridaAtual.CorridaStatus == CorridaStatus.EmAndamento)
-            {
-                casa.CorridaAtual.DataFim = DateTime.Now;
-                casa.CorridaAtual.Duracao = casa.CorridaAtual.DataFim - casa.CorridaAtual.DataInicio;
-                casa.CorridaAtual.CorridaStatus = CorridaStatus.Finalizada;
-            }*/
-        }
-        public void FinalizarCorrida()
+        public RetornoStatus CadastrarFimCorrida(Corrida corrida)
         {
             try
             {
-                /*if (casa.CorridaAtual.CorridaStatus == CorridaStatus.EmAndamento)
+                if (corrida.CorridaStatus != CorridaStatus.Finalizada)
                 {
-                    casa.CorridaAtual.DataFim = DateTime.Now;
-                    casa.CorridaAtual.Duracao = casa.CorridaAtual.DataFim - casa.CorridaAtual.DataInicio;
-                    casa.CorridaAtual.CorridaStatus = CorridaStatus.Finalizada;
-                }*/
+                    return new RetornoStatus(false, "A corrida ainda não foi finalizada.");
+                }
+                else
+                {
+                    foreach (Cavalo cavalo in _corridaRepository.BuscarCompetidores(corrida))
+                    {
+                        TimeSpan tempoTotalCavalo = new TimeSpan();
+                        List<Voltas> voltasCavalo = _voltasRepository.BuscarVoltasPorCorridaECompetidor(corrida, cavalo);
+                        foreach (Voltas volta in voltasCavalo)
+                        {
+                            tempoTotalCavalo += volta.TempoVolta;
+                        }
+                        _voltasRepository.CadastrarFimCorrida(new ResultadoCorrida(corrida, cavalo, tempoTotalCavalo));
+                    }
+                    _voltasRepository.OrdenarCompetidores(corrida);
+                    List<ResultadoCorrida> resultadoCorrida = _voltasRepository.BuscarResultadoCorrida(corrida);
+                    _cavaloRepository.AtualizarDesempenho(resultadoCorrida);
+                    _corridaRepository.AlterarStatus(corrida, 2);
+                    return new RetornoStatus(true, "Dados Da corrida atualizados com sucesso!");
+                }
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                return new RetornoStatus(false, "Falha ao atualizar os dados!");
             }
         }
-
-
     }
 }

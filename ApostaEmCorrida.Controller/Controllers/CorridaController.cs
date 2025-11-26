@@ -40,19 +40,25 @@ namespace ApostaEmCorrida.Controller
         }
         public void AtualizarStatusCompetidores(Corrida corrida, int statusAtual, int novoStatus)
         {
-            _corridaService.AtualizarStatusCompetidores(corrida, statusAtual,novoStatus);
+            _corridaService.AtualizarStatusCompetidores(corrida, statusAtual, novoStatus);
         }
         public RetornoStatus IniciarCorrida(Corrida corridaSelecionada)
         {
-            return _corridaService.IniciarCorrida(corridaSelecionada);
-        }
-        public void CadastrarFimCorrida()
-        {
-            _corridaService.CadastrarFimCorrida();
-        }
-        public void FinalizarCorrida()
-        {
-            _corridaService.FinalizarCorrida();
+            RetornoStatus resultadoCorrida = _corridaService.IniciarCorrida(corridaSelecionada);
+            if (!resultadoCorrida.Sucesso)
+                return resultadoCorrida;
+            else
+            {
+                RetornoStatus resultadoCadastro = _corridaService.CadastrarFimCorrida(corridaSelecionada);
+                if (!resultadoCadastro.Sucesso)
+                {
+                    return resultadoCadastro;
+                }
+                else
+                {
+                    return new RetornoStatus(true, $"{resultadoCorrida.Message} | {resultadoCadastro.Message}");
+                }
+            }
         }
     }
 }

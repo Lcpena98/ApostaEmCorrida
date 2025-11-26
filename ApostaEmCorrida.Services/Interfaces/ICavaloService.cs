@@ -15,7 +15,6 @@ namespace ApostaEmCorrida.Services.Interfaces
         public RetornoDados<Cavalo> BuscarCavaloPorNumero(int numero);
         public List<Cavalo> BuscarCavalosNaoCadastradosEmCorrida(Corrida corrida);
         public RetornoDados<int> CadastrarNumero();
-        public RetornoStatus AtualizarDesempenho(List<Cavalo> cavalos, Cavalo primeiroLugar, Cavalo segundoLugar, Cavalo terceiroLugar);
         public RetornoStatus AlterarDadosCavalo(string novoNome, string novaRaca, double novaAltura, double novoPeso, int numero);
         public RetornoStatus RemoverCavalo(int numero);
     }

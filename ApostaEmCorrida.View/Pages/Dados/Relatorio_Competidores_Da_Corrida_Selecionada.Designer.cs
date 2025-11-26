@@ -1,6 +1,6 @@
 ﻿namespace ApostaEmCorrida.View.Pages.Dados
 {
-    partial class Relatorio_Corridas_Finalizadas
+    partial class Relatorio_Competidores_Da_Corrida_Selecionada
     {
         /// <summary>
         /// Required designer variable.
@@ -29,44 +29,32 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            button_Mais_Info = new Button();
-            dataGridView_Corridas_Finalizadas = new DataGridView();
+            dataGridView_Competidores = new DataGridView();
             button_Voltar = new Button();
             panel2 = new Panel();
             label1 = new Label();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView_Corridas_Finalizadas).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView_Competidores).BeginInit();
             panel2.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
-            panel1.Controls.Add(button_Mais_Info);
-            panel1.Controls.Add(dataGridView_Corridas_Finalizadas);
+            panel1.Controls.Add(dataGridView_Competidores);
             panel1.Controls.Add(button_Voltar);
             panel1.Controls.Add(panel2);
-            panel1.Location = new Point(1, 2);
+            panel1.Location = new Point(1, 1);
             panel1.Name = "panel1";
             panel1.Size = new Size(957, 582);
             panel1.TabIndex = 3;
             // 
-            // button_Mais_Info
+            // dataGridView_Competidores
             // 
-            button_Mais_Info.Location = new Point(358, 509);
-            button_Mais_Info.Name = "button_Mais_Info";
-            button_Mais_Info.Size = new Size(222, 23);
-            button_Mais_Info.TabIndex = 9;
-            button_Mais_Info.Text = "Mais Imformações";
-            button_Mais_Info.UseVisualStyleBackColor = true;
-            button_Mais_Info.Click += button_Mais_Info_Click;
-            // 
-            // dataGridView_Corridas_Finalizadas
-            // 
-            dataGridView_Corridas_Finalizadas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView_Corridas_Finalizadas.Location = new Point(84, 70);
-            dataGridView_Corridas_Finalizadas.Name = "dataGridView_Corridas_Finalizadas";
-            dataGridView_Corridas_Finalizadas.Size = new Size(756, 423);
-            dataGridView_Corridas_Finalizadas.TabIndex = 8;
+            dataGridView_Competidores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView_Competidores.Location = new Point(3, 61);
+            dataGridView_Competidores.Name = "dataGridView_Competidores";
+            dataGridView_Competidores.Size = new Size(951, 469);
+            dataGridView_Competidores.TabIndex = 8;
             // 
             // button_Voltar
             // 
@@ -90,23 +78,23 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(335, 10);
+            label1.Location = new Point(373, 11);
             label1.Name = "label1";
-            label1.Size = new Size(242, 32);
+            label1.Size = new Size(174, 32);
             label1.TabIndex = 0;
-            label1.Text = "Corridas Finalizadas";
+            label1.Text = "Competidores";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // Relatorio_Corridas_Finalizadas
+            // Relatorio_Competidores_Da_Corrida_Selecionada
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(959, 586);
+            ClientSize = new Size(961, 584);
             Controls.Add(panel1);
-            Name = "Relatorio_Corridas_Finalizadas";
-            Text = "Relatorio_Corridas_Finalizadas";
+            Name = "Relatorio_Competidores_Da_Corrida_Selecionada";
+            Text = "Relatorio_Competidores_Da_Corrida_Selecionada";
             panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView_Corridas_Finalizadas).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView_Competidores).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ResumeLayout(false);
@@ -115,10 +103,9 @@
         #endregion
 
         private Panel panel1;
-        private DataGridView dataGridView_Corridas_Finalizadas;
+        private DataGridView dataGridView_Competidores;
         private Button button_Voltar;
         private Panel panel2;
         private Label label1;
-        private Button button_Mais_Info;
     }
 }

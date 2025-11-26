@@ -17,12 +17,11 @@ namespace ApostaEmCorrida.Domain
         public double Peso { get; set; }
         public int Numero_de_Corridas { get; protected set; }
         public int Numero_de_Vitorias { get; protected set; }
-        public double Desempenho { get; protected set; }
 
         public StatusCavalo StatusCavalo { get; set; }
 
         public Cavalo() { }
-        public Cavalo(int numero, string nome, string raca ,double altura, double peso, int numero_de_Corridas, int numero_de_Vitorias, double desempenho,StatusCavalo statusCavalo)
+        public Cavalo(int numero, string nome, string raca ,double altura, double peso, int numero_de_Corridas, int numero_de_Vitorias,StatusCavalo statusCavalo)
         {
             Numero_Cavalo = numero;
             Nome = nome;
@@ -31,7 +30,6 @@ namespace ApostaEmCorrida.Domain
             Peso = peso;
             Numero_de_Corridas = numero_de_Corridas;
             Numero_de_Vitorias = numero_de_Vitorias;
-            Desempenho = desempenho;
             StatusCavalo = statusCavalo;
         }
 
@@ -39,37 +37,5 @@ namespace ApostaEmCorrida.Domain
         {
             return $"{Nome} - {Numero_Cavalo}";
         }
-
-
-
-        //Função que atualiza os dados dos Cavalos
-        public void AtualizarDesempenho(List<Cavalo> cavalos, Cavalo primeiroLugar, Cavalo segundoLugar, Cavalo terceiroLugar)
-        {
-            {
-                foreach (Cavalo cavalo in cavalos)
-                {
-                    cavalo.Numero_de_Corridas += 1;
-                    if (cavalo == primeiroLugar)
-                    {
-                        cavalo.Numero_de_Vitorias += 1;
-                        cavalo.StatusCavalo = StatusCavalo.PrimeiroLugar;
-                    }
-                    else if (cavalo == segundoLugar)
-                    {
-                        cavalo.StatusCavalo = StatusCavalo.SegundoLugar;
-                    }
-                    else if(cavalo == terceiroLugar)
-                    {
-                        cavalo.StatusCavalo = StatusCavalo.TerceiroLugar;
-                    }
-                    else
-                    {
-                        cavalo.StatusCavalo = StatusCavalo.Perdedor;
-                    }
-                    cavalo.Desempenho = (cavalo.Numero_de_Vitorias * 100) / cavalo.Numero_de_Corridas;
-                }
-            }
-        }
-
     }
 }

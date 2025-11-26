@@ -33,10 +33,6 @@ namespace ApostaEmCorrida.Controller
         {
             return _cavaloService.CadastrarNumero();
         }
-        public RetornoStatus AtualizarDesempenho(List<Cavalo> cavalos, Cavalo primeiroLugar, Cavalo segundoLugar, Cavalo terceiroLugar)
-        {
-            return _cavaloService.AtualizarDesempenho(cavalos, primeiroLugar, segundoLugar, terceiroLugar);
-        }
         public RetornoStatus AlterarDadosCavalo(string novoNome, string novaRaca, double novaAltura, double novoPeso, int numero)
         {
             return _cavaloService.AlterarDadosCavalo(novoNome, novaRaca, novaAltura, novoPeso, numero);

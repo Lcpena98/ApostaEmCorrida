@@ -63,8 +63,8 @@ namespace ApostaEmCorrida.Dapper
         {
             try
             {
-                string query = @"INSERT INTO CAVALO (Nome, Raca, Altura, Peso, Numero_Cavalo, Numero_de_Corridas, Numero_de_Vitorias, Desempenho,StatusCavalo) 
-                             VALUES (@Nome, @Raca, @Altura, @Peso, @Numero_Cavalo, 0, 0, 100,0)";
+                string query = @"INSERT INTO CAVALO (Nome, Raca, Altura, Peso, Numero_Cavalo, Numero_de_Corridas, Numero_de_Vitorias,StatusCavalo) 
+                             VALUES (@Nome, @Raca, @Altura, @Peso, @Numero_Cavalo, 0, 0,0)";
                 banco.Execute(query, new { Nome = nome, Raca = raca, Altura = altura, Peso = peso, Numero_Cavalo = numero });
                 return new RetornoStatus(true, $"Cavalo cadastrado com sucesso!\n {nome} - {numero}");
             }
@@ -73,9 +73,35 @@ namespace ApostaEmCorrida.Dapper
                 return new RetornoStatus(false, $"Erro ao cadastrar cavalo: {ex.Message}");
             }
         }
-        public RetornoStatus AtualizarDesempenho(List<Cavalo> cavalos, Cavalo primeiroLugar, Cavalo segundoLugar, Cavalo terceiroLugar)
+        public RetornoStatus AtualizarDesempenho(List<ResultadoCorrida> resultado)
         {
-            throw new NotImplementedException();
+            try
+            {
+                foreach (ResultadoCorrida res in resultado)
+                {
+                    if (res.Posicao == 1)
+                    {
+                        string queryVitoria = @"UPDATE CAVALO 
+                                 SET Numero_de_Corridas += 1, 
+                                     Numero_de_Vitorias += 1
+                                 WHERE Numero_Cavalo = @Numero_Cavalo";
+                        banco.Execute(queryVitoria, new { Numero_Cavalo = res.Corredor.Numero_Cavalo });
+                    }
+                    else
+                    {
+                        string queryDerrota = @"UPDATE CAVALO 
+                                 SET Numero_de_Corridas += 1
+                                 WHERE Numero_Cavalo = @Numero_Cavalo";
+                        banco.Execute(queryDerrota, new { Numero_Cavalo = res.Corredor.Numero_Cavalo });
+                        
+                        }
+                    }
+                return new RetornoStatus(true, $"Desempenho dos cavalos atualizados com sucesso!");
+            }
+            catch (Exception ex)
+            {
+                return new RetornoStatus(false, $"Erro ao atualizar desempenho dos cavalos!");
+            }
         }
 
         public RetornoStatus AlterarDadosCavalo(string novoNome, string novaRaca, double novaAltura, double novoPeso, int numero)

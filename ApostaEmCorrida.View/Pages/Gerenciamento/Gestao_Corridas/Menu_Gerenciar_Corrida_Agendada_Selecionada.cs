@@ -31,7 +31,7 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Corridas
         {
             InitializeComponent();
             _cavaloController = new CavaloController(new CavaloService(new CavaloRepository()));
-            _corridaController = new CorridaController(new CorridaService(new CorridaRepository(), new VoltasRepository()));
+            _corridaController = new CorridaController(new CorridaService(new CavaloRepository(), new CorridaRepository(), new VoltasRepository()));
             _menu_Corridas_Agendadas = menu_Corridas_Agendadas;
             _corrida_selecionada = corrida_selecionada;
             distancia = corrida_selecionada.Percurso;

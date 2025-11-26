@@ -25,7 +25,7 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Corridas
         {
             InitializeComponent();
             _menu_Gerenciar_Corridas = menu_Gerenciar_Corridas;
-            _corridaController = new CorridaController(new CorridaService(new CorridaRepository(),new VoltasRepository()));
+            _corridaController = new CorridaController(new CorridaService(new CavaloRepository(), new CorridaRepository(),new VoltasRepository()));
             corridas_Agendadas = _corridaController.BuscarCorridasPorStatus(0);
             corridas_Em_Andamento = _corridaController.BuscarCorridasPorStatus(1);
 
@@ -35,8 +35,7 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Corridas
             /*
              IDEIA DE IMPLEMENTAÇÃO FUTURA
 
-            . Criar botões para "Finalizar Corrida" e "Ver Detalhes da Corrida"
-            . Usar o método Random em cada cavalo para determinar o desempenho em cada volta e preencher a tabela de Voltas
+            . Criar botões para "Ver Detalhes da Corrida"
             . Calcular o tempo total de cada cavalo e determinar a ordem de chegada
             . Validar os vencedores e posições e preencher os dados na tabela de Resultados
             . Atualizar o status da corrida para "Finalizada"
@@ -131,73 +130,3 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Corridas
         }
     }
 }
-/*  
-        public Menu_Registro_Aposta(Menu_Apostador menu_Apostador, Apostador apostador)
-        {
-            
-            
-        }
-        private void TextBox_Valor_Apostado_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Permitir controle (backspace)
-            if (!char.IsControl(e.KeyChar)
-                && !char.IsDigit(e.KeyChar)
-                && e.KeyChar != '.')
-            {
-                e.Handled = true;
-            }
-
-            // Permitir apenas uma vírgula ou ponto
-            TextBox txt = sender as TextBox;
-            if ((e.KeyChar == '.') && (txt.Text.Contains(".")))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void button_Selecionar_Corrida_Click(object sender, EventArgs e)
-        {
-            corridaSelecionada = dataGridView_Corridas.SelectedRows[0].DataBoundItem as Corrida;
-            List<Cavalo> cavalosNaCorrida = _corridaController.BuscarCompetidores(corridaSelecionada);
-            foreach (Cavalo cavalo in cavalosNaCorrida)
-            {
-                comboBox_Cavalo.Items.Add(cavalo);
-            }
-            comboBox_Cavalo.Text = string.Empty;
-            comboBox_Cavalo.SelectedItem = -1;
-        }
-
-        private void button_Registrar_Click(object sender, EventArgs e)
-        {
-            if (corridaSelecionada == null)
-            {
-                MessageBox.Show("Selecione uma corrida para apostar.");
-            }
-            else if (comboBox_Cavalo.SelectedItem == null)
-            {
-                MessageBox.Show("Selecione um cavalo para apostar.");
-            }
-            else if (string.IsNullOrEmpty(textBox_Valor_Apostado.Text))
-            {
-                MessageBox.Show("Insira um valor para apostar.");
-            }
-            else
-            {
-                Cavalo cavaloSelecionado = comboBox_Cavalo.SelectedItem as Cavalo;
-                double valorApostado = Convert.ToDouble(textBox_Valor_Apostado.Text);
-                RetornoStatus retorno = _apostaController.RegistrarAposta(corridaSelecionada, cavaloSelecionado.Numero_Cavalo, _apostador.Numero, valorApostado);
-                comboBox_Cavalo.Items.Clear();
-                comboBox_Cavalo.Text = string.Empty;
-                comboBox_Cavalo.SelectedItem = -1;
-                textBox_Valor_Apostado.Text = "";
-                MessageBox.Show(retorno.Message);
-            }
-        }
-        private void button_Voltar_Click(object sender, EventArgs e)
-        {
-            _menu_Apostador.Show();
-            this.Close();
-        }
-    }
-}
-*/

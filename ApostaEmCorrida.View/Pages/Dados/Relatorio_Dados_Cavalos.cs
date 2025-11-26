@@ -28,7 +28,7 @@ namespace ApostaEmCorrida.View.Pages.Dados
             dataGridView_Cavalos.MultiSelect = false;
             dataGridView_Cavalos.ReadOnly = true;
         }
-
+        
         private void button_Sair_Click(object sender, EventArgs e)
         {
             _menu_Inicial.Show();
