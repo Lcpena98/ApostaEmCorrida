@@ -31,23 +31,26 @@
             panel7 = new Panel();
             button_voltar = new Button();
             panel8 = new Panel();
+            button_Saldo = new Button();
             button_Cadastrar_Aposta = new Button();
             panel9 = new Panel();
             button_alterar_dados = new Button();
             button_trocar_senha = new Button();
             panel10 = new Panel();
             label2 = new Label();
-            button_Saldo = new Button();
+            panel1 = new Panel();
+            button_Minhas_Apostas = new Button();
             panel7.SuspendLayout();
             panel8.SuspendLayout();
             panel9.SuspendLayout();
             panel10.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel7
             // 
             panel7.Controls.Add(button_voltar);
-            panel7.Location = new Point(6, 195);
+            panel7.Location = new Point(9, 255);
             panel7.Name = "panel7";
             panel7.Size = new Size(343, 60);
             panel7.TabIndex = 23;
@@ -64,12 +67,22 @@
             // 
             // panel8
             // 
-            panel8.Controls.Add(button_Saldo);
             panel8.Controls.Add(button_Cadastrar_Aposta);
+            panel8.Controls.Add(button_Minhas_Apostas);
             panel8.Location = new Point(6, 135);
             panel8.Name = "panel8";
             panel8.Size = new Size(343, 54);
             panel8.TabIndex = 22;
+            // 
+            // button_Saldo
+            // 
+            button_Saldo.Location = new Point(65, 14);
+            button_Saldo.Name = "button_Saldo";
+            button_Saldo.Size = new Size(216, 28);
+            button_Saldo.TabIndex = 10;
+            button_Saldo.Text = "Gerenciar_Saldo";
+            button_Saldo.UseVisualStyleBackColor = true;
+            button_Saldo.Click += button_Saldo_Click;
             // 
             // button_Cadastrar_Aposta
             // 
@@ -129,21 +142,30 @@
             label2.Text = "Apostador";
             label2.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // button_Saldo
+            // panel1
             // 
-            button_Saldo.Location = new Point(176, 14);
-            button_Saldo.Name = "button_Saldo";
-            button_Saldo.Size = new Size(131, 28);
-            button_Saldo.TabIndex = 10;
-            button_Saldo.Text = "Gerenciar_Saldo";
-            button_Saldo.UseVisualStyleBackColor = true;
-            button_Saldo.Click += button_Saldo_Click;
+            panel1.Controls.Add(button_Saldo);
+            panel1.Location = new Point(6, 195);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(343, 54);
+            panel1.TabIndex = 24;
+            // 
+            // button_Minhas_Apostas
+            // 
+            button_Minhas_Apostas.Location = new Point(176, 14);
+            button_Minhas_Apostas.Name = "button_Minhas_Apostas";
+            button_Minhas_Apostas.Size = new Size(131, 28);
+            button_Minhas_Apostas.TabIndex = 9;
+            button_Minhas_Apostas.Text = "Minhas Apostas";
+            button_Minhas_Apostas.UseVisualStyleBackColor = true;
+            button_Minhas_Apostas.Click += button_Minhas_Apostas_Click;
             // 
             // Menu_Apostador
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(352, 268);
+            ClientSize = new Size(352, 317);
+            Controls.Add(panel1);
             Controls.Add(panel7);
             Controls.Add(panel8);
             Controls.Add(panel9);
@@ -155,6 +177,7 @@
             panel9.ResumeLayout(false);
             panel10.ResumeLayout(false);
             panel10.PerformLayout();
+            panel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -170,5 +193,7 @@
         private Panel panel10;
         private Label label2;
         private Button button_Saldo;
+        private Button button_Minhas_Apostas;
+        private Panel panel1;
     }
 }

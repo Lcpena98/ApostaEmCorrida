@@ -31,7 +31,6 @@
             panel1 = new Panel();
             label1 = new Label();
             panel3 = new Panel();
-            resultado_Exclusao = new Label();
             comboBox_Cavalos = new ComboBox();
             button_Excluir_Cavalo = new Button();
             panel4 = new Panel();
@@ -62,26 +61,12 @@
             // 
             // panel3
             // 
-            panel3.Controls.Add(resultado_Exclusao);
             panel3.Controls.Add(comboBox_Cavalos);
             panel3.Controls.Add(button_Excluir_Cavalo);
             panel3.Location = new Point(3, 66);
             panel3.Name = "panel3";
-            panel3.Size = new Size(250, 189);
+            panel3.Size = new Size(250, 107);
             panel3.TabIndex = 3;
-            // 
-            // resultado_Exclusao
-            // 
-            resultado_Exclusao.AutoSize = true;
-            resultado_Exclusao.BorderStyle = BorderStyle.Fixed3D;
-            resultado_Exclusao.Location = new Point(3, 112);
-            resultado_Exclusao.MaximumSize = new Size(240, 60);
-            resultado_Exclusao.MinimumSize = new Size(240, 60);
-            resultado_Exclusao.Name = "resultado_Exclusao";
-            resultado_Exclusao.Size = new Size(240, 60);
-            resultado_Exclusao.TabIndex = 14;
-            resultado_Exclusao.TextAlign = ContentAlignment.MiddleCenter;
-            resultado_Exclusao.Visible = false;
             // 
             // comboBox_Cavalos
             // 
@@ -104,7 +89,7 @@
             // panel4
             // 
             panel4.Controls.Add(button_Voltar);
-            panel4.Location = new Point(3, 261);
+            panel4.Location = new Point(3, 179);
             panel4.Name = "panel4";
             panel4.Size = new Size(250, 60);
             panel4.TabIndex = 4;
@@ -123,7 +108,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(256, 321);
+            ClientSize = new Size(256, 243);
             Controls.Add(panel4);
             Controls.Add(panel3);
             Controls.Add(panel1);
@@ -132,7 +117,6 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel3.ResumeLayout(false);
-            panel3.PerformLayout();
             panel4.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -142,7 +126,6 @@
         private Panel panel1;
         private Label label1;
         private Panel panel3;
-        private Label resultado_Exclusao;
         private ComboBox comboBox_Cavalos;
         private Button button_Excluir_Cavalo;
         private Panel panel4;

@@ -42,7 +42,7 @@ namespace ApostaEmCorrida.View.Pages
             corridas_Em_Andamento = _corridaController.BuscarCorridasPorStatus(1);
             MessageBox.Show("Bem-vindo ao sistema de gerenciamento de corridas de cavalos!");
             MessageBox.Show($"Feito o processo de rotação das corridas\r\nMas ainda é preciso validar as apostas.");
-            MessageBox.Show("Ainda é necessário configurar o saldo dos apostadores!");
+            MessageBox.Show("Ainda é necessário configurar o saldo dos apostadores!, Também o cadastro não valida se o e-mail está cadastrado, é preciso validar");
             MessageBox.Show("Próximo Passo!\n\r Iniciar a validação das apostas");
         }
 

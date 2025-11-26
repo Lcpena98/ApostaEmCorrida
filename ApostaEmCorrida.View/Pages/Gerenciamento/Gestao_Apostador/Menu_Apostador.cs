@@ -42,7 +42,10 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Apostador
             _menu_Registro_Aposta.Show();
             this.Hide();
         }
-
+        private void button_Minhas_Apostas_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Função Em Desenvolvimento.");
+        }
         private void button_Saldo_Click(object sender, EventArgs e)
         {
             MessageBox.Show($"Seu saldo atual é: R$ {_apostador.Saldo:F2}");

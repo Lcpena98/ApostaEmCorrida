@@ -35,6 +35,7 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Apostador
             }
             else
             {
+                MessageBox.Show("Ainda é necessário configurar o cadastro não valida se o e-mail Já está cadastrado, é preciso validar");
                 RetornoDados<Apostador> retornoApostador = _apostadorController.BuscarApostadorPorEmail(textBox_EmailApostador.Text);
                 if (retornoApostador.Sucesso)
                 {

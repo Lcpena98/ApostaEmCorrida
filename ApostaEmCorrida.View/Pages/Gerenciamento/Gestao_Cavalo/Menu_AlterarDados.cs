@@ -67,35 +67,40 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Cavalo
                 double pesoCavalo;
                 if (cavalo.StatusCavalo == StatusCavalo.EmEspera)
                 {
-                    if (string.IsNullOrEmpty(textBox_NomeCavalo.Text))
-                        nomeCavalo = cavalo.Nome;
+                    var result = MessageBox.Show("Tem Certeza que deseja excluir o cavalo selecionado?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (result == DialogResult.No)
+                        return;
                     else
-                        nomeCavalo = textBox_NomeCavalo.Text.ToString();
+                    {
+                        if (string.IsNullOrEmpty(textBox_NomeCavalo.Text))
+                            nomeCavalo = cavalo.Nome;
+                        else
+                            nomeCavalo = textBox_NomeCavalo.Text.ToString();
 
-                    if (string.IsNullOrEmpty(textBox_Raca.Text))
-                        racaCavalo = cavalo.Raca.ToString();
-                    else
-                        racaCavalo = textBox_Raca.Text;
+                        if (string.IsNullOrEmpty(textBox_Raca.Text))
+                            racaCavalo = cavalo.Raca.ToString();
+                        else
+                            racaCavalo = textBox_Raca.Text;
 
-                    if (string.IsNullOrEmpty(textBox_PesoCavalo.Text))
-                        pesoCavalo = cavalo.Peso;
-                    else
-                        pesoCavalo = double.Parse(textBox_PesoCavalo.Text);
+                        if (string.IsNullOrEmpty(textBox_PesoCavalo.Text))
+                            pesoCavalo = cavalo.Peso;
+                        else
+                            pesoCavalo = double.Parse(textBox_PesoCavalo.Text);
 
-                    if (string.IsNullOrEmpty(textBox_AlturaCavalo.Text))
-                        alturaCavalo = cavalo.Altura;
-                    else
-                        alturaCavalo = double.Parse(textBox_AlturaCavalo.Text);
+                        if (string.IsNullOrEmpty(textBox_AlturaCavalo.Text))
+                            alturaCavalo = cavalo.Altura;
+                        else
+                            alturaCavalo = double.Parse(textBox_AlturaCavalo.Text);
 
-                    RetornoStatus retornoStatus = _cavaloController.AlterarDadosCavalo(nomeCavalo, racaCavalo, alturaCavalo, pesoCavalo, cavalo.Numero_Cavalo);
-                    resultado_Alteracao.Text = retornoStatus.Message;
-                    resultado_Alteracao.Visible = true;
-                    comboBox_Cavalos.SelectedIndex = 0;
-                    comboBox_Cavalos.Text = string.Empty;
-                    textBox_NomeCavalo.Text = string.Empty;
-                    textBox_AlturaCavalo.Text = string.Empty;
-                    textBox_Raca.Text = string.Empty;
-                    textBox_PesoCavalo.Text = string.Empty;
+                        RetornoStatus retornoStatus = _cavaloController.AlterarDadosCavalo(nomeCavalo, racaCavalo, alturaCavalo, pesoCavalo, cavalo.Numero_Cavalo);
+                        comboBox_Cavalos.SelectedIndex = 0;
+                        comboBox_Cavalos.Text = string.Empty;
+                        textBox_NomeCavalo.Text = string.Empty;
+                        textBox_AlturaCavalo.Text = string.Empty;
+                        textBox_Raca.Text = string.Empty;
+                        textBox_PesoCavalo.Text = string.Empty;
+                        MessageBox.Show("Dados Alterados com sucesso!.");
+                    }
                 }
 
                 else

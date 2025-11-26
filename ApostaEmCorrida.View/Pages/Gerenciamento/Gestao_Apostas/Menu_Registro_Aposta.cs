@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -34,8 +35,8 @@ namespace ApostaEmCorrida.View.Pages
             _menu_Apostador = menu_Apostador;
             _apostador = apostador;
             _cavaloController = new CavaloController(new CavaloService(new CavaloRepository()));
-            _corridaController = new CorridaController(new CorridaService(new CavaloRepository(), new CorridaRepository(),new VoltasRepository()));
-            _apostaController = new ApostaController(new ApostaService(new ApostaRepository(),new CorridaRepository()));
+            _corridaController = new CorridaController(new CorridaService(new CavaloRepository(), new CorridaRepository(), new VoltasRepository()));
+            _apostaController = new ApostaController(new ApostaService(new ApostaRepository(), new CorridaRepository()));
             label_Dados_Usuario.Text = $"{_apostador.Nome.ToString()} - {_apostador.Numero.ToString()}";
 
             dataGridView_Corridas.DataSource = null;
@@ -97,7 +98,8 @@ namespace ApostaEmCorrida.View.Pages
 
         private void button_Registrar_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Ainda é necessário fazer o controle de saldo com o valor apostado");
+
+
             if (corridaSelecionada == null)
             {
                 MessageBox.Show("Selecione uma corrida para apostar.");
@@ -114,12 +116,19 @@ namespace ApostaEmCorrida.View.Pages
             {
                 Cavalo cavaloSelecionado = comboBox_Cavalo.SelectedItem as Cavalo;
                 double valorApostado = Convert.ToDouble(textBox_Valor_Apostado.Text);
-                RetornoStatus retorno = _apostaController.RegistrarAposta(corridaSelecionada, cavaloSelecionado.Numero_Cavalo, _apostador.Numero, valorApostado);
-                comboBox_Cavalo.Items.Clear();
-                comboBox_Cavalo.Text = string.Empty;
-                comboBox_Cavalo.SelectedItem = -1;
-                textBox_Valor_Apostado.Text = "";
-                MessageBox.Show(retorno.Message);
+                if (_apostador.Saldo < valorApostado)
+                {
+                    MessageBox.Show("Saldo insuficiente para realizar a aposta.");
+                }
+                else
+                {
+                    RetornoStatus retorno = _apostaController.RegistrarAposta(corridaSelecionada, cavaloSelecionado.Numero_Cavalo, _apostador.Numero, valorApostado);
+                    comboBox_Cavalo.Items.Clear();
+                    comboBox_Cavalo.Text = string.Empty;
+                    comboBox_Cavalo.SelectedItem = -1;
+                    textBox_Valor_Apostado.Text = "";
+                    MessageBox.Show(retorno.Message);
+                }
             }
         }
         private void button_Voltar_Click(object sender, EventArgs e)

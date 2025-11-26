@@ -46,20 +46,24 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Cavalo
                 Cavalo cavaloSelecionado = (Cavalo)comboBox_Cavalos.SelectedItem;
                 if (cavaloSelecionado.StatusCavalo == StatusCavalo.EmEspera)
                 {
-                    int numeroCavalo = cavaloSelecionado.Numero_Cavalo;
-                    RetornoStatus retornoExclusao = _cavaloController.RemoverCavalo(numeroCavalo);
-                    if (retornoExclusao.Sucesso)
-                    {
-                        resultado_Exclusao.Text = retornoExclusao.Message;
-                        resultado_Exclusao.Visible = true;
-                        comboBox_Cavalos.Items.Remove(cavaloSelecionado);
-                        comboBox_Cavalos.SelectedIndex = -1;
-                        comboBox_Cavalos.Text = string.Empty;
-                    }
+                    var result = MessageBox.Show("Tem Certeza que deseja excluir o cavalo selecionado?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (result == DialogResult.No)
+                        return;
                     else
                     {
-                        resultado_Exclusao.Text = retornoExclusao.Message;
-                        resultado_Exclusao.Visible = true;
+                        int numeroCavalo = cavaloSelecionado.Numero_Cavalo;
+                        RetornoStatus retornoExclusao = _cavaloController.RemoverCavalo(numeroCavalo);
+                        if (retornoExclusao.Sucesso)
+                        {
+                            comboBox_Cavalos.Items.Remove(cavaloSelecionado);
+                            comboBox_Cavalos.SelectedIndex = -1;
+                            comboBox_Cavalos.Text = string.Empty;
+                            MessageBox.Show(retornoExclusao.Message);
+                        }
+                        else
+                        {
+                            MessageBox.Show(retornoExclusao.Message);
+                        }
                     }
                 }
                 else
@@ -69,8 +73,7 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Cavalo
             }
             else
             {
-                resultado_Exclusao.Text = "Nenhum cavalo disponível para exclusão.";
-                resultado_Exclusao.Visible = true;
+                MessageBox.Show("Nenhum cavalo disponível para exclusão.");
             }
         }
 

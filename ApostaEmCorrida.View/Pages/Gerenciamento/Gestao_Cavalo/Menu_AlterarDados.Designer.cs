@@ -39,7 +39,6 @@
             textBox_Raca = new TextBox();
             label5 = new Label();
             panel7 = new Panel();
-            resultado_Alteracao = new Label();
             button_Alterar = new Button();
             panel5 = new Panel();
             textBox_PesoCavalo = new TextBox();
@@ -72,7 +71,7 @@
             panel1.Controls.Add(panel3);
             panel1.Location = new Point(2, 1);
             panel1.Name = "panel1";
-            panel1.Size = new Size(263, 447);
+            panel1.Size = new Size(263, 380);
             panel1.TabIndex = 1;
             // 
             // panel2
@@ -116,7 +115,7 @@
             // panel8
             // 
             panel8.Controls.Add(button_Voltar);
-            panel8.Location = new Point(0, 401);
+            panel8.Location = new Point(4, 336);
             panel8.Name = "panel8";
             panel8.Size = new Size(256, 41);
             panel8.TabIndex = 2;
@@ -158,25 +157,11 @@
             // 
             // panel7
             // 
-            panel7.Controls.Add(resultado_Alteracao);
             panel7.Controls.Add(button_Alterar);
             panel7.Location = new Point(3, 289);
             panel7.Name = "panel7";
-            panel7.Size = new Size(256, 106);
+            panel7.Size = new Size(256, 41);
             panel7.TabIndex = 5;
-            // 
-            // resultado_Alteracao
-            // 
-            resultado_Alteracao.AutoSize = true;
-            resultado_Alteracao.BorderStyle = BorderStyle.Fixed3D;
-            resultado_Alteracao.Location = new Point(12, 29);
-            resultado_Alteracao.MaximumSize = new Size(240, 60);
-            resultado_Alteracao.MinimumSize = new Size(240, 60);
-            resultado_Alteracao.Name = "resultado_Alteracao";
-            resultado_Alteracao.Size = new Size(240, 60);
-            resultado_Alteracao.TabIndex = 1;
-            resultado_Alteracao.TextAlign = ContentAlignment.MiddleCenter;
-            resultado_Alteracao.Visible = false;
             // 
             // button_Alterar
             // 
@@ -267,7 +252,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(269, 450);
+            ClientSize = new Size(269, 384);
             Controls.Add(panel1);
             Name = "Menu_AlterarDados";
             Text = "Menu_AlterarDados";
@@ -279,7 +264,6 @@
             panel9.ResumeLayout(false);
             panel9.PerformLayout();
             panel7.ResumeLayout(false);
-            panel7.PerformLayout();
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
             panel4.ResumeLayout(false);
