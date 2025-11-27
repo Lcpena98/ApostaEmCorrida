@@ -12,6 +12,7 @@ namespace ApostaEmCorrida.Dapper.Interfaces
     {
         public RetornoStatus AgendarCorrida(Corrida corrida);
         public List<Corrida> BuscarCorridasPorStatus(int status);
+        public Corrida BuscarCorridaPorId(int corridaId);
         public List<Cavalo> BuscarCompetidores(Corrida corrida);
         public RetornoStatus CadastrarParticipantes(Corrida corrida, List<Cavalo> competidores);
         public RetornoStatus AtualizarDadosDaCorrida(Corrida corrida, int Numero_Voltas, double percurso, DateTime dataInicio);
@@ -21,5 +22,6 @@ namespace ApostaEmCorrida.Dapper.Interfaces
         public void AtualizarTempoTotalCorrida(Corrida corridaSelecionada,TimeSpan tempoCorrida);
         public List<Cavalo> BuscarCavalosNaoCadastradosEmCorrida(int status);
         public List<ResultadoCorrida> BuscarResultadosDaCorrida(Corrida corrida);
+        public double BuscarValorTotalApostadoNaCorrida(Corrida corrida);
     }
 }

@@ -25,7 +25,6 @@ namespace ApostaEmCorrida.View.Pages
     {
         Menu_Apostador _menu_Apostador;
         Apostador _apostador;
-        CavaloController _cavaloController;
         ApostaController _apostaController;
         CorridaController _corridaController;
         Corrida corridaSelecionada = new Corrida();
@@ -33,10 +32,8 @@ namespace ApostaEmCorrida.View.Pages
         {
             InitializeComponent();
             _menu_Apostador = menu_Apostador;
-            _apostador = apostador;
-            _cavaloController = new CavaloController(new CavaloService(new CavaloRepository()));
-            _corridaController = new CorridaController(new CorridaService(new CavaloRepository(), new CorridaRepository(), new VoltasRepository()));
-            _apostaController = new ApostaController(new ApostaService(new ApostaRepository(), new CorridaRepository()));
+            _apostador = apostador;_corridaController = new CorridaController(new CorridaService(new CavaloRepository(), new CorridaRepository(), new VoltasRepository(), new ApostaRepository(), new ApostadorRepository()));
+            _apostaController = new ApostaController(new ApostaService(new ApostaRepository(), new ApostadorRepository(), new CorridaRepository()));
             label_Dados_Usuario.Text = $"{_apostador.Nome.ToString()} - {_apostador.Numero.ToString()}";
 
             dataGridView_Corridas.DataSource = null;

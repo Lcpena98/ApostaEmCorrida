@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            panel2 = new Panel();
+            button_Iniciar_Corrida = new Button();
+            button_Editar_Corrida = new Button();
             dataGridView_Corridas_Em_Andamento = new DataGridView();
             dataGridView_Corridas_Agendadas = new DataGridView();
             panel7 = new Panel();
@@ -37,16 +40,13 @@
             label1 = new Label();
             panel10 = new Panel();
             label2 = new Label();
-            button_Editar_Corrida = new Button();
-            panel2 = new Panel();
-            button_Iniciar_Corrida = new Button();
             panel1.SuspendLayout();
+            panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView_Corridas_Em_Andamento).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView_Corridas_Agendadas).BeginInit();
             panel7.SuspendLayout();
             panel3.SuspendLayout();
             panel10.SuspendLayout();
-            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -61,6 +61,35 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(724, 449);
             panel1.TabIndex = 0;
+            // 
+            // panel2
+            // 
+            panel2.Controls.Add(button_Iniciar_Corrida);
+            panel2.Controls.Add(button_Editar_Corrida);
+            panel2.Location = new Point(12, 232);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(718, 60);
+            panel2.TabIndex = 32;
+            // 
+            // button_Iniciar_Corrida
+            // 
+            button_Iniciar_Corrida.Location = new Point(374, 20);
+            button_Iniciar_Corrida.Name = "button_Iniciar_Corrida";
+            button_Iniciar_Corrida.Size = new Size(307, 23);
+            button_Iniciar_Corrida.TabIndex = 37;
+            button_Iniciar_Corrida.Text = "Iniciar Corrida Em Andamento";
+            button_Iniciar_Corrida.UseVisualStyleBackColor = true;
+            button_Iniciar_Corrida.Click += button_Iniciar_Corrida_Click;
+            // 
+            // button_Editar_Corrida
+            // 
+            button_Editar_Corrida.Location = new Point(9, 20);
+            button_Editar_Corrida.Name = "button_Editar_Corrida";
+            button_Editar_Corrida.Size = new Size(307, 23);
+            button_Editar_Corrida.TabIndex = 36;
+            button_Editar_Corrida.Text = "Editar Corrida Agendada";
+            button_Editar_Corrida.UseVisualStyleBackColor = true;
+            button_Editar_Corrida.Click += button_Editar_Corrida_Click;
             // 
             // dataGridView_Corridas_Em_Andamento
             // 
@@ -134,35 +163,6 @@
             label2.Text = "Corridas Agendadas";
             label2.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // button_Editar_Corrida
-            // 
-            button_Editar_Corrida.Location = new Point(9, 20);
-            button_Editar_Corrida.Name = "button_Editar_Corrida";
-            button_Editar_Corrida.Size = new Size(307, 23);
-            button_Editar_Corrida.TabIndex = 36;
-            button_Editar_Corrida.Text = "Editar Corrida Agendada";
-            button_Editar_Corrida.UseVisualStyleBackColor = true;
-            button_Editar_Corrida.Click += button_Editar_Corrida_Click;
-            // 
-            // panel2
-            // 
-            panel2.Controls.Add(button_Iniciar_Corrida);
-            panel2.Controls.Add(button_Editar_Corrida);
-            panel2.Location = new Point(12, 232);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(718, 60);
-            panel2.TabIndex = 32;
-            // 
-            // button_Iniciar_Corrida
-            // 
-            button_Iniciar_Corrida.Location = new Point(374, 20);
-            button_Iniciar_Corrida.Name = "button_Iniciar_Corrida";
-            button_Iniciar_Corrida.Size = new Size(307, 23);
-            button_Iniciar_Corrida.TabIndex = 37;
-            button_Iniciar_Corrida.Text = "Iniciar Corrida Em Andamento";
-            button_Iniciar_Corrida.UseVisualStyleBackColor = true;
-            button_Iniciar_Corrida.Click += button_Iniciar_Corrida_Click;
-            // 
             // Menu_Exibicao_Corridas_Em_Andamento
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -173,6 +173,7 @@
             Text = "Menu_Exibicao_Corridas_Em_Andamento";
             Activated += Recarregar_Lista;
             panel1.ResumeLayout(false);
+            panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView_Corridas_Em_Andamento).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView_Corridas_Agendadas).EndInit();
             panel7.ResumeLayout(false);
@@ -180,7 +181,6 @@
             panel3.PerformLayout();
             panel10.ResumeLayout(false);
             panel10.PerformLayout();
-            panel2.ResumeLayout(false);
             ResumeLayout(false);
         }
 

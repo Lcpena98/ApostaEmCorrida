@@ -12,9 +12,25 @@ namespace ApostaEmCorrida.Controller
         {
             _apostaService = apostaService;
         }
-        public RetornoStatus RegistrarAposta(Corrida corrida,int numeroCavalo, int numeroApostador, double valorApostado)
+        public List<Aposta> BuscarApostasPorApostador(Apostador apostador)
+        {
+            return _apostaService.BuscarApostasPorApostador(apostador);
+        }
+        public RetornoStatus RegistrarAposta(Corrida corrida, int numeroCavalo, int numeroApostador, double valorApostado)
         {
             return _apostaService.RegistrarAposta(corrida, numeroCavalo, numeroApostador, valorApostado);
+        }
+       /* public RetornoStatus ValidarAposta(Aposta aposta)
+        {
+            return _apostaService.ValidarAposta(aposta);
+        }*/
+        public RetornoStatus AtualizarStatus(Aposta aposta, int novoStatus)
+        {
+            return _apostaService.AtualizarStatus(aposta, novoStatus);
+        }
+        public List<Aposta> BuscarApostasPorCorrida(Corrida corrida)
+        {
+            return _apostaService.BuscarApostasPorCorrida(corrida);
         }
     }
 }

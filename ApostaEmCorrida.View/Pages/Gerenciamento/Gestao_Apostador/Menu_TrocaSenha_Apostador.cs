@@ -41,7 +41,6 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Apostador
             {
                 RetornoStatus retornoAlteracao = _apostadorController.TrocarSenhaApostador(textBox_Senha_Apostador.Text, textBox_NovaSenha_Apostador.Text, textBox_Confirma_Nova_Senha_Apostador.Text, _apostador.Numero);
                 MessageBox.Show(retornoAlteracao.Message);
-                
             }
         }
         private void button_voltar_Click(object sender, EventArgs e)
@@ -49,7 +48,5 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Apostador
             _menu_Apostador.Show();
             this.Close();
         }
-
-
     }
 }

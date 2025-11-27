@@ -4,6 +4,7 @@ using ApostaEmCorrida.Domain.Retorno;
 using Dapper;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -129,12 +130,31 @@ namespace ApostaEmCorrida.Dapper
 
         public RetornoStatus AdicionarSaldo(int numero, double valor)
         {
-            throw new NotImplementedException();
+
+            try
+            {
+                string sql = @"UPDATE APOSTADOR SET Saldo += @Valor WHERE Numero = @Numero";
+                banco.Execute(sql, new { Valor = valor, Numero = numero });
+                return new RetornoStatus(true, "Saldo adicionado com sucesso!");
+            }
+            catch (Exception ex)
+            {
+                return new RetornoStatus(false, "Erro ao adicionar saldo: " + ex.Message);
+            }
         }
 
-        public RetornoStatus RemoverApostador(int numero)
+        public RetornoStatus RemoverSaldo(int numero,double valor)
         {
-            throw new NotImplementedException();
+            try
+            {
+                string sql = @"UPDATE APOSTADOR SET Saldo -= @Valor WHERE Numero = @Numero";
+                banco.Execute(sql, new { Valor = valor, Numero = numero });
+                return new RetornoStatus(true, "Saldo adicionado com sucesso!");
+            }
+            catch (Exception ex)
+            {
+                return new RetornoStatus(false, "Erro ao remover saldo: " + ex.Message);
+            }
         }
     }
 }

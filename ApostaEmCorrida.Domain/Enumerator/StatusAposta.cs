@@ -14,6 +14,8 @@ namespace ApostaEmCorrida.Domain.Enumerator
         SegundoLugar = 3,
         TerceiroLugar = 4,
         Perdedor = 5,
-        Finalizada =6
+        Estornado =6,
+        Finalizada = 7
+
     }
 }

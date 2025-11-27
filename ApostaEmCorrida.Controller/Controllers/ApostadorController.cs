@@ -26,7 +26,6 @@ namespace ApostaEmCorrida.Controller
         }
         public RetornoStatus CadastrarApostador(string nome, string senha, string confirmaSenha, string email, int numero, double saldo)
         {
-            
             return _apostadorService.CadastrarApostador(nome, senha, confirmaSenha, email, numero, saldo);
         }
         public RetornoDados<int> CadastrarNumero()
@@ -38,13 +37,21 @@ namespace ApostaEmCorrida.Controller
         {
             return _apostadorService.TrocarSenhaApostador(senha, novaSenha, confirmaNovaSenha, numero);
         }
+        public RetornoStatus ResetarSenhaApostador(string email, string novaSenha, string confirmaNovaSenha)
+        {
+            return _apostadorService.ResetarSenhaApostador(email, novaSenha, confirmaNovaSenha);
+        }
         public RetornoStatus AlterarDadosApostador(string nome, string email, int numero)
         {
             return _apostadorService.AlterarDadosApostador(nome, email, numero);
         }
-        public RetornoStatus RemoverApostador(int numero)
+        public RetornoStatus AdicionarSaldo(int numero, double valor)
         {
-            return _apostadorService.RemoverApostador(numero);
+            return _apostadorService.AdicionarSaldo(numero,valor);
+        }
+        public RetornoStatus RemoverSaldo(int numero, double valor)
+        {
+            return _apostadorService.RemoverSaldo(numero,valor);
         }
     }
 }

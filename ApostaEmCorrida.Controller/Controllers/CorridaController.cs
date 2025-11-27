@@ -64,6 +64,10 @@ namespace ApostaEmCorrida.Controller
         {
             return _corridaService.BuscarResultadosDaCorrida(corrida);
         }
+        public Corrida BuscarCorridaPorId(int corridaId)
+        {
+            return _corridaService.BuscarCorridaPorId(corridaId);
+        }
     }
 }
 

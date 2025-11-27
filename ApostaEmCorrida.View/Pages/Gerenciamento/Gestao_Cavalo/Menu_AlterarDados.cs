@@ -109,7 +109,6 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Cavalo
                 }
             }
         }
-
         private void button_Voltar_Click(object sender, EventArgs e)
         {
             _gerenciamento_Cavalo.Show();

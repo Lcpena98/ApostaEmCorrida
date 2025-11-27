@@ -28,7 +28,6 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Apostador
             _apostadorController = new ApostadorController(new ApostadorService(new ApostadorRepository()));
             label_Dados_Usuario.Text = $"{_apostador.Nome.ToString()} - {_apostador.Numero.ToString()}";
         }
-
         private void button_Alterar_Click(object sender, EventArgs e)
         {
             string nome, email;
@@ -53,7 +52,6 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Apostador
             textBox_AlterarNome_Apostador.Text = string.Empty;
             textBox_AlterarEmail_Apostador.Text = string.Empty;
         }
-
         private void button_voltar_Click(object sender, EventArgs e)
         {
             _menu_Apostador.Show();

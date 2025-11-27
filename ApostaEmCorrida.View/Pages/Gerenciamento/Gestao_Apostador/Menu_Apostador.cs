@@ -1,4 +1,5 @@
 ﻿using ApostaEmCorrida.Domain;
+using ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Apostas;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -44,7 +45,9 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Apostador
         }
         private void button_Minhas_Apostas_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Função Em Desenvolvimento.");
+            Menu_Minhas_Apostas menu_Minhas_Apostas = new Menu_Minhas_Apostas(this, _apostador);
+            menu_Minhas_Apostas.Show();
+            this.Hide();
         }
         private void button_Saldo_Click(object sender, EventArgs e)
         {
@@ -56,7 +59,5 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Apostador
             _login_Apostador.Show();
             this.Close();
         }
-
-        
     }
 }

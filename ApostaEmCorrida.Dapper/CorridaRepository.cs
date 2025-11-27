@@ -13,19 +13,42 @@ namespace ApostaEmCorrida.Dapper
 {
     public class CorridaRepository : Conexao, ICorridaRepository
     {
+        public Corrida BuscarCorridaPorId(int corridaId)
+        {
+            try
+            {
+                string sql = @"
+                SELECT c.Id_Corrida AS Corrida_Id, 
+                       c.Numero_Voltas AS Numero_de_Voltas,
+                       c.Percurso,
+                       c.DataInicio,
+                       c.DataFim,
+                       c.StatusCorrida AS CorridaStatus,
+                       c.ValorApostado
+                FROM CORRIDA c
+                WHERE c.Id_Corrida = @corridaId";
+                Corrida corrida = banco.QueryFirstOrDefault<Corrida>(sql, new { corridaId = corridaId });
+                return corrida;
+            }
+            catch (Exception ex)
+            {
+                return new Corrida();
+            }
+        }
         public List<Corrida> BuscarCorridasPorStatus(int status)
         {
-            int statusCorrida = status;
             List<Corrida> corridas = new List<Corrida>();
             string sql = @"
                 SELECT c.Id_Corrida AS Corrida_Id, 
                        c.Numero_Voltas AS Numero_de_Voltas,
                        c.Percurso,
                        c.DataInicio,
-                       c.StatusCorrida AS CorridaStatus
+                       c.DataFim,
+                       c.StatusCorrida AS CorridaStatus,
+                       c.ValorApostado
                 FROM CORRIDA c
                 WHERE c.StatusCorrida = @StatusCorrida";
-            corridas = banco.Query<Corrida>(sql, new { StatusCorrida = statusCorrida }).ToList();
+            corridas = banco.Query<Corrida>(sql, new { StatusCorrida = status }).ToList();
             return corridas;
         }
         public RetornoStatus AgendarCorrida(Corrida corrida)
@@ -218,6 +241,16 @@ namespace ApostaEmCorrida.Dapper
             string sql = $"SELECT * FROM RESULTADO_CORRIDA WHERE Id_Corrida = {corrida.Corrida_Id} ORDER BY Posicao ASC";
             return banco.Query<ResultadoCorrida>(sql).ToList();
 
+        }
+
+        public double BuscarValorTotalApostadoNaCorrida(Corrida corrida)
+        {
+            string sql = @"
+                SELECT ValorApostado
+                FROM CORRIDA
+                WHERE Id_Corrida = @Id_Corrida";
+            double valorTotal = banco.QueryFirstOrDefault<int>(sql, new { Id_Corrida = corrida.Corrida_Id });
+            return valorTotal;
         }
     }
 }

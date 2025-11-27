@@ -29,8 +29,7 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Corridas
             InitializeComponent();
             _menu_Gerenciar_Corridas = menu_Gerenciar_Corridas;
             _cavaloController = new CavaloController(new CavaloService(new CavaloRepository()));
-            _corridaController = new CorridaController(new CorridaService(new CavaloRepository(), new CorridaRepository(), new VoltasRepository()));
-
+            _corridaController = new CorridaController(new CorridaService(new CavaloRepository(), new CorridaRepository(), new VoltasRepository(), new ApostaRepository(), new ApostadorRepository()));
             // Carregar cavalos no combobox
             RetornoDados<List<Cavalo>> retornoCavalos = _cavaloController.BuscarTodosCavalos();
             foreach (Cavalo cavalo in retornoCavalos.Dados)
@@ -43,8 +42,6 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Corridas
             // Definir colunas do DataGridView
             dataGridView_Cavalos.DataSource = competidores.ToList();
         }
-
-
         private void textBox_Percurso_TextKeyPress(object sender, KeyPressEventArgs e)
         {
             // Permitir controle (backspace)
@@ -54,7 +51,6 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Corridas
             {
                 e.Handled = true;
             }
-
             // Permitir apenas uma vírgula ou ponto
             TextBox txt = sender as TextBox;
             if ((e.KeyChar == '.') && (txt.Text.Contains(".")))
@@ -99,7 +95,6 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Corridas
                 MessageBox.Show("Selecione um cavalo para cadastrar na corrida.");
             }
         }
-
         private void button_Cadastrar_Corrida_Click(object sender, EventArgs e)
         {
             if (data_Inicio_Corrida.Value < DateTime.Now)
@@ -122,7 +117,6 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Corridas
                 data_Inicio_Corrida.Text = string.Empty;
             }
         }
-
         private void button_voltar_Click(object sender, EventArgs e)
         {
             _menu_Gerenciar_Corridas.Show();

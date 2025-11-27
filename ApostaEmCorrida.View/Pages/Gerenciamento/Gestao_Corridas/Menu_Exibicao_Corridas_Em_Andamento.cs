@@ -19,32 +19,14 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Corridas
     {
         Menu_Gerenciar_Corridas _menu_Gerenciar_Corridas;
         CorridaController _corridaController;
-        List<Corrida> corridas_Em_Andamento = new List<Corrida>();
-        List<Corrida> corridas_Agendadas = new List<Corrida>();
         public Menu_Exibicao_Corridas_Em_Andamento(Menu_Gerenciar_Corridas menu_Gerenciar_Corridas)
         {
             InitializeComponent();
             _menu_Gerenciar_Corridas = menu_Gerenciar_Corridas;
-            _corridaController = new CorridaController(new CorridaService(new CavaloRepository(), new CorridaRepository(),new VoltasRepository()));
-            corridas_Agendadas = _corridaController.BuscarCorridasPorStatus(0);
-            corridas_Em_Andamento = _corridaController.BuscarCorridasPorStatus(1);
-
+            _corridaController = new CorridaController(new CorridaService(new CavaloRepository(), new CorridaRepository(), new VoltasRepository(), new ApostaRepository(), new ApostadorRepository()));
             PreencerDataGridViewCorridas(dataGridView_Corridas_Agendadas, 0);
             PreencerDataGridViewCorridas(dataGridView_Corridas_Em_Andamento, 1);
-
-            /*
-             IDEIA DE IMPLEMENTAÇÃO FUTURA
-
-            . Criar botões para "Ver Detalhes da Corrida"
-            . Calcular o tempo total de cada cavalo e determinar a ordem de chegada
-            . Validar os vencedores e posições e preencher os dados na tabela de Resultados
-            . Atualizar o status da corrida para "Finalizada"
-            . Notificar os usuários sobre os resultados das corridas finalizadas
-
-            OBS: O Banco já está implementado para suportar essas funcionalidades.
-             */
         }
-
         private void Recarregar_Lista(object sender, EventArgs e)
         {
             PreencerDataGridViewCorridas(dataGridView_Corridas_Agendadas, 0);
@@ -72,21 +54,16 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Corridas
                 DataPropertyName = "DataInicio",
                 HeaderText = "Data Agendada"
             });
-
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView.ReadOnly = true;
             dataGridView.MultiSelect = false;
             dataGridView.DataSource = _corridaController.BuscarCorridasPorStatus(status);
             dataGridView.ClearSelection();
             Corrida corrida = new Corrida();
-            corrida.Competidores= new List<Cavalo>();
+            corrida.Competidores = new List<Cavalo>();
         }
-        
-
         private void button_Editar_Corrida_Click(object sender, EventArgs e)
         {
-            var corridaSelecionada = dataGridView_Corridas_Agendadas.SelectedRows[0].DataBoundItem as Corrida;
-            Corrida corrida = corridaSelecionada;
             if (dataGridView_Corridas_Agendadas.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Selecione uma corrida antes de continuar.");
@@ -94,6 +71,8 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Corridas
             }
             else
             {
+                var corridaSelecionada = dataGridView_Corridas_Agendadas.SelectedRows[0].DataBoundItem as Corrida;
+                Corrida corrida = corridaSelecionada;
                 if (DateTime.Now > corrida.DataInicio.AddHours(-1))
                 {
                     MessageBox.Show("A corrida selecionada está muito próxima, não é possivel alterar dados da mesma.");
@@ -107,7 +86,6 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Corridas
                 }
             }
         }
-
         private void button_Iniciar_Corrida_Click(object sender, EventArgs e)
         {
             if (dataGridView_Corridas_Em_Andamento.SelectedRows.Count == 0)
@@ -117,12 +95,11 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Corridas
             }
             else
             {
-                Corrida corridaSelecionada = dataGridView_Corridas_Em_Andamento.SelectedRows[0].DataBoundItem as Corrida;
+                Corrida corridaSelecionada = (Corrida)dataGridView_Corridas_Em_Andamento.SelectedRows[0].DataBoundItem;
                 RetornoStatus resultado = _corridaController.IniciarCorrida(corridaSelecionada);
                 MessageBox.Show(resultado.Message);
             }
         }
-
         private void button_voltar_Click(object sender, EventArgs e)
         {
             _menu_Gerenciar_Corridas.Show();

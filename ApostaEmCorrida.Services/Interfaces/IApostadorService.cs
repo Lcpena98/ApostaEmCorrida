@@ -16,8 +16,9 @@ namespace ApostaEmCorrida.Services.Interfaces
         public RetornoStatus CadastrarApostador(string nome, string senha, string confirmaSenha, string email, int numero, double saldo);
         public RetornoStatus AlterarDadosApostador(string nome, string email, int numero);
         public RetornoStatus TrocarSenhaApostador(string senha, string novaSenha, string confirmaNovaSenha, int numero);
+        public RetornoStatus ResetarSenhaApostador(string email, string novaSenha, string confirmaNovaSenha);
         public RetornoDados<int> CadastrarNumero();
         public RetornoStatus AdicionarSaldo(int numero, double valor);
-        public RetornoStatus RemoverApostador(int numero);
+        public RetornoStatus RemoverSaldo(int numero, double valor);
     }
 }

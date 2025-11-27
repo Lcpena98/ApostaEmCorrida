@@ -25,13 +25,11 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Corridas
         bool bloqueio = false;
         double distancia = 0;
         int tipo_gerenciamento = 0;
-        string resultado_gerenciamento = "";
-
         public Menu_Gerenciar_Corrida_Agendada_Selecionada(Menu_Exibicao_Corridas_Em_Andamento menu_Corridas_Agendadas, Corrida corrida_selecionada)
         {
             InitializeComponent();
             _cavaloController = new CavaloController(new CavaloService(new CavaloRepository()));
-            _corridaController = new CorridaController(new CorridaService(new CavaloRepository(), new CorridaRepository(), new VoltasRepository()));
+            _corridaController = new CorridaController(new CorridaService(new CavaloRepository(), new CorridaRepository(), new VoltasRepository(), new ApostaRepository(),new ApostadorRepository()));
             _menu_Corridas_Agendadas = menu_Corridas_Agendadas;
             _corrida_selecionada = corrida_selecionada;
             distancia = corrida_selecionada.Percurso;
@@ -52,7 +50,6 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Corridas
             dataGridView_Cavalos.DataSource = competidores.ToList();
             dataGridView_Cavalos.ClearSelection();
         }
-
         private void button_Cadastrar_Cavalo_Click(object sender, EventArgs e)
         {
             button_Gerenciar_Cavalo.Text = "Cadastrar Cavalo";
@@ -62,7 +59,6 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Corridas
             MessageBox.Show("Selecione os cavalos que deseja cadastrar na corrida e clique em 'Adicionar Cavalo'.");
             tipo_gerenciamento = 1;
         }
-
         private void button_Gerenciar_Cavalo_Click(object sender, EventArgs e)
         {
             if (tipo_gerenciamento == 0)
@@ -94,7 +90,6 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Corridas
 
             competidores = _corridaController.BuscarCompetidores(_corrida_selecionada);
             dataGridView_Cavalos.DataSource = competidores.ToList();
-
             tipo_gerenciamento = 0;
             button_Gerenciar_Cavalo.Text = "Gerenciar Cavalos";
         }
@@ -145,8 +140,6 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Corridas
             }
             else
             {
-                
-
                 RetornoStatus statusAlteracao = _corridaController.AtualizarDadosDaCorrida(_corrida_selecionada, (int)numericUpDown_Numero_Voltas.Value, distancia, data_Inicio_Corrida.Value);
                 _corrida_selecionada.Percurso= distancia;
                 _corrida_selecionada.DataInicio= data_Inicio_Corrida.Value;
@@ -154,8 +147,6 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Corridas
                 MessageBox.Show(statusAlteracao.Message);
             }
         }
-
-
         private void button_voltar_Click(object sender, EventArgs e)
         {
             _menu_Corridas_Agendadas.Show();

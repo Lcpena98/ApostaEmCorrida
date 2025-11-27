@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            resultado_Cadastro = new Label();
             panel8 = new Panel();
             button_Voltar = new Button();
             panel2 = new Panel();
@@ -62,23 +61,10 @@
             panel3.SuspendLayout();
             SuspendLayout();
             // 
-            // resultado_Cadastro
-            // 
-            resultado_Cadastro.AutoSize = true;
-            resultado_Cadastro.BorderStyle = BorderStyle.Fixed3D;
-            resultado_Cadastro.Location = new Point(3, 29);
-            resultado_Cadastro.MaximumSize = new Size(290, 60);
-            resultado_Cadastro.MinimumSize = new Size(290, 60);
-            resultado_Cadastro.Name = "resultado_Cadastro";
-            resultado_Cadastro.Size = new Size(290, 60);
-            resultado_Cadastro.TabIndex = 4;
-            resultado_Cadastro.TextAlign = ContentAlignment.MiddleCenter;
-            resultado_Cadastro.Visible = false;
-            // 
             // panel8
             // 
             panel8.Controls.Add(button_Voltar);
-            panel8.Location = new Point(6, 427);
+            panel8.Location = new Point(9, 352);
             panel8.Name = "panel8";
             panel8.Size = new Size(304, 41);
             panel8.TabIndex = 6;
@@ -123,7 +109,7 @@
             panel1.Controls.Add(panel3);
             panel1.Location = new Point(-2, 1);
             panel1.Name = "panel1";
-            panel1.Size = new Size(313, 472);
+            panel1.Size = new Size(313, 393);
             panel1.TabIndex = 3;
             // 
             // panel9
@@ -155,11 +141,10 @@
             // 
             // panel7
             // 
-            panel7.Controls.Add(resultado_Cadastro);
             panel7.Controls.Add(button_Cadastrar);
             panel7.Location = new Point(6, 315);
             panel7.Name = "panel7";
-            panel7.Size = new Size(304, 106);
+            panel7.Size = new Size(304, 31);
             panel7.TabIndex = 5;
             // 
             // button_Cadastrar
@@ -285,7 +270,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(310, 468);
+            ClientSize = new Size(310, 399);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "Menu_Cadastro_Apostador";
@@ -297,7 +282,6 @@
             panel9.ResumeLayout(false);
             panel9.PerformLayout();
             panel7.ResumeLayout(false);
-            panel7.PerformLayout();
             panel6.ResumeLayout(false);
             panel6.PerformLayout();
             panel5.ResumeLayout(false);
@@ -310,8 +294,6 @@
         }
 
         #endregion
-
-        private Label resultado_Cadastro;
         private Panel panel8;
         private Button button_Voltar;
         private Panel panel2;

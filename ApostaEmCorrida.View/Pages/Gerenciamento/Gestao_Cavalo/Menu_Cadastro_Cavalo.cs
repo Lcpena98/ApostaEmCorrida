@@ -125,8 +125,7 @@ namespace ApostaEmCorrida.View.Pages
             string.IsNullOrEmpty(textBox_PesoCavalo.Text) ||
             string.IsNullOrEmpty(label_Numero.Text))
             {
-                resultado_Cadastro.Text = "Favor Preencher os campos obrigatórios";
-                resultado_Cadastro.Visible = true;
+                MessageBox.Show("Favor Preencher os campos obrigatórios");
                 textBox_NomeCavalo.Text = "";
                 textBox_Raca.Text = "";
                 textBox_AlturaCavalo.Text = "";
@@ -143,8 +142,7 @@ namespace ApostaEmCorrida.View.Pages
                     double.Parse(textBox_AlturaCavalo.Text),
                     double.Parse(textBox_PesoCavalo.Text),
                     int.Parse(label_Numero.Text));
-                resultado_Cadastro.Text = Cadastro.Message;
-                resultado_Cadastro.Visible = true;
+                MessageBox.Show(Cadastro.Message);
                 textBox_NomeCavalo.Text = "";
                 textBox_Raca.Text = "";
                 textBox_AlturaCavalo.Text = "";
@@ -157,17 +155,8 @@ namespace ApostaEmCorrida.View.Pages
 
         private void button_Voltar_Click(object sender, EventArgs e)
         {
-
             _gerenciamento_Cavalo.Show();
             this.Close();
         }
-
-        private void resultado_Cadastro_Click(object sender, EventArgs e)
-        {
-            _gerenciamento_Cavalo.Show();
-            this.Close();
-        }
-
-
     }
 }

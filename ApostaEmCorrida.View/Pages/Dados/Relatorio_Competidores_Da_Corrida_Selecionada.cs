@@ -24,7 +24,7 @@ namespace ApostaEmCorrida.View.Pages.Dados
         public Relatorio_Competidores_Da_Corrida_Selecionada(Relatorio_Corridas_Finalizadas relatorio_Corridas_Finalizadas,Corrida corridaSelecionada)
         {
             InitializeComponent();
-            _corridaController = new CorridaController(new CorridaService(new CavaloRepository(),new CorridaRepository(),new VoltasRepository()));
+            _corridaController = new CorridaController(new CorridaService(new CavaloRepository(),new CorridaRepository(),new VoltasRepository(),new ApostaRepository(), new ApostadorRepository()));
             _relatorio_Corridas_Finalizadas = relatorio_Corridas_Finalizadas;
             _corridaSelecionada = corridaSelecionada;
             _resultadosCorrida = _corridaController.BuscarResultadosDaCorrida(_corridaSelecionada);

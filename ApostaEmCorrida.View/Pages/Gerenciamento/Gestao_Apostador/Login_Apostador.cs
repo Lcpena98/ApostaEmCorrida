@@ -75,7 +75,8 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Apostador
 
         private void button_esqueci_senha_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Em Desenvolvimento!");
+            Menu_EsqueciSenha_Apostador esqueciSenha_Apostador = new Menu_EsqueciSenha_Apostador(this);
+            esqueciSenha_Apostador.ShowDialog();
         }
         private void button_Voltar_Click(object sender, EventArgs e)
         {

@@ -12,6 +12,7 @@ namespace ApostaEmCorrida.Services.Interfaces
     {
         public RetornoStatus AgendarCorrida(Corrida corrida);
         public List<Corrida> BuscarCorridasPorStatus (int status);
+        public Corrida BuscarCorridaPorId(int corrida_Id);
         public List<Cavalo> BuscarCompetidores(Corrida corrida);
         public RetornoStatus CadastrarParticipantes(Corrida corrida, List<Cavalo> competidores);
         public RetornoStatus AtualizarDadosDaCorrida(Corrida corrida, int Numero_Voltas, double percurso, DateTime dataInicio);
@@ -20,5 +21,6 @@ namespace ApostaEmCorrida.Services.Interfaces
         public RetornoStatus IniciarCorrida(Corrida corridaSelecionada);
         public RetornoStatus CadastrarFimCorrida(Corrida corrida);
         public List<ResultadoCorrida> BuscarResultadosDaCorrida(Corrida corrida);
+        public void ValidarApostasDaCorrida(Corrida corrida);
     }
 }

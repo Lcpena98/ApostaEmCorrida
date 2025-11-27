@@ -35,7 +35,6 @@
             textBox_Raca = new TextBox();
             label5 = new Label();
             panel7 = new Panel();
-            resultado_Cadastro = new Label();
             button_Cadastrar = new Button();
             panel5 = new Panel();
             textBox_PesoCavalo = new TextBox();
@@ -72,13 +71,13 @@
             panel1.Controls.Add(panel3);
             panel1.Location = new Point(2, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(263, 447);
+            panel1.Size = new Size(263, 363);
             panel1.TabIndex = 0;
             // 
             // panel8
             // 
             panel8.Controls.Add(button_Voltar);
-            panel8.Location = new Point(0, 401);
+            panel8.Location = new Point(4, 321);
             panel8.Name = "panel8";
             panel8.Size = new Size(256, 41);
             panel8.TabIndex = 2;
@@ -121,31 +120,17 @@
             // 
             // panel7
             // 
-            panel7.Controls.Add(resultado_Cadastro);
             panel7.Controls.Add(button_Cadastrar);
             panel7.Location = new Point(3, 289);
             panel7.Name = "panel7";
-            panel7.Size = new Size(256, 106);
+            panel7.Size = new Size(256, 34);
             panel7.TabIndex = 5;
-            // 
-            // resultado_Cadastro
-            // 
-            resultado_Cadastro.AutoSize = true;
-            resultado_Cadastro.BorderStyle = BorderStyle.Fixed3D;
-            resultado_Cadastro.Location = new Point(12, 29);
-            resultado_Cadastro.MaximumSize = new Size(240, 60);
-            resultado_Cadastro.MinimumSize = new Size(240, 60);
-            resultado_Cadastro.Name = "resultado_Cadastro";
-            resultado_Cadastro.Size = new Size(240, 60);
-            resultado_Cadastro.TabIndex = 1;
-            resultado_Cadastro.TextAlign = ContentAlignment.MiddleCenter;
-            resultado_Cadastro.Visible = false;
             // 
             // button_Cadastrar
             // 
-            button_Cadastrar.Location = new Point(94, 3);
+            button_Cadastrar.Location = new Point(67, 6);
             button_Cadastrar.Name = "button_Cadastrar";
-            button_Cadastrar.Size = new Size(75, 23);
+            button_Cadastrar.Size = new Size(133, 23);
             button_Cadastrar.TabIndex = 0;
             button_Cadastrar.Text = "Cadastrar";
             button_Cadastrar.UseVisualStyleBackColor = true;
@@ -286,7 +271,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(266, 447);
+            ClientSize = new Size(266, 369);
             Controls.Add(panel6);
             Controls.Add(panel2);
             Controls.Add(panel1);
@@ -297,7 +282,6 @@
             panel9.ResumeLayout(false);
             panel9.PerformLayout();
             panel7.ResumeLayout(false);
-            panel7.PerformLayout();
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
             panel4.ResumeLayout(false);
@@ -331,7 +315,6 @@
         private Panel panel7;
         private Button button_Voltar;
         private Button button_Cadastrar;
-        private Label resultado_Cadastro;
         private Panel panel8;
         private Panel panel9;
         private TextBox textBox_Raca;

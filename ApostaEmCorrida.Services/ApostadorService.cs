@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ApostaEmCorrida.Services
 {
-    public class ApostadorService: IApostadorService
+    public class ApostadorService : IApostadorService
     {
         protected readonly IApostadorRepository _apostadorRepository;
 
@@ -66,13 +66,13 @@ namespace ApostaEmCorrida.Services
             }
             catch (Exception ex)
             {
-                return new RetornoDados<int>(false,$"Erro ao cadastrar o numero{ex.Message.ToString()}", -1);
+                return new RetornoDados<int>(false, $"Erro ao cadastrar o numero{ex.Message.ToString()}", -1);
             }
         }
 
         public RetornoStatus TrocarSenhaApostador(string senha, string novaSenha, string confirmaNovaSenha, int numero)
         {
-            if(novaSenha != confirmaNovaSenha)
+            if (novaSenha != confirmaNovaSenha)
             {
                 return new RetornoStatus(false, "As senhas não batem!");
             }
@@ -87,16 +87,33 @@ namespace ApostaEmCorrida.Services
             return _apostadorRepository.AlterarDadosApostador(nome, email, numero);
         }
 
-        
+
 
         public RetornoStatus AdicionarSaldo(int numero, double valor)
         {
-            throw new NotImplementedException();
+            return _apostadorRepository.AdicionarSaldo(numero, valor);
         }
 
-        public RetornoStatus RemoverApostador(int numero)
+        public RetornoStatus RemoverSaldo(int numero, double valor)
         {
-            throw new NotImplementedException();
+            return _apostadorRepository.RemoverSaldo(numero, valor);
+        }
+
+        public RetornoStatus ResetarSenhaApostador(string email, string novaSenha, string confirmaNovaSenha)
+        {
+            RetornoDados<Apostador> apostador = _apostadorRepository.BuscarApostadorPorEmail(email);
+            if (!apostador.Sucesso)
+            {
+                return new RetornoStatus(false, "Apostador não encontrado!");
+            }
+            else if (novaSenha != confirmaNovaSenha)
+            {
+                return new RetornoStatus(false, "As senhas não batem!");
+            }
+            else
+            {
+                return _apostadorRepository.TrocarSenhaApostador(apostador.Dados.Senha, novaSenha, apostador.Dados.Numero);
+            }
         }
     }
 }

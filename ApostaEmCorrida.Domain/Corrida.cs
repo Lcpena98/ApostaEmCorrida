@@ -18,7 +18,8 @@ namespace ApostaEmCorrida.Domain
         public DateTime DataInicio { get; set; }
         public DateTime DataFim {  get; set; }
         public TimeSpan Duracao { get; set; }
-        public CorridaStatus CorridaStatus { get; set; } = CorridaStatus.Agendada;
+        public CorridaStatus CorridaStatus { get; set; }
+        public double ValorApostado { get; set; }
 
         public Corrida() { }
         public Corrida(List<Cavalo> competidores,int numero_de_voltas, double percurso, DateTime dataInicio)

@@ -19,21 +19,18 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Corridas
             InitializeComponent();
             _menu_Inicial = menu_Inicial;
         }
-
         private void button_Nova_Corrida_Click(object sender, EventArgs e)
         {
             Menu_Cadastro_Corrida _menu_Cadastro_Corrida = new Menu_Cadastro_Corrida(this);
             _menu_Cadastro_Corrida.Show();
             this.Hide();
         }
-
         private void button_Corridas_Andamento_Click(object sender, EventArgs e)
         {
            Menu_Exibicao_Corridas_Em_Andamento menu_Exibicao_Corridas_Em_Andamento = new Menu_Exibicao_Corridas_Em_Andamento(this);
               menu_Exibicao_Corridas_Em_Andamento.Show();
             this.Hide();
         }
-
         private void button_Corridas_Finalizadas_Click(object sender, EventArgs e)
         {
             Relatorio_Corridas_Finalizadas relatorio_Corridas_Finalizadas = new Relatorio_Corridas_Finalizadas(this);

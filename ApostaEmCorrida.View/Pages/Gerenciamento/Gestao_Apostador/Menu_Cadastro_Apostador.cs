@@ -39,8 +39,7 @@ namespace ApostaEmCorrida.View.Pages
             }
             else
             {
-                resultado_Cadastro.Text = "Não foi possível gerar o número do apostador.";
-                resultado_Cadastro.Visible = true;
+                MessageBox.Show("Não foi possível gerar o número do apostador.");
             }
         }
         private void button_Cadastrar_Click(object sender, EventArgs e)
@@ -51,10 +50,7 @@ namespace ApostaEmCorrida.View.Pages
             string.IsNullOrEmpty(textBox_ConfirmarSenha.Text) ||
             string.IsNullOrEmpty(label_Numero.Text))
             {
-                resultado_Cadastro.Text = "Favor Preencher os campos obrigatórios";
-                resultado_Cadastro.Visible = true;
-
-                resultado_Cadastro.Visible = true;
+                MessageBox.Show("Favor Preencher os campos obrigatórios");
                 textBox_NomeApostador.Text = "";
                 textBox_EmailApostador.Text = "";
                 textBox_SenhaApostador.Text = "";
@@ -67,50 +63,45 @@ namespace ApostaEmCorrida.View.Pages
 
                 if (textBox_SenhaApostador.Text != textBox_ConfirmarSenha.Text)
                 {
-                    resultado_Cadastro.Text = "A senha deve ser igual ao confirmar senha";
-                    resultado_Cadastro.Visible = true;
-
-                    resultado_Cadastro.Visible = true;
+                    MessageBox.Show("A senha deve ser igual ao confirmar senha");
                     textBox_NomeApostador.Text = "";
                     textBox_EmailApostador.Text = "";
                     textBox_SenhaApostador.Text = "";
                     textBox_ConfirmarSenha.Text = "";
                     label_Numero.Text = "";
                     label_Numero.Visible = false;
-                } 
+                }
                 else
                 {
-                        try
-                        {
+                    try
+                    {
 
-                            RetornoStatus retorno = _apostadorController.CadastrarApostador(
-                                textBox_NomeApostador.Text,
-                                textBox_SenhaApostador.Text,
-                                textBox_ConfirmarSenha.Text,
-                                textBox_EmailApostador.Text.ToLower(),
-                                int.Parse(label_Numero.Text),
-                                0);
-                            resultado_Cadastro.Text = ($"{retorno.Message}");
-                            resultado_Cadastro.Visible = true;
-                            textBox_NomeApostador.Text = "";
-                            textBox_EmailApostador.Text = "";
-                            textBox_SenhaApostador.Text = "";
-                            textBox_ConfirmarSenha.Text = "";
-                            label_Numero.Text = string.Empty;
-                            label_Numero.Visible = false;
-                        }
-                        catch
-                        {
-                            resultado_Cadastro.Text = "Não foi possível cadastrar o Apostador!";
-                            resultado_Cadastro.Visible = true;
-                            textBox_NomeApostador.Text = "";
-                            textBox_EmailApostador.Text = "";
-                            textBox_SenhaApostador.Text = "";
-                            textBox_ConfirmarSenha.Text = "";
-                            label_Numero.Text = string.Empty;
-                            label_Numero.Visible = false;
-                        }
+                        RetornoStatus retorno = _apostadorController.CadastrarApostador(
+                            textBox_NomeApostador.Text,
+                            textBox_SenhaApostador.Text,
+                            textBox_ConfirmarSenha.Text,
+                            textBox_EmailApostador.Text.ToLower(),
+                            int.Parse(label_Numero.Text),
+                            0);
+                        MessageBox.Show($"{retorno.Message}");
+                        textBox_NomeApostador.Text = "";
+                        textBox_EmailApostador.Text = "";
+                        textBox_SenhaApostador.Text = "";
+                        textBox_ConfirmarSenha.Text = "";
+                        label_Numero.Text = string.Empty;
+                        label_Numero.Visible = false;
                     }
+                    catch
+                    {
+                        MessageBox.Show("Não foi possível cadastrar o Apostador!");
+                        textBox_NomeApostador.Text = "";
+                        textBox_EmailApostador.Text = "";
+                        textBox_SenhaApostador.Text = "";
+                        textBox_ConfirmarSenha.Text = "";
+                        label_Numero.Text = string.Empty;
+                        label_Numero.Visible = false;
+                    }
+                }
             }
         }
         private void button_Voltar_Click(object sender, EventArgs e)
