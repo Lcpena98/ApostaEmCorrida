@@ -26,7 +26,6 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Apostador
             _menu_Inicial = menu_Inicial;
             _apostadorController = new ApostadorController(new ApostadorService(new ApostadorRepository()));
         }
-
         private void button_login_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBox_EmailApostador.Text) || string.IsNullOrEmpty(textBox_SenhaApostador.Text))
@@ -54,25 +53,20 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Apostador
                 {
                     MessageBox.Show(retornoApostador.Message);
                 }
-
             }
         }
-
         private void button_Cadastro_Apostador_Click(object sender, EventArgs e)
         {
             Menu_Cadastro_Apostador _menu_Cadastro_Apostador = new Menu_Cadastro_Apostador(this);
             _menu_Cadastro_Apostador.Show();
             this.Hide();
         }
-
         private void button_trocar_senha_Click(object sender, EventArgs e)
         {
             Menu_EsqueciSenha_Apostador esqueciSenha_Apostador = new Menu_EsqueciSenha_Apostador(this);
             esqueciSenha_Apostador.Show();
             this.Hide();
         }
-
-
         private void button_esqueci_senha_Click(object sender, EventArgs e)
         {
             Menu_EsqueciSenha_Apostador esqueciSenha_Apostador = new Menu_EsqueciSenha_Apostador(this);

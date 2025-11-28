@@ -125,6 +125,7 @@
             Controls.Add(panel2);
             Name = "Menu_Apostas_Finalizadas";
             Text = "Menu_Apostas_Finalizadas";
+            Activated += Recarregar_Lista;
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             panel8.ResumeLayout(false);

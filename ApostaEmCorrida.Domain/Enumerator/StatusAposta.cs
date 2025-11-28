@@ -16,6 +16,5 @@ namespace ApostaEmCorrida.Domain.Enumerator
         Perdedor = 5,
         Estornado =6,
         Finalizada = 7
-
     }
 }

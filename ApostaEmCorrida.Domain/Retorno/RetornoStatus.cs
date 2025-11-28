@@ -10,7 +10,6 @@ namespace ApostaEmCorrida.Domain.Retorno
     {
         public bool Sucesso { get; set; }
         public string Message { get; set; }
-
         public RetornoStatus(bool sucesso, string message)
         {
             Sucesso = sucesso;

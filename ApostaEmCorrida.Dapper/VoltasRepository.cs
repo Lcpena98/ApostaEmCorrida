@@ -112,8 +112,6 @@ namespace ApostaEmCorrida.Dapper
                 }
 
             }
-
-         
             return resultados;
         }
     }

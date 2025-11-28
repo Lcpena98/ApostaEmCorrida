@@ -52,12 +52,10 @@ namespace ApostaEmCorrida.Services
         {
             return _corridaRepository.AtualizarDadosDaCorrida(corrida, Numero_Voltas, percurso, dataInicio);
         }
-
         public RetornoStatus AlterarStatus(Corrida corrida, int status)
         {
             return _corridaRepository.AlterarStatus(corrida, status);
         }
-
         public void AtualizarStatusCompetidores(Corrida corrida, int statusAtual, int novoStatus)
         {
             foreach (Cavalo cavalo in _corridaRepository.BuscarCompetidores(corrida))
@@ -66,7 +64,6 @@ namespace ApostaEmCorrida.Services
                     _corridaRepository.AtualizarStatusCompetidores(cavalo, novoStatus);
             }
         }
-
         public RetornoStatus IniciarCorrida(Corrida corridaSelecionada)
         {
             List<Voltas> voltasExistentes = new List<Voltas>();
@@ -108,7 +105,6 @@ namespace ApostaEmCorrida.Services
                 return new RetornoStatus(false, "Falha ao finalizar Corrida!");
             }
         }
-
         public RetornoStatus CadastrarFimCorrida(Corrida corrida)
         {
             try
@@ -193,12 +189,10 @@ namespace ApostaEmCorrida.Services
                             case 3:
                                 vencedores3.Add(aposta);
                                 break;
-                            
                         }
                         break;
                     }
                 }
-
             }
             if (vencedores1.Count > 0)
             {
@@ -207,7 +201,7 @@ namespace ApostaEmCorrida.Services
                 foreach (Aposta aposta in vencedores1)
                 {
                     _apostaRepository.AtualizarStatus(aposta, (int)StatusAposta.PrimeiroLugar);
-                    _apostadorRepository.AdicionarSaldo(aposta.Apostador_Id, premio1Individual);
+                    _apostadorRepository.AdicionarSaldo(aposta.Apostador, premio1Individual);
                     _apostaRepository.AtualizarPremiacao(aposta, premio1Individual);
                 }
             }
@@ -222,7 +216,7 @@ namespace ApostaEmCorrida.Services
                 foreach (Aposta aposta in vencedores2)
                 {
                     _apostaRepository.AtualizarStatus(aposta, (int)StatusAposta.SegundoLugar);
-                    _apostadorRepository.AdicionarSaldo(aposta.Apostador_Id, premio2Individual);
+                    _apostadorRepository.AdicionarSaldo(aposta.Apostador, premio2Individual);
                     _apostaRepository.AtualizarPremiacao(aposta, premio2Individual);
                 }
             }
@@ -237,7 +231,7 @@ namespace ApostaEmCorrida.Services
                 foreach (Aposta aposta in vencedores3)
                 {
                     _apostaRepository.AtualizarStatus(aposta, (int)StatusAposta.TerceiroLugar);
-                    _apostadorRepository.AdicionarSaldo(aposta.Apostador_Id, premio3Individual);
+                    _apostadorRepository.AdicionarSaldo(aposta.Apostador, premio3Individual);
                     _apostaRepository.AtualizarPremiacao(aposta, premio3Individual);
                 }
             }
@@ -248,7 +242,7 @@ namespace ApostaEmCorrida.Services
                 foreach (Aposta aposta in perdedores)
                 {
                     _apostaRepository.AtualizarStatus(aposta, (int)StatusAposta.Estornado);
-                    _apostadorRepository.AdicionarSaldo(aposta.Apostador_Id, premioEstornadoIndividual);
+                    _apostadorRepository.AdicionarSaldo(aposta.Apostador, premioEstornadoIndividual);
                     _apostaRepository.AtualizarPremiacao(aposta, premioEstornadoIndividual);
                 }
             }
@@ -258,7 +252,7 @@ namespace ApostaEmCorrida.Services
                 premio3Individual = Math.Round(premio3 / vencedores2.Count, 2);
                 foreach (Aposta aposta in vencedores2)
                 {
-                    _apostadorRepository.AdicionarSaldo(aposta.Apostador_Id, premio3Individual);
+                    _apostadorRepository.AdicionarSaldo(aposta.Apostador, premio3Individual);
                     _apostaRepository.AtualizarPremiacao(aposta, premio2Individual+premio3Individual);
                 }
             }
@@ -268,7 +262,7 @@ namespace ApostaEmCorrida.Services
                 premio3Individual = Math.Round(premio3 / vencedores1.Count, 2);
                 foreach (Aposta aposta in vencedores1)
                 {
-                    _apostadorRepository.AdicionarSaldo(aposta.Apostador_Id, premio3);
+                    _apostadorRepository.AdicionarSaldo(aposta.Apostador, premio3);
                     _apostaRepository.AtualizarPremiacao(aposta, premio1Individual + premio3Individual);
                 }
             }

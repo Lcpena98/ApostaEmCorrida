@@ -101,6 +101,7 @@
             // 
             textBox_NovaSenha.Location = new Point(98, 12);
             textBox_NovaSenha.Name = "textBox_NovaSenha";
+            textBox_NovaSenha.PasswordChar = '*';
             textBox_NovaSenha.Size = new Size(155, 23);
             textBox_NovaSenha.TabIndex = 1;
             // 
@@ -144,6 +145,7 @@
             // 
             textBox_ConfirmaNovaSenha.Location = new Point(100, 12);
             textBox_ConfirmaNovaSenha.Name = "textBox_ConfirmaNovaSenha";
+            textBox_ConfirmaNovaSenha.PasswordChar = '*';
             textBox_ConfirmaNovaSenha.Size = new Size(155, 23);
             textBox_ConfirmaNovaSenha.TabIndex = 1;
             // 

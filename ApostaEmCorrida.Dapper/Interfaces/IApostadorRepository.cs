@@ -16,7 +16,7 @@ namespace ApostaEmCorrida.Dapper.Interfaces
         public RetornoStatus CadastrarApostador(string nome, string senha, string email, int numero, double saldo);
         public RetornoStatus AlterarDadosApostador(string nome, string email, int numero);
         public RetornoStatus TrocarSenhaApostador(string senha, string novaSenha, int numero);
-        public RetornoStatus AdicionarSaldo(int numero, double valor);
-        public RetornoStatus RemoverSaldo(int numero, double valor);
+        public RetornoStatus AdicionarSaldo(Apostador apostador, double valor);
+        public RetornoStatus RemoverSaldo(Apostador apostador, double valor);
     }
 }

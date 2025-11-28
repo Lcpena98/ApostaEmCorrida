@@ -19,7 +19,6 @@ namespace ApostaEmCorrida.Services
         {
             _apostadorRepository = apostadorRepository;
         }
-
         public RetornoDados<Apostador> BuscarApostadorPorNumero(int numero)
         {
             return _apostadorRepository.BuscarApostadorPorNumero(numero);
@@ -32,7 +31,6 @@ namespace ApostaEmCorrida.Services
         {
             return _apostadorRepository.BuscarTodosApostadores();
         }
-
         public RetornoStatus CadastrarApostador(string nome, string senha, string confirmaSenha, string email, int numero, double saldo)
         {
             List<Apostador> apostadoresCadastrados = _apostadorRepository.BuscarTodosApostadores().Dados;
@@ -49,7 +47,6 @@ namespace ApostaEmCorrida.Services
                 return _apostadorRepository.CadastrarApostador(nome, senha, email, numero, saldo);
             }
         }
-
         public RetornoDados<int> CadastrarNumero()
         {
             try
@@ -69,7 +66,6 @@ namespace ApostaEmCorrida.Services
                 return new RetornoDados<int>(false, $"Erro ao cadastrar o numero{ex.Message.ToString()}", -1);
             }
         }
-
         public RetornoStatus TrocarSenhaApostador(string senha, string novaSenha, string confirmaNovaSenha, int numero)
         {
             if (novaSenha != confirmaNovaSenha)
@@ -81,24 +77,19 @@ namespace ApostaEmCorrida.Services
                 return _apostadorRepository.TrocarSenhaApostador(senha, novaSenha, numero);
             }
         }
-
         public RetornoStatus AlterarDadosApostador(string nome, string email, int numero)
         {
             return _apostadorRepository.AlterarDadosApostador(nome, email, numero);
         }
-
-
-
-        public RetornoStatus AdicionarSaldo(int numero, double valor)
+        public RetornoStatus AdicionarSaldo(Apostador apostador, double valor)
         {
-            return _apostadorRepository.AdicionarSaldo(numero, valor);
+            return _apostadorRepository.AdicionarSaldo(apostador, valor);
         }
 
-        public RetornoStatus RemoverSaldo(int numero, double valor)
+        public RetornoStatus RemoverSaldo(Apostador apostador, double valor)
         {
-            return _apostadorRepository.RemoverSaldo(numero, valor);
+            return _apostadorRepository.RemoverSaldo(apostador, valor);
         }
-
         public RetornoStatus ResetarSenhaApostador(string email, string novaSenha, string confirmaNovaSenha)
         {
             RetornoDados<Apostador> apostador = _apostadorRepository.BuscarApostadorPorEmail(email);

@@ -17,9 +17,7 @@ namespace ApostaEmCorrida.Domain
         public double Peso { get; set; }
         public int Numero_de_Corridas { get; protected set; }
         public int Numero_de_Vitorias { get; protected set; }
-
         public StatusCavalo StatusCavalo { get; set; }
-
         public Cavalo() { }
         public Cavalo(int numero, string nome, string raca ,double altura, double peso, int numero_de_Corridas, int numero_de_Vitorias,StatusCavalo statusCavalo)
         {
@@ -32,7 +30,6 @@ namespace ApostaEmCorrida.Domain
             Numero_de_Vitorias = numero_de_Vitorias;
             StatusCavalo = statusCavalo;
         }
-
         public override string ToString()
         {
             return $"{Nome} - {Numero_Cavalo}";

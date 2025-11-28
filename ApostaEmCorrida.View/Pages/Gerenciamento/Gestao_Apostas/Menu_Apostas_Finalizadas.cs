@@ -26,8 +26,16 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Apostas
             InitializeComponent();
             _menuMinhasApostas = minhas_Apostas;
             _apostasFinalizadas = apostasFinalizadas;
-            _apostaController = new ApostaController(new ApostaService(new ApostaRepository(),new ApostadorRepository(), new CorridaRepository()));
+            _apostaController = new ApostaController(new ApostaService(new ApostaRepository(), new ApostadorRepository(), new CorridaRepository()));
 
+            Preencher_Lista(temApostasPendenteValidacao);
+        }
+        public void Recarregar_Lista(object sender, EventArgs e)
+        {
+            Preencher_Lista(false);
+        }
+        private void Preencher_Lista(bool temApostasPendenteValidacao)
+        {
             dataGridView_Apostas.DataSource = null;
             dataGridView_Apostas.AutoGenerateColumns = false;
             dataGridView_Apostas.Columns.Clear();
@@ -60,7 +68,7 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Apostas
         {
             foreach (Aposta aposta in _apostasFinalizadas)
             {
-                RetornoStatus validacao = _apostaController.AtualizarStatus(aposta,(int)StatusAposta.Finalizada);
+                RetornoStatus validacao = _apostaController.AtualizarStatus(aposta, (int)StatusAposta.Finalizada);
                 if (validacao.Sucesso == false)
                 {
                     MessageBox.Show($"Erro ao validar a aposta no competidor {aposta.CavaloApostado.Nome}: {validacao.Message}");

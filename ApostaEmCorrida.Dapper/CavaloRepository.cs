@@ -15,7 +15,6 @@ namespace ApostaEmCorrida.Dapper
 {
     public class CavaloRepository : Conexao, ICavaloRepository
     {
-
         public RetornoDados<Cavalo> BuscarCavaloPorNumero(int numero)
         {
             try
@@ -28,7 +27,6 @@ namespace ApostaEmCorrida.Dapper
                 return new RetornoDados<Cavalo>(false, $"Erro ao buscar cavalo por número: {ex.Message}", new Cavalo());
             }
         }
-
         public RetornoDados<List<Cavalo>> BuscarTodosCavalos()
         {
             try
@@ -41,7 +39,6 @@ namespace ApostaEmCorrida.Dapper
                 return new RetornoDados<List<Cavalo>>(false, $"Falha ao buscar a lista de cavalos!", listaVazia);
             }
         }
-
         public List<Cavalo> BuscarCavalosNaoCadastradosEmCorrida(Corrida corrida)
         {
             try
@@ -103,7 +100,6 @@ namespace ApostaEmCorrida.Dapper
                 return new RetornoStatus(false, $"Erro ao atualizar desempenho dos cavalos!");
             }
         }
-
         public RetornoStatus AlterarDadosCavalo(string novoNome, string novaRaca, double novaAltura, double novoPeso, int numero)
         {
             try
@@ -119,7 +115,6 @@ namespace ApostaEmCorrida.Dapper
                 return new RetornoStatus(false, $"Erro ao alterar dados do cavalo: {ex.Message}");
             }
         }
-
         public RetornoStatus RemoverCavalo(int numero)
         {
             try

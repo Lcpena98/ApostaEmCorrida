@@ -32,7 +32,7 @@ namespace ApostaEmCorrida.View.Pages
         {
             InitializeComponent();
             _menu_Apostador = menu_Apostador;
-            _apostador = apostador;_corridaController = new CorridaController(new CorridaService(new CavaloRepository(), new CorridaRepository(), new VoltasRepository(), new ApostaRepository(), new ApostadorRepository()));
+            _apostador = apostador; _corridaController = new CorridaController(new CorridaService(new CavaloRepository(), new CorridaRepository(), new VoltasRepository(), new ApostaRepository(), new ApostadorRepository()));
             _apostaController = new ApostaController(new ApostaService(new ApostaRepository(), new ApostadorRepository(), new CorridaRepository()));
             label_Dados_Usuario.Text = $"{_apostador.Nome.ToString()} - {_apostador.Numero.ToString()}";
 
@@ -72,7 +72,6 @@ namespace ApostaEmCorrida.View.Pages
             {
                 e.Handled = true;
             }
-
             // Permitir apenas uma vírgula ou ponto
             TextBox txt = sender as TextBox;
             if ((e.KeyChar == '.') && (txt.Text.Contains(".")))
@@ -83,7 +82,7 @@ namespace ApostaEmCorrida.View.Pages
 
         private void button_Selecionar_Corrida_Click(object sender, EventArgs e)
         {
-            corridaSelecionada = dataGridView_Corridas.SelectedRows[0].DataBoundItem as Corrida;
+            corridaSelecionada = (Corrida)dataGridView_Corridas.SelectedRows[0].DataBoundItem;
             List<Cavalo> cavalosNaCorrida = _corridaController.BuscarCompetidores(corridaSelecionada);
             foreach (Cavalo cavalo in cavalosNaCorrida)
             {
@@ -95,8 +94,6 @@ namespace ApostaEmCorrida.View.Pages
 
         private void button_Registrar_Click(object sender, EventArgs e)
         {
-
-
             if (corridaSelecionada == null)
             {
                 MessageBox.Show("Selecione uma corrida para apostar.");
@@ -119,7 +116,7 @@ namespace ApostaEmCorrida.View.Pages
                 }
                 else
                 {
-                    RetornoStatus retorno = _apostaController.RegistrarAposta(corridaSelecionada, cavaloSelecionado.Numero_Cavalo, _apostador.Numero, valorApostado);
+                    RetornoStatus retorno = _apostaController.RegistrarAposta(corridaSelecionada, cavaloSelecionado.Numero_Cavalo, _apostador, valorApostado);
                     comboBox_Cavalo.Items.Clear();
                     comboBox_Cavalo.Text = string.Empty;
                     comboBox_Cavalo.SelectedItem = -1;

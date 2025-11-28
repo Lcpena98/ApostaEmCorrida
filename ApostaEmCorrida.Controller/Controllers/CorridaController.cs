@@ -12,12 +12,10 @@ namespace ApostaEmCorrida.Controller
         {
             _corridaService = corridaService;
         }
-
         public List<Corrida> BuscarCorridasPorStatus(int status)
         {
             return _corridaService.BuscarCorridasPorStatus(status);
         }
-
         public RetornoStatus AgendarCorrida(Corrida corrida)
         {
             return _corridaService.AgendarCorrida(corrida);

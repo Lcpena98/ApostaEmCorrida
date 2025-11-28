@@ -19,7 +19,6 @@ namespace ApostaEmCorrida.Domain
         public double ValorApostado { get; set; }
         public double ValorPremio { get; set; }
         public StatusAposta Status { get; set; }
-
         public Aposta() { }
         public Aposta(Cavalo cavalo, Apostador apostador, double valorApostado, Corrida corridaApostada)
         {

@@ -172,6 +172,7 @@
             Controls.Add(panel10);
             Name = "Menu_Apostador";
             Text = "Menu_Apostador";
+            Activated += Recarregar_Apostador;
             panel7.ResumeLayout(false);
             panel8.ResumeLayout(false);
             panel9.ResumeLayout(false);

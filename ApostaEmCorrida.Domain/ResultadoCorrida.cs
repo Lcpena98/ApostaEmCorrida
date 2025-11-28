@@ -16,7 +16,6 @@ namespace ApostaEmCorrida.Domain
         public Cavalo Corredor { get; set; }
         public int Posicao { get; set; }
         public TimeSpan Duracao { get; set; }
-
         public ResultadoCorrida() { }
         public ResultadoCorrida(Corrida corrida, Cavalo corredor, TimeSpan duracao)
         {

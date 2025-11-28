@@ -14,7 +14,6 @@ namespace ApostaEmCorrida.Domain
         public int NumeroVolta { get; set; }
         public TimeSpan TempoVolta { get; set; }
         public double DistanciaPercorrida { get; set; }
-
         public Voltas() { }
         public Voltas(Corrida corrida, Cavalo competidor, int numeroVolta, TimeSpan tempoVolta, double distanciaPercorrida)
         {

@@ -33,7 +33,6 @@ namespace ApostaEmCorrida.Dapper
                 return new RetornoDados<Apostador>(false, "Erro ao buscar apostador: " + ex.Message, null);
             }
         }
-
         public RetornoDados<Apostador> BuscarApostadorPorEmail(string email)
         {
             string sql = @"SELECT * FROM APOSTADOR WHERE EMAIL = @Email";
@@ -54,7 +53,6 @@ namespace ApostaEmCorrida.Dapper
                 return new RetornoDados<Apostador>(false, "Erro ao buscar apostador: " + ex.Message, null);
             }
         }
-
         public RetornoDados<List<Apostador>> BuscarTodosApostadores()
         {
             try
@@ -66,7 +64,6 @@ namespace ApostaEmCorrida.Dapper
                 return new RetornoDados<List<Apostador>>(false, "Erro ao buscar apostadores: " + ex.Message, new List<Apostador>());
             }
         }
-
         public RetornoStatus CadastrarApostador(string nome, string senha, string email, int numero, double saldo)
         {
             try
@@ -81,7 +78,6 @@ namespace ApostaEmCorrida.Dapper
                 return new RetornoStatus(false, "Erro ao cadastrar apostador: " + ex.Message);
             }
         }
-
         public RetornoStatus TrocarSenhaApostador(string senha, string novaSenha, int numero)
         {
             string sqlVerifica = @"SELECT * FROM APOSTADOR WHERE NUMERO = @Numero AND SENHA = @Senha";
@@ -104,7 +100,6 @@ namespace ApostaEmCorrida.Dapper
                 return new RetornoStatus(false, "Erro ao trocar senha: " + ex.Message);
             }
         }
-
         public RetornoStatus AlterarDadosApostador(string nome, string email, int numero)
         {
             string sqlVerifica = @"SELECT * FROM APOSTADOR WHERE NUMERO = @Numero";
@@ -127,29 +122,44 @@ namespace ApostaEmCorrida.Dapper
                 return new RetornoStatus(false, "Erro ao alterar dados: " + ex.Message);
             }
         }
-
-        public RetornoStatus AdicionarSaldo(int numero, double valor)
+        public RetornoStatus AdicionarSaldo(Apostador apostador, double valor)
         {
-
             try
             {
-                string sql = @"UPDATE APOSTADOR SET Saldo += @Valor WHERE Numero = @Numero";
-                banco.Execute(sql, new { Valor = valor, Numero = numero });
-                return new RetornoStatus(true, "Saldo adicionado com sucesso!");
+                if (valor < 0)
+                {
+                    return new RetornoStatus(false, "Valores negativos não são permitidos");
+                }
+                else
+                {
+                    string sql = @"UPDATE APOSTADOR SET Saldo += @Valor WHERE Numero = @Numero";
+                    banco.Execute(sql, new { Valor = valor, Numero = apostador.Numero });
+                    return new RetornoStatus(true, "Saldo adicionado com sucesso!");
+                }
             }
             catch (Exception ex)
             {
                 return new RetornoStatus(false, "Erro ao adicionar saldo: " + ex.Message);
             }
         }
-
-        public RetornoStatus RemoverSaldo(int numero,double valor)
+        public RetornoStatus RemoverSaldo(Apostador apostador, double valor)
         {
             try
             {
-                string sql = @"UPDATE APOSTADOR SET Saldo -= @Valor WHERE Numero = @Numero";
-                banco.Execute(sql, new { Valor = valor, Numero = numero });
-                return new RetornoStatus(true, "Saldo adicionado com sucesso!");
+                if (apostador.Saldo < valor)
+                {
+                    return new RetornoStatus(false, "Saldo insuficiente!");
+                }
+                else if (valor < 0)
+                {
+                    return new RetornoStatus(false, "Valores negativos não são permitidos");
+                }
+                else
+                {
+                    string sql = @"UPDATE APOSTADOR SET Saldo -= @Valor WHERE Numero = @Numero AND Saldo >= @valor";
+                    banco.Execute(sql, new { Valor = valor, Numero = apostador.Numero });
+                    return new RetornoStatus(true, "Saldo adicionado com sucesso!");
+                }
             }
             catch (Exception ex)
             {

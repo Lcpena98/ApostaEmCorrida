@@ -14,7 +14,6 @@ namespace ApostaEmCorrida.Domain
         public string Email { get; private set; }
         public int Numero { get; protected set; }//Codigo publico para a identificação do mesmo. um numero gerado para que o mesmo seja identificado caso ganhe a aposta
         public double Saldo { get; private set; }
-
         public Apostador(){ }
         public Apostador(string nome, string email, string senha, int numero, double saldo)
         {
@@ -27,13 +26,6 @@ namespace ApostaEmCorrida.Domain
         public override string ToString()
         {
             return $"{Nome} - {Numero}";
-        }
-
-
-        //Função que adiciona o saldo ao Apostador em caso de vitória
-        public void AdicionarSaldo(Apostador apostador, double valor)
-        {
-            apostador.Saldo += valor;
         }
     }
 }

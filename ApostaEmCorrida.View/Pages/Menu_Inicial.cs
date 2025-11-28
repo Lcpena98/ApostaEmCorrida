@@ -37,8 +37,6 @@ namespace ApostaEmCorrida.View.Pages
                 }
             }
             MessageBox.Show("Bem-vindo ao sistema de gerenciamento de corridas de cavalos!");
-            MessageBox.Show("Ainda é necessário configurar o saldo dos apostadores!");
-            MessageBox.Show("Próximo Passo!\n\rConfigurar o saldo dos apostadores!");
         }
         private void button_Cadastro_Cavalo_Click(object sender, EventArgs e)
         {
@@ -48,7 +46,6 @@ namespace ApostaEmCorrida.View.Pages
         }
         private void button_Cadastro_Apostador_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Ainda é necessário Configurar o saldo e O botão Esqueçi minha senha!");
             Login_Apostador menu_Gerenciamento_Apostador = new Login_Apostador(this);
             menu_Gerenciamento_Apostador.Show();
             this.Hide();
@@ -58,10 +55,6 @@ namespace ApostaEmCorrida.View.Pages
             Relatorio_Dados_Cavalos relatorio_Dados_Cavalos = new Relatorio_Dados_Cavalos(this);
             relatorio_Dados_Cavalos.Show();
             this.Hide();
-        }
-        private void button_Dados_Apostas_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Em Desenvolvimento!");
         }
         private void button_Corrida_Click(object sender, EventArgs e)
         {

@@ -1,4 +1,8 @@
-﻿using ApostaEmCorrida.Domain;
+﻿using ApostaEmCorrida.Controller;
+using ApostaEmCorrida.Dapper;
+using ApostaEmCorrida.Domain;
+using ApostaEmCorrida.Services;
+using ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Apostador.Gestao_Saldo;
 using ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Apostas;
 using System;
 using System.Collections.Generic;
@@ -16,13 +20,19 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Apostador
     {
         Login_Apostador _login_Apostador;
         Apostador _apostador;
+        ApostadorController _apostadorController;
         public Menu_Apostador(Login_Apostador login_Apostador, Apostador apostador)
         {
             InitializeComponent();
             _login_Apostador = login_Apostador;
             _apostador = apostador;
+            _apostadorController = new ApostadorController(new ApostadorService(new ApostadorRepository()));
         }
 
+        public void Recarregar_Apostador(object sender, EventArgs e)
+        {
+            _apostador = _apostadorController.BuscarApostadorPorNumero(_apostador.Numero).Dados;
+        }
         private void button_trocar_senha_Click(object sender, EventArgs e)
         {
             Menu_TrocaSenha_Apostador _menu_TrocaSenha_Apostador = new Menu_TrocaSenha_Apostador(this, _apostador);
@@ -30,7 +40,7 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Apostador
             this.Hide();
         }
 
-        private void button_alterar_dados_Click(object sender, EventArgs e)
+       private void button_alterar_dados_Click(object sender, EventArgs e)
         {
             Menu_AlterarDados_Apostador _menu_AlterarDados_Apostador = new Menu_AlterarDados_Apostador(this, _apostador);
             _menu_AlterarDados_Apostador.Show();
@@ -52,7 +62,9 @@ namespace ApostaEmCorrida.View.Pages.Gerenciamento.Gestao_Apostador
         private void button_Saldo_Click(object sender, EventArgs e)
         {
             MessageBox.Show($"Seu saldo atual é: R$ {_apostador.Saldo:F2}");
-            MessageBox.Show("Função Em Desenvolvimento.");
+            Menu_Gestao_Saldo menu_Gestao_Saldo = new Menu_Gestao_Saldo(this, _apostador);
+            menu_Gestao_Saldo.Show();
+            this.Hide();
         }
         private void button_voltar_Click(object sender, EventArgs e)
         {

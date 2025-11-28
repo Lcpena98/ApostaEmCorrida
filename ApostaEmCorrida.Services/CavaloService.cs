@@ -19,13 +19,11 @@ namespace ApostaEmCorrida.Services
         {
             _cavaloRepository = cavaloRepository;
         }
-
         //Função que cadastra os participantes
         public RetornoStatus CadastrarCavalo(string nome, string raca, double altura, double peso, int numero)
         {
             return _cavaloRepository.CadastrarCavalo(nome, raca, altura, peso, numero);
         }
-
         //Função que cria o numero do cavalo e impede que haja 2 cavalos com o mesmo numero
         public RetornoDados<int> CadastrarNumero()
         {
@@ -48,7 +46,6 @@ namespace ApostaEmCorrida.Services
                 return new RetornoDados<int>(false, $"Erro ao gerar número: {ex.Message}", -1);
             }
         }
-
         public RetornoDados<List<Cavalo>> BuscarTodosCavalos()
         {
             return _cavaloRepository.BuscarTodosCavalos();
@@ -58,17 +55,14 @@ namespace ApostaEmCorrida.Services
         {
             return BuscarCavaloPorNumero(numero);
         }
-
         public List<Cavalo> BuscarCavalosNaoCadastradosEmCorrida(Corrida corrida)
         {
             return _cavaloRepository.BuscarCavalosNaoCadastradosEmCorrida(corrida);
         }
-
         public RetornoStatus AlterarDadosCavalo(string novoNome, string novaRaca, double novaAltura, double novoPeso, int numero)
         {
             return _cavaloRepository.AlterarDadosCavalo(novoNome, novaRaca, novaAltura, novoPeso, numero);
         }
-
         public RetornoStatus RemoverCavalo(int numero)
         {
             return _cavaloRepository.RemoverCavalo(numero);

@@ -11,8 +11,7 @@ namespace ApostaEmCorrida.Services.Interfaces
     public interface IApostaService
     {
         public List<Aposta> BuscarApostasPorApostador(Apostador apostador);
-        public RetornoStatus RegistrarAposta(Corrida corrida,int numeroCavalo, int numeroApostador, double valorApostado);
-        //public RetornoStatus ValidarAposta(Aposta aposta);
+        public RetornoStatus RegistrarAposta(Corrida corrida,int numeroCavalo, Apostador apostador, double valorApostado);
         public RetornoStatus AtualizarStatus(Aposta aposta, int novoStatus);
         public List<Aposta> BuscarApostasPorCorrida(Corrida corrida);
     }

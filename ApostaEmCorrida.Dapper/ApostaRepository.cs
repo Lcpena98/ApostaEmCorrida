@@ -28,7 +28,6 @@ namespace ApostaEmCorrida.Dapper
                 return new RetornoStatus(false, "Erro ao atualizar status da aposta: " + ex.Message);
             }
         }
-
         public List<Aposta> BuscarApostasPorApostador(Apostador apostador)
         {
             try
@@ -68,7 +67,6 @@ namespace ApostaEmCorrida.Dapper
                 return new List<Aposta>();
             }
         }
-
         public RetornoStatus RegistrarAposta(Corrida corrida, int numeroCavalo, int numeroApostador, double valorApostado)
         {
             try
