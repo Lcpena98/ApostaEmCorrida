@@ -26,13 +26,16 @@ namespace ApostaEmCorrida.View.Pages
         Menu_Apostador _menu_Apostador;
         Apostador _apostador;
         ApostaController _apostaController;
+        ApostadorController _apostadorController;
         CorridaController _corridaController;
         Corrida corridaSelecionada = new Corrida();
         public Menu_Registro_Aposta(Menu_Apostador menu_Apostador, Apostador apostador)
         {
             InitializeComponent();
             _menu_Apostador = menu_Apostador;
-            _apostador = apostador; _corridaController = new CorridaController(new CorridaService(new CavaloRepository(), new CorridaRepository(), new VoltasRepository(), new ApostaRepository(), new ApostadorRepository()));
+            _apostador = apostador; 
+            _apostadorController = new ApostadorController(new ApostadorService(new ApostadorRepository()));
+            _corridaController = new CorridaController(new CorridaService(new CavaloRepository(), new CorridaRepository(), new VoltasRepository(), new ApostaRepository(), new ApostadorRepository()));
             _apostaController = new ApostaController(new ApostaService(new ApostaRepository(), new ApostadorRepository(), new CorridaRepository()));
             label_Dados_Usuario.Text = $"{_apostador.Nome.ToString()} - {_apostador.Numero.ToString()}";
 
@@ -62,6 +65,10 @@ namespace ApostaEmCorrida.View.Pages
             dataGridView_Corridas.MultiSelect = false;
             dataGridView_Corridas.DataSource = _corridaController.BuscarCorridasPorStatus(0);
             dataGridView_Corridas.ClearSelection();
+        }
+        public void Recarregar_Apostador(object sender, EventArgs e)
+        {
+            _apostador = _apostadorController.BuscarApostadorPorNumero(_apostador.Numero).Dados;
         }
         private void TextBox_Valor_Apostado_KeyPress(object sender, KeyPressEventArgs e)
         {

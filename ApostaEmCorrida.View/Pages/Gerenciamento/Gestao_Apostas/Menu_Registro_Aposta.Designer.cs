@@ -225,6 +225,7 @@
             Controls.Add(panel1);
             Name = "Menu_Registro_Aposta";
             Text = "Menu_Registro_Aposta";
+            Activated += Recarregar_Apostador;
             panel8.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
