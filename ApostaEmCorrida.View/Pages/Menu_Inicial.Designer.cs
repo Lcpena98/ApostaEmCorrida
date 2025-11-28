@@ -31,13 +31,13 @@
             panel1 = new Panel();
             button_Sair = new Button();
             panel3 = new Panel();
+            button_Dados_Cavalos = new Button();
             button_Cadastro_Apostador = new Button();
             button_Cadastro_Cavalo = new Button();
             button_Corrida = new Button();
             panel2 = new Panel();
             label1 = new Label();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            button_Dados_Cavalos = new Button();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             panel2.SuspendLayout();
@@ -73,6 +73,16 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(292, 140);
             panel3.TabIndex = 1;
+            // 
+            // button_Dados_Cavalos
+            // 
+            button_Dados_Cavalos.Location = new Point(151, 81);
+            button_Dados_Cavalos.Name = "button_Dados_Cavalos";
+            button_Dados_Cavalos.Size = new Size(131, 28);
+            button_Dados_Cavalos.TabIndex = 0;
+            button_Dados_Cavalos.Text = "Dados dos Cavalos";
+            button_Dados_Cavalos.UseVisualStyleBackColor = true;
+            button_Dados_Cavalos.Click += button_Dados_Cavalos_Click;
             // 
             // button_Cadastro_Apostador
             // 
@@ -118,20 +128,10 @@
             label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.Location = new Point(18, 8);
             label1.Name = "label1";
-            label1.Size = new Size(233, 32);
+            label1.Size = new Size(250, 32);
             label1.TabIndex = 0;
-            label1.Text = "Central de Serviços";
+            label1.Text = "Apostas em Corridas";
             label1.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // button_Dados_Cavalos
-            // 
-            button_Dados_Cavalos.Location = new Point(151, 81);
-            button_Dados_Cavalos.Name = "button_Dados_Cavalos";
-            button_Dados_Cavalos.Size = new Size(131, 28);
-            button_Dados_Cavalos.TabIndex = 0;
-            button_Dados_Cavalos.Text = "Dados dos Cavalos";
-            button_Dados_Cavalos.UseVisualStyleBackColor = true;
-            button_Dados_Cavalos.Click += button_Dados_Cavalos_Click;
             // 
             // Menu_Inicial
             // 
